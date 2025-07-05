@@ -15,6 +15,11 @@ class ContactController extends Controller
         return view('admin.contacts.index');
     }
 
+    public function showContactPage()
+    {
+        return view('pages.contact');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

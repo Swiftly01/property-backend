@@ -1,0 +1,97 @@
+.card-text{
+    color: #8F90A6;
+}
+.card-title{
+    color: #02122B;
+}
+
+
+.stagging {
+  background-color: #022A66;
+  border: 2px solid #022A66;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+
+.expert{
+    color: white;
+}
+
+
+#stage {
+  position: relative;
+  background-image: url(../images/stagging.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 50vh;
+  width: 100%;
+  padding: 2rem;
+  color: white; /* for text visibility */
+  z-index: 1;
+  overflow: hidden;
+}
+
+#stage::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: -1;
+}
+
+
+.icon{
+  background-color: #022A66;
+
+}
+
+
+
+.text{
+  color: white;
+  font-size:15px ;
+  font-weight: 200;
+}
+
+
+
+.text2{
+  color: white;
+  font-weight: 200;
+}
+.every{
+  color: #02122B;
+}
+.every2{
+color: #4D5461;
+}
+
+#submit{
+  background-color: #022A66;
+  border: 2px solid #022A66;
+}
+
+@media screen and (max-width: 768px) {
+  #submit{
+    margin: auto;
+  }
+}
+#submit:hover{
+  color: black;
+}
+.stand{
+  color: #110229;
+}
+.stand2{
+  color: #8F90A6;
+}

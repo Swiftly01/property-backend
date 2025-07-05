@@ -15,6 +15,16 @@ class StagingController extends Controller
         return view('admin.staging.index');
     }
 
+    public function showStaging()
+    {
+        return view('pages.staging.index');
+    }
+
+    public function showStagingDetails()
+    {
+        return view('pages.staging.show');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

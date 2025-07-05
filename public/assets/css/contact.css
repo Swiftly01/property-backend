@@ -1,0 +1,73 @@
+.main-body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Urbanist', sans-serif;
+}
+
+
+#connect{
+    background-color: #F6F8FF;
+    border: 2px solid #F6F8FF;
+    border-radius: 20px;
+    gap: 10px
+}
+
+.connect {
+  background-color: #F6F8FF;
+  border: 2px solid #F6F8FF;
+  border-radius: 20px;
+  gap: 10px;
+}
+
+#submit{
+  background-color: #022A66;
+  border: 2px solid #022A66;
+}
+#submit:hover{
+  color: black;
+}
+
+#firstname{
+  background-color: #F1F1F3;
+}
+.term{
+  color:#022A66 ;
+  font-weight: 500;
+}
+
+
+#contact {
+  position: relative;
+  background-image: url(../images/house6.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 50vh;
+  width: 100%;
+  padding: 2rem;
+  color: white; /* for text visibility */
+  z-index: 1;
+  overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  #submit {
+    margin: auto;
+  }
+}
+
+
+#contact::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: -1;
+}
+
+
+
+
+
+

@@ -1,0 +1,180 @@
+
+#back {
+  position: relative;
+  background-image: url(../images/house4.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 50vh;
+  width: 100%;
+  padding: 2rem;
+  color: white; /* for text visibility */
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+#back::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: -1;
+}
+
+.back2{
+    color: white;
+  
+}
+.back3{
+    color: white;
+    font-weight: 400;
+}
+
+
+.find {
+  background-color: #F5F5F6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #F5F5F6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px 20px; /* for internal spacing */
+  max-width: 700px;
+  margin: auto;
+}
+
+.find2 {
+  background-color: #02122B;
+  color: white;
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  font-weight: 500;
+
+
+}
+
+.find3 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+  color:#02122B ;
+   background-color: #F5F5F6;
+}
+.main-find{
+  background-color: #F5F5F6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #F5F5F6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px 20px; /* for internal spacing */
+  margin: auto;  
+}
+.input{
+   background-color: #F5F5F6; 
+   padding: 10px; 
+}
+
+.search-wrapper{
+  background-color: #F5F5F6;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+
+.search-wrapper2{
+ position: absolute;
+ bottom: -80px;
+}
+#locate{
+font-size: 15px;
+ background-color: #F5F5F6;
+}
+.status {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  padding: 10px;
+  font-size: 0.75rem;
+  color:#FFBB00;
+  border-radius: 10px;
+  width: 130px;
+  font-weight: bold;
+  z-index: 10;
+  text-align: center;
+  align-items: center;
+}
+
+.status.available {
+  background-color: #022A66;
+}
+
+.status.sold {
+  background-color:#022A66;
+}
+.top{
+  color:#FFBB00 ;
+}
+
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #022A66;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.view-link a {
+  background-color: #022A66;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.view-link a:hover {
+  background-color:#022A66;
+  text-decoration: none;
+  color: white;
+}
+
+.status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  color: #FFBB00;
+  border-radius: 10px;
+  background-color: #022A66;
+  font-weight: bold;
+  z-index: 10;
+}
+
+
+
+.card-body {
+  padding: 1rem;
+}
+

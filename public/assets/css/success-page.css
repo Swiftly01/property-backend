@@ -1,0 +1,13 @@
+#submit{
+  background-color: #02122B;
+  border: 2px solid #02122B;
+}
+#submit:hover{
+  color: black;
+}
+.submit2{
+  color: #110229;
+}
+.submit3{
+    color: #8F90A6;
+}

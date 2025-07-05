@@ -1,0 +1,153 @@
+#submit{
+  background-color: #022A66;
+  border: 2px solid #022A66;
+}
+
+
+#submit:hover{
+  color: black;
+}
+
+
+#malibu{
+    background-color:#E7EDF5 ;
+    border-radius: 5px solid #E7EDF5;
+    padding: 7px;
+    color:#02122B ;
+    border-radius: 5px;
+    width: 170px;
+}
+
+.villa{
+    color:#02122B ;
+}
+
+
+.scroll-animation {
+  display: inline-flex;
+  animation: scroll-left 25s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.img-hover-effect {
+  transition: transform 0.3s ease;
+}
+.img-hover-effect:hover {
+  transform: scale(1.1);
+}
+
+
+#property-page {
+  position: relative;
+  background-image: url(../images/stage.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 50vh;
+  padding: 50px;
+}
+.false{
+  font-size: 10px;
+}
+
+
+
+.arrow2 {
+  position: absolute;
+  background-color: #D9D9D9;
+  padding: 10px;
+  top: 250px;
+  z-index: 10;
+}
+ 
+/* Left arrow */
+.arrow {
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+  left: 0;
+  position: absolute;
+  background-color: #D9D9D9;
+  padding: 10px;
+  font-size: 15px;
+  top: 240px;
+  z-index: 10;
+}
+
+/* Right arrow (responsive) */
+.arrow2 {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  right: 0; /* Replaces left: 1026px */
+}
+
+@media (max-width: 576px) {
+  .arrow2 {
+    padding: 15px;
+  }
+}
+
+
+
+@media (max-width: 576px) {
+  .property {
+    padding: 8px;
+    gap: 8px;
+  }
+}
+
+#animate{
+  background-color:#F5F6F8 ;
+  padding: 10px;
+  border: 2px solid #F5F6F8;
+  border-radius: 20px;
+   margin-bottom: 20px;
+}
+
+#icon2{
+    font-size: 300px; 
+}
+
+
+.dark2{
+    font-size: 30px;
+    padding: 10px;
+}
+
+.level{
+color: #8F90A6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+#submit{
+  background-color: #022A66;
+  border: 2px solid  #022A66 ;
+}
+#submit:hover{
+  color: black;
+}
+.center{
+  border-radius: 20px;
+}
+.over{
+  background-color: #02122B;
+  color: white;
+  border-radius: 5px;
+  border: 2px solid #02122B;
+  padding: 1px;
+}
+.back{
+  border-radius: 10px;
+}
+
+.custom{
+  border-radius: 10px;
+}
+.upload{
+color: #9B9CBA;
+}
+
+#load2{
+  background-color: #02122B;
+color: white;
+}
+.request{
+  color: #110229;
+}
+.request2{
+  color: #8F90A6;
+}
+.request3{
+  color: #02122B;
+  font-weight: 500;
+}
+
+
+

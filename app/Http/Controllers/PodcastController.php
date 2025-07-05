@@ -15,6 +15,11 @@ class PodcastController extends Controller
         return view('admin.podcasts.index');
     }
 
+    public function showPodcasts()
+    {
+        return view('pages.podcasts');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

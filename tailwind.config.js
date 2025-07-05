@@ -29,6 +29,10 @@ export default {
                 "neutral-dark": "#010105",
                 'custom-blue-gray': '#8E95A9',
             },
+            
+            backgroundImage: {
+                'wallpaper': "url('/assets/images/wallpaper.jpg')",
+            }
         },
     },
 

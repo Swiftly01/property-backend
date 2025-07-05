@@ -15,6 +15,12 @@ class PhotographController extends Controller
         return view('admin.photographs.index');
     }
 
+
+    public function showPhotographs()
+    {
+        return view('pages.photographs');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

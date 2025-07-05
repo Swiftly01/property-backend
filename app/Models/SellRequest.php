@@ -9,4 +9,6 @@ class SellRequest extends Model
 {
     /** @use HasFactory<\Database\Factories\SellRequestFactory> */
     use HasFactory;
+
+    protected  $guarded = [];
 }

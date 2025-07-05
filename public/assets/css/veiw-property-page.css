@@ -1,0 +1,135 @@
+#malibu{
+    background-color:#E7EDF5 ;
+    border-radius: 5px solid #E7EDF5;
+    padding: 7px;
+    color:#02122B ;
+    border-radius: 5px;
+    width: 170px;
+}
+.villa{
+    color:#02122B ;
+}
+
+.scroll-animation {
+  display: inline-flex;
+  animation: scroll-left 25s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.img-hover-effect {
+  transition: transform 0.3s ease;
+}
+.img-hover-effect:hover {
+  transform: scale(1.1);
+}
+
+
+#property-page {
+  position: relative; /* Needed for absolute positioning of child */
+  background-image: url(../images/subcontainer.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 50vh;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.property {
+  position: absolute;
+  background-color:#F5F6F8;
+  border-top-right-radius: 10px;
+  padding: 20px 15px;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Optional: Responsive tweaks */
+@media (max-width: 576px) {
+  .property {
+    padding: 8px;
+    gap: 8px;
+  }
+}
+
+#animate{
+  background-color:#F5F6F8 ;
+  padding: 10px;
+  border: 2px solid #F5F6F8;
+  border-radius: 20px;
+   margin-bottom: 20px;
+}
+
+#icon2{
+    font-size: 300px; 
+}
+.description{
+    background-color:#F5F6F8;
+    border: 2px solid #F5F6F8;
+    align-items: center;
+    border-radius: 15px;
+    height: auto;
+     max-width: 550px;
+     padding: 40px;
+}
+.description2{
+    font-size: 15px;
+    color: #02122B;
+}
+.description3{
+  background-color:#F5F6F8;
+    border: 2px solid #F5F6F8;
+    align-items: center;
+    border-radius: 15px;
+    height: auto;
+     padding: 40px;
+     color: #02122B;
+}
+.Private{
+    background-color: #EAEDF2;
+    border-left: 1px solid #02122B;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    color: #02122B;
+}
+.side{
+    background-color:#F5F5F6 ;
+}
+
+#firstname{
+  background-color: #F1F1F3;
+}
+.term{
+  color:#022A66 ;
+  font-weight: 500;
+}
+#submit{
+  background-color: #022A66;
+  border: 2px solid #022A66;
+}
+#submit:hover{
+  color: black;
+}
+#side{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+#prevBtn{
+  font-size: 25px;
+}
+#nextBtn{
+  font-size: 25px;
+}

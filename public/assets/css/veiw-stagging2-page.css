@@ -1,0 +1,51 @@
+#property-page {
+  position: relative; /* Needed for absolute positioning of child */
+  background-image: url(../images/bg2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 50vh;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.false{
+  font-size: 10px;
+}
+
+
+
+.arrow2 {
+  position: absolute;
+  background-color: #D9D9D9;
+  padding: 10px;
+  top: 260px;
+  z-index: 10;
+}
+ 
+/* Left arrow */
+.arrow {
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+  left: 0;
+  position: absolute;
+  background-color: #D9D9D9;
+  padding: 10px;
+  font-size: 15px;
+  top: 260px;
+  z-index: 10;
+}
+
+/* Right arrow (responsive) */
+.arrow2 {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  right: 0; /* Replaces left: 1026px */
+}
+
+@media (max-width: 576px) {
+  .arrow2 {
+    padding: 13px;
+  }
+}
+
