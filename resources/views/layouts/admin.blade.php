@@ -24,8 +24,11 @@
 
         </main>
 
+<<<<<<< HEAD
 
 {!! ToastMagic::scripts() !!}
+=======
+>>>>>>> f7e52b051903d0f777714b0a064b5c8b6be26af7
  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
