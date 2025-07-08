@@ -3496,7 +3496,6 @@
             "time": "2025-06-01T06:28:46+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "spatie/image",
             "version": "3.8.5",
             "source": {
@@ -3856,8 +3855,6 @@
             "time": "2025-01-13T13:04:43+00:00"
         },
         {
-=======
->>>>>>> f7e52b051903d0f777714b0a064b5c8b6be26af7
             "name": "symfony/clock",
             "version": "v7.3.0",
             "source": {

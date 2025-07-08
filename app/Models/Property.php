@@ -14,16 +14,32 @@ class Property extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
+    protected $guarded = [];
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
-            ->addMediaConversion('preview')
+            ->addMediaConversion('thumbnail')
             ->width(400)
-             ->nonQueued();
+            ->nonQueued();
+
+
+        $this
+            ->addMediaConversion('standard')
+            ->width(800)
+            ->height(600)
+            ->sharpen(10)
+            ->nonQueued();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('thumbnail');
+        $this->addMediaCollection('other_images');
     }
 
     public function imageUrl()
     {
-        return $this->getFirstMedia()?->getUrl('preview');
+        return $this->getFirstMedia()?->getUrl('property');
     }
-}  
+}

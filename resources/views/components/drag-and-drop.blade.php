@@ -1,10 +1,18 @@
 @props([
     'width' => 'w-8',
+    'name',
+    'required'=> false,
+    'multiple' => false,
 
 ])
 
+@php
+    $id = 'dropzone-' . Str::slug($name, '-');
+@endphp
+
+
 <div class="flex items-center justify-center w-full">
-     <label for="dropzone-file"
+     <label for="{{ $id }}"
          class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
          <div class="flex flex-col items-center justify-center pt-5 pb-6">
              <svg class="{{ $width }} h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -17,6 +25,6 @@
              <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
                  800x400px)</p>
          </div>
-         <input id="dropzone-file" type="file" class="hidden" />
+         <input id="{{ $id }}" name="{{ $name }}" type="file" class="hidden" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }} />
      </label>
  </div>

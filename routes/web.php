@@ -3,6 +3,7 @@
 use App\Http\Controllers\BuyRequestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomBuildController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PhotographController;
 use App\Http\Controllers\PodcastController;
@@ -32,31 +33,22 @@ Route::get('/success', function () {
     return view('pages.success');
 })->name('success');
 
-
-Route::get('/index', function () {
-    return view('admin.dashboard');
-})->name('index');
-
-
 Route::get('/test', function () {})->name('test');
 
-Route::prefix('admin/')->group(function () {
-
-    Route::resource('properties', PropertyController::class);
-    Route::resource('buy-requests', BuyRequestController::class);
-    Route::resource('sell-requests', SellRequestController::class);
-    Route::resource('photographs', PhotographController::class);
-    Route::resource('staging', StagingController::class);
-    Route::resource('podcasts', PodcastController::class);
-    Route::resource('contacts', ContactController::class);
+Route::middleware('auth')->prefix('/admin')->group(function () {
+    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/settings', [DashboardController::class, 'showSettings'])->name('settings');
+    Route::resource('/properties', PropertyController::class);
+    Route::resource('/buy-requests', BuyRequestController::class);
+    Route::resource('/sell-requests', SellRequestController::class);
+    Route::resource('/photographs', PhotographController::class);
+    Route::resource('/staging', StagingController::class);
+    Route::resource('/podcasts', PodcastController::class);
+    Route::resource('/contacts', ContactController::class);
+    
 });
 
-
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
