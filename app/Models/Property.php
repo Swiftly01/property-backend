@@ -18,18 +18,21 @@ class Property extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this
+        /* $this
             ->addMediaConversion('thumbnail')
+            ->sharpen(10)
             ->width(400)
             ->nonQueued();
 
 
         $this
-            ->addMediaConversion('standard')
+            ->addMediaConversion('other_images')
             ->width(800)
             ->height(600)
             ->sharpen(10)
             ->nonQueued();
+
+       */
     }
 
     public function registerMediaCollections(): void
@@ -38,8 +41,25 @@ class Property extends Model implements HasMedia
         $this->addMediaCollection('other_images');
     }
 
-    public function imageUrl()
+
+    public function imageUrl(string $collection = 'thumbnail',  string $conversion = '')
     {
-        return $this->getFirstMedia()?->getUrl('property');
+
+        $media = $this->getFirstMedia($collection);
+
+        if (!$media) {
+            return null;
+        }
+        if ($conversion && $media->hasGeneratedConversion($conversion)) {
+            return $media->getUrl($conversion);
+        }
+
+        return $media->getUrl();
+    }
+
+
+    public function getImages(string $collection = 'other_images')
+    {
+        return $this->getMedia($collection);
     }
 }

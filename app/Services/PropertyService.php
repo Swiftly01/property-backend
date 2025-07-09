@@ -8,6 +8,7 @@ use App\Http\Requests\StorePropertyRequest;
 use App\Interfaces\PropertyInterface;
 use App\Models\Property;
 use Exception;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PropertyService
 {
@@ -66,4 +67,12 @@ class PropertyService
             }
         }
     }
+
+    public function getAllProperties():LengthAwarePaginator
+    {
+        return $this->propertyInterface->getAllProperties();
+    }
+
+
+
 }

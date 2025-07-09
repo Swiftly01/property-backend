@@ -21,8 +21,10 @@ class PropertyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('admin.properties.index');
+    {   
+        $properties = $this->propertyService->getAllProperties();
+
+        return view('admin.properties.index', compact('properties'));
     }
 
     public function showProperty()
@@ -50,7 +52,7 @@ class PropertyController extends Controller
      */
     public function store(StorePropertyRequest $request)
     {
-        //dd($request->validated());
+        
         try {
 
             $this->propertyService->handleStoreProperty(request: $request);
@@ -72,10 +74,9 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(Property $property)
-    public function show()
+    public function show(Property $property)
     {
-        return view('admin.properties.show');
+        return view('admin.properties.show', compact('property'));
     }
 
     /**
