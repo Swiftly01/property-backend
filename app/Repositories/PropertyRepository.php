@@ -18,14 +18,34 @@ class PropertyRepository implements PropertyInterface
     }
 
 
-    public function store(PropertyDTO $dto) : Property
+    public function store(PropertyDTO $dto): Property
     {
         return Property::create($dto->toArray());
+    }
+
+    public function update(PropertyDTO $dto, Property $property): Property
+    {
+        $property->fill($dto->toArray())->save();
+
+        return $property->refresh();
     }
 
 
     public function getAllProperties(): LengthAwarePaginator
     {
         return Property::paginate(3);
+    }
+
+
+    public function destroyThumbnail(Property $property): bool
+    {
+        $thumbnail = $property->getFirstMedia('thumbnail');
+
+        if ($thumbnail === null) {
+            return false;
+        }
+
+        $thumbnail->delete();
+        return true;
     }
 }

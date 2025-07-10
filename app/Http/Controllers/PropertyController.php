@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Helpers\AppHelper;
 use App\Http\Requests\StorePropertyRequest;
+use App\Http\Requests\UpdatePropertyRequest;
 use App\Models\Property;
 use App\Services\PropertyService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class PropertyController extends Controller
 {
@@ -21,7 +23,7 @@ class PropertyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         $properties = $this->propertyService->getAllProperties();
 
         return view('admin.properties.index', compact('properties'));
@@ -40,9 +42,9 @@ class PropertyController extends Controller
     {
         $location =  $this->appHelper->mapStateToArray();
 
-        if ($location->isEmpty()) {
-            ToastMagic::error('No location data available.');
-        }
+        // if ($location->isEmpty()) {
+        //     ToastMagic::error('No location data available.');
+        // }
 
         return view('admin.properties.create', compact('location'));
     }
@@ -52,15 +54,14 @@ class PropertyController extends Controller
      */
     public function store(StorePropertyRequest $request)
     {
-        
+
         try {
 
             $this->propertyService->handleStoreProperty(request: $request);
 
-             ToastMagic::success('Property uploaded successfully');
-             
-             return back();
+            ToastMagic::success('Property uploaded successfully');
 
+            return back();
         } catch (Exception $e) {
 
             Log::error("Error during property store process: {$e->getMessage()}");
@@ -82,19 +83,65 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    // public function edit(Property $property)
-    public function edit()
+    public function edit(Property $property)
     {
-        return view('admin.properties.edit');
+        $location =  $this->appHelper->mapStateToArray();
+
+        // if ($location->isEmpty()) {
+        //     ToastMagic::error('No location data available.');
+        // }
+        return view('admin.properties.edit', compact('property', 'location'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Property $property)
+    public function update(UpdatePropertyRequest $request, Property $property)
     {
-        //
+        try {
+
+            $this->propertyService->handleUpdateProperty(request: $request, property: $property);
+
+            ToastMagic::success('Property updated successfully');
+
+            return back();
+        } catch (Exception $e) {
+
+            Log::error("Error during property update {$e->getMessage()}");
+
+            ToastMagic::error('Unable to update property');
+
+            return back();
+        }
     }
+
+    public function destroyThumbnail(Property $property)
+    {
+        try {
+            $isDeleted = $this->propertyService->handleDeleteThumbnail(property: $property);
+
+            if (!$isDeleted) {
+
+                ToastMagic::error('Unable to delete thumbnail!!');
+
+                return back();
+            }
+
+            ToastMagic::success('Property thumbnail deleted successfully');
+
+            return back();
+        } catch (Exception $e) {
+
+            Log::error("Error during thumbnail delete process {$e->getMessage()}");
+
+            ToastMagic::error('Unable to delete thumbnail!!');
+
+            return back();
+        }
+    }
+
+
+    
 
     /**
      * Remove the specified resource from storage.

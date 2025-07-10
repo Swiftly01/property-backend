@@ -15,8 +15,8 @@
                 </x-button>
 
             </x-page-header>
-               
-            
+
+
             <div class="mt-5 lg:mt-14">
                 <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
                     <div class="bg-white p-7 rounded-lg">
@@ -80,8 +80,6 @@
                         </div>
                     </div>
 
-
-
                 </div>
 
             </div>
@@ -93,11 +91,8 @@
                 <div class="text-center p-5 bg-gray-50 rounded-lg mt-5">
                     <p class="pt-5 text-custom-blue-gray">Drag and drop your file here. <br> - or -</p>
 
-
                     <x-drag-and-drop name="other_images[]" :multiple="true" />
                     <x-input-error :messages="$errors->get('other_images')" class="mt-2" />
-
-
 
                 </div>
 

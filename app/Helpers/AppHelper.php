@@ -22,12 +22,16 @@ class AppHelper
     {
 
         try {
-
-            $response = Http::get('https://temikeezy.github.io/nigeria-geojson-data/data/full.json');
+              /*
+            $response = Http::timeout(5)->get('https://temikeezy.github.io/nigeria-geojson-data/data/full.json');
 
             if ($response->successful()) {
-                return $response->json();
+                 return $response->json();
             }
+            */
+            Log::warning('States fetch returned non-successfull response');
+            return null;
+
         } catch (Exception $e) {
 
             Log::error(message: "States fetching error:  {$e->getMessage()}");

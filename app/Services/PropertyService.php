@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DataTransferObjects\PropertyDTO;
 use App\Helpers\AppHelper;
 use App\Http\Requests\StorePropertyRequest;
+use App\Http\Requests\UpdatePropertyRequest;
 use App\Interfaces\PropertyInterface;
 use App\Models\Property;
 use Exception;
@@ -41,15 +42,35 @@ class PropertyService
         );
     }
 
+    public function handleUpdateProperty(UpdatePropertyRequest $request, Property $property)
+    {
+        $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
+
+        $propertyData = $this->propertyInterface->update(dto: $dto, property: $property);
+
+        if (!$propertyData) {
+            throw new Exception('Property data could not be updated');
+        }
+       
+    
+         
+        if ($request->hasFile('thumbnail') || $request->hasFile('other_images')) {
+
+            
+            $this->processFileUploads(request: $request, property: $propertyData);
+        }
+    }
+
     public function mapRequestDataToDto(array $validatedData)
     {
         return PropertyDTO::fromRequest($validatedData);
     }
 
 
-    public function processFileUploads(StorePropertyRequest $request,  Property $property): void
+    public function processFileUploads(object $request,  Property $property): void
     {
         if ($request->hasFile('thumbnail')) {
+            $property->clearMediaCollection('thumbnail');
             $property->addMediaFromRequest('thumbnail')
                 ->toMediaCollection('thumbnail');
         }
@@ -68,11 +89,16 @@ class PropertyService
         }
     }
 
-    public function getAllProperties():LengthAwarePaginator
+
+
+    public function getAllProperties(): LengthAwarePaginator
     {
         return $this->propertyInterface->getAllProperties();
     }
 
 
-
+    public function handleDeleteThumbnail(Property $property)
+    {
+        return  $this->propertyInterface->destroyThumbnail(property: $property);
+    }
 }

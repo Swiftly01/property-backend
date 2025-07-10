@@ -20,8 +20,12 @@
         'success', 'approve' => "Are you sure you want to approve this $title?",
         default => '',
     };
+
+
     
 @endphp
+
+
 
 <div id="{{ $id }}" tabindex="-1"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -42,6 +46,7 @@
                 @if (in_array(strtoupper($method), ['PUT', 'PATCH', 'DELETE']))
                     @method($method)
                 @endif
+                  
                 <div class="p-4 md:p-5 text-center">
                     <img class="block mx-auto my-3" src="{{ asset("assets/icons/$icon") }}"
                         alt="{{ $variant . '-icon' }}">

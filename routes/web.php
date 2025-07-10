@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomBuildController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PhotographController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\ProfileController;
@@ -36,7 +37,7 @@ Route::get('/success', function () {
 Route::get('/test', function () {})->name('test');
 
 Route::middleware('auth')->prefix('/admin')->group(function () {
-    
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/settings', [DashboardController::class, 'showSettings'])->name('settings');
     Route::resource('/properties', PropertyController::class);
@@ -46,7 +47,11 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/staging', StagingController::class);
     Route::resource('/podcasts', PodcastController::class);
     Route::resource('/contacts', ContactController::class);
-    
+
+    Route::delete('/properties/{property}/thumbnail', [PropertyController::class, 'destroyThumbnail'])
+         ->name('property.thumbnail.delete');
+    Route::delete('/media/{media}', [MediaController::class, 'destroyOtherImage'])
+          ->name('media.delete');
 });
 
 

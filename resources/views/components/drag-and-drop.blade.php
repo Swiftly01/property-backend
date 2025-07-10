@@ -25,6 +25,6 @@
              <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
                  800x400px)</p>
          </div>
-         <input id="{{ $id }}" name="{{ $name }}" type="file" class="hidden" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }} />
+         <input id="{{ $id }}" name="{{ $name }}" type="file" class="block" {{ $required ? 'required' : '' }} {{ $multiple ? 'multiple' : '' }} />
      </label>
  </div>
