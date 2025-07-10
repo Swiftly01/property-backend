@@ -245,8 +245,16 @@
 
             <div class="container mt-5">
                 <div class="row">
-                    <!-- Repeat for all 6 cards -->
-                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+
+                    @forelse ($properties as $property )
+
+                     <x-card :property="$property"/>
+                        
+                    @empty
+                        
+                    @endforelse
+                
+                    {{-- <div class="col-12 col-sm-6 col-md-4 mb-4">
                         <div id="seaside3" class="card h-100" data-aos="zoom-in-up">
                             <span class="status available"><i class="fas fa-crown"></i>AVAILABLE</span>
                             <img src="{{ asset('assets/images/Image (41).png') }}" class="card-img-top"
@@ -261,9 +269,9 @@
                                         Details</a></p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    {{-- <div class="col-12 col-sm-6 col-md-4 mb-4">
                         <div id="seaside3" class="card h-100" data-aos="zoom-in-up">
                             <span class="status sold"><i class="fas fa-crown"></i>SOLD</span>
                             <img src="{{ asset('assets/images/Image (42).png') }}" class="card-img-top"
@@ -347,7 +355,8 @@
                                         Details</a></p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+
                 </div>
                 <div>
                     <p id="browse"> <a class="text-decoration-none text-white" href="property-page.html">Browse

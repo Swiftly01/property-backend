@@ -28,7 +28,9 @@ class StorePropertyRequest extends FormRequest
             'status' => ['required', new Enum(PropertyStatusEnum::class)],
             // 'location' => ['required', 'string', 'max:255'],
             'price' => ['required', 'decimal:2', 'min:0'],
-            'description' => ['required', 'string', 'max:1000'],
+            'description' => ['required', 'string', 
+            // 'max:1000'
+        ],
             'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg,', 'max:1024',
             // 'dimensions:min_width=400,min_height=400'
             ],

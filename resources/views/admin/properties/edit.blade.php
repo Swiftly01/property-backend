@@ -22,6 +22,7 @@
 
             </x-page-header>
 
+
             <div class="mt-5 lg:mt-14">
                 <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
                     <div class="bg-white p-7 rounded-lg">
@@ -72,40 +73,52 @@
                         </div>
 
                     </div>
+
                     <x-forms.image-upload-section name='thumbnail' :id="$property->id" :image="$property->imageUrl()" />
                 </div>
-
-            </div>
-
-            <div class="mt-5 grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5  ">
-                <div class="bg-white p-7 rounded-lg">
-                    <div class="rounded-lg grid grid-cols-3 gap-2 lg:gap-5">
-                        @forelse ($property->getImages('other_images') as $media)
-                            <x-image-preview :src="$media->getUrl()" :mediaId="$media->id" :name="$property->name" />
-                        @empty
-                            <p class="text-danger">No property image available yet!!</p>
-                        @endforelse
-                    </div>
-
-                </div>
-
-                <div class="bg-white p-7 rounded-lg">
+                <div class="bg-white  p-7 rounded-lg mt-5">
                     <h1 class="font-bold">Property Images</h1>
                     <p class="text-custom-blue-gray">Upload other property image maximum of 10 and minimum of 5</p>
                     <div class="text-center p-5 bg-gray-50 rounded-lg mt-5">
                         <p class="pt-5 text-custom-blue-gray">Drag and drop your file here. <br> - or -</p>
-
 
                         <x-drag-and-drop name="other_images[]" :multiple="true" />
                         <x-input-error :messages="$errors->get('other_images')" class="mt-2" />
                     </div>
                 </div>
 
-            </div>
-
         </form>
 
-        <x-alert-modal :action="route('property.thumbnail.delete', ['property' => $property->id])" variant="delete" id="delete-property-{{ $property->id }}"
-            title="property thumbnail" method="DELETE" />
+
+
+
+    </div>
+
+
+
+    <div class="mt-5">
+        <div class="bg-white p-7 rounded-lg">
+            <h1 class="font-bold">Other property Images</h1>
+            <p class="text-custom-blue-gray">Delete other property images </p>
+            <div class="rounded-lg grid md:grid-cols-2 lg:grid-cols-4 ">
+                @forelse ($property->getImages('other_images') as $media)
+                    <x-image-preview :src="$media->getUrl()" :mediaId="$media->id" :name="$property->name" />
+                @empty
+                    <p class="text-danger">No property image available yet!!</p>
+                @endforelse
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <x-alert-modal :action="route('property.thumbnail.delete', ['property' => $property->id])" variant="delete" id="delete-property-{{ $property->id }}" title="property thumbnail"
+        method="DELETE" />
+
+
     </div>
 @endsection

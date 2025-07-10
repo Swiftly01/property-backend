@@ -1,84 +1,107 @@
- function toggleFAQ(element) {
+function toggleFAQ(element) {
     const answer = element.nextElementSibling;
-    const icon = element.querySelector('.icon');
-    const isOpen = answer.style.display === 'block';
+    const icon = element.querySelector(".icon");
+    const isOpen = answer.style.display === "block";
 
     // Close all open answers
-    document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = 'none');
-    document.querySelectorAll('.faq-question .icon').forEach(icn => icn.innerText = '+');
+    document
+        .querySelectorAll(".faq-answer")
+        .forEach((ans) => (ans.style.display = "none"));
+    document
+        .querySelectorAll(".faq-question .icon")
+        .forEach((icn) => (icn.innerText = "+"));
 
     // Toggle current
     if (!isOpen) {
-      answer.style.display = 'block';
-      icon.innerText = '-';
+        answer.style.display = "block";
+        icon.innerText = "-";
     }
-  }
-
-
+}
 
 document.addEventListener("DOMContentLoaded", function () {
-  const counters = document.querySelectorAll(".counter");
-  let hasCounted = false;
+    const counters = document.querySelectorAll(".counter");
+    let hasCounted = false;
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !hasCounted) {
-        hasCounted = true;
-        counters.forEach(counter => {
-          const target = parseFloat(counter.getAttribute("data-target"));
-          const suffix = counter.getAttribute("data-suffix") || "";
-          const isDecimal = target % 1 !== 0;
-          let current = 0;
-          const increment = target / 200;
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !hasCounted) {
+                    hasCounted = true;
+                    counters.forEach((counter) => {
+                        const target = parseFloat(
+                            counter.getAttribute("data-target")
+                        );
+                        const suffix =
+                            counter.getAttribute("data-suffix") || "";
+                        const isDecimal = target % 1 !== 0;
+                        let current = 0;
+                        const increment = target / 200;
 
-          function updateCounter() {
-            current += increment;
-            if (current < target) {
-              counter.textContent = isDecimal
-                ? current.toFixed(1) + suffix
-                : Math.floor(current).toLocaleString() + suffix;
-              requestAnimationFrame(updateCounter);
-            } else {
-              counter.textContent = isDecimal
-                ? target.toFixed(1) + suffix
-                : Math.floor(target).toLocaleString() + suffix;
-            }
-          }
+                        function updateCounter() {
+                            current += increment;
+                            if (current < target) {
+                                counter.textContent = isDecimal
+                                    ? current.toFixed(1) + suffix
+                                    : Math.floor(current).toLocaleString() +
+                                      suffix;
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = isDecimal
+                                    ? target.toFixed(1) + suffix
+                                    : Math.floor(target).toLocaleString() +
+                                      suffix;
+                            }
+                        }
 
-          updateCounter();
-        });
-        observer.disconnect(); // stop observing once done
-      }
-    });
-  }, { threshold: 0.3 }); // trigger when 30% of the section is visible
+                        updateCounter();
+                    });
+                    observer.disconnect(); // stop observing once done
+                }
+            });
+        },
+        { threshold: 0.3 }
+    ); // trigger when 30% of the section is visible
 
-  const section = document.querySelector("#click");
-  if (section) {
-    observer.observe(section);
-  }
+    const section = document.querySelector("#click");
+    if (section) {
+        observer.observe(section);
+    }
 });
 
-
-
-  
-  window.addEventListener('load', function () {
+window.addEventListener("load", function () {
     AOS.init({
-      once: true,
-      duration: 3000
+        once: true,
+        duration: 3000,
     });
-  });
+});
 
 document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-
-  AOS.init({
+AOS.init({
     duration: 800,
-    once: true
-  });
-  console.log("AOS initialized");
+    once: true,
+});
+console.log("AOS initialized");
+
+const toggleReads = document.querySelectorAll(".toggle-read");
+
+toggleReads.forEach((toggleRead) => {
+    toggleRead.addEventListener("click", function () {
+        const parent = toggleRead.closest(".main-text");
+        const shortText = parent.querySelector(".short-text");
+        const fullText = parent.querySelector(".full-text");
+
+        if (fullText.classList.contains("hidden")) {
+            fullText.classList.remove("hidden");
+            shortText.classList.add("hidden");
+            toggleRead.textContent = "Read less";
+        } else {
+            fullText.classList.add("hidden");
+            shortText.classList.remove("hidden");
+            toggleRead.textContent = "Read more";
+        }
+    });
+});
 
 
-
-
-  
 

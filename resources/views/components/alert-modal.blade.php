@@ -6,6 +6,7 @@
     'cancelLabel' => 'cancel',
     'action' => '#',
     'method' => 'POST',
+    
 ])
 
 @php
@@ -24,7 +25,8 @@
 
     
 @endphp
-
+ 
+{{-- {{ $type }} --}}
 
 
 <div id="{{ $id }}" tabindex="-1"
@@ -63,4 +65,5 @@
             </form>
         </div>
     </div>
-</div>
+</div> 
+

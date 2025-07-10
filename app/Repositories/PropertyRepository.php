@@ -52,11 +52,6 @@ class PropertyRepository implements PropertyInterface
           
         }
 
-
-
-        
-
-
         return $query->paginate(3);
     }
 
