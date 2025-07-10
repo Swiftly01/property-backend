@@ -6,7 +6,7 @@
     <div class="p-4 sm:p-6 lg:p-10">
 
         <x-page-header backRoute='properties.index' title="View Property Details">
-            <x-button variant="danger" target="delete-property-modal">
+            <x-button variant="danger" target="delete-property-{{ $property->id }}">
                 Delete
             </x-button>
             <x-button href="{{ route('properties.index') }}">
@@ -15,7 +15,7 @@
 
         </x-page-header>
 
-        <x-alert-modal variant='delete' id="delete-property-modal" title="property" />
+        <x-alert-modal variant='delete' id="delete-property-{{ $property->id }}" title="property" :action="route('properties.destroy', ['property' => $property->id])" method="DELETE" />
 
 
         <div class="mt-5 lg:mt-10">

@@ -66,7 +66,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($properties  as  $property)
+                        @foreach ($properties as $property)
                             <tr
                                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
                                 <th scope="row"
@@ -80,7 +80,7 @@
                                     {{ $property->location }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    	&#8358;{{ number_format($property->price) }}
+                                    &#8358;{{ number_format($property->price) }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <x-badge :variant="$property->status" />
@@ -115,8 +115,11 @@
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                             </li>
                                             <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-danger hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                                                <x-button variant="link" target="delete-property-{{ $property->id }}">
+                                                     <a href="#">Delete</a>
+                                                </x-button>
+
+                                               
                                             </li>
                                         </ul>
 
@@ -124,6 +127,8 @@
 
                                 </td>
                             </tr>
+                            <x-alert-modal variant='delete' id="delete-property-{{ $property->id }}" title="property"
+                                :action="route('properties.destroy', ['property' => $property->id])" method="DELETE" />
                         @endforeach
 
 

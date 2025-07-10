@@ -148,6 +148,28 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
-        //
+       
+        try {
+            $isDeleted =  $this->propertyService->handlePropertyDelete(property: $property);
+
+            if (!$isDeleted) {
+
+                ToastMagic::error('Unable to delete property!!');
+
+                return back();
+            }
+
+            ToastMagic::success('Property  deleted successfully');
+
+            return redirect()->route('properties.index');
+            
+        } catch (Exception $e) {
+
+            Log::error("Error during property delete process {$e->getMessage()}");
+
+            ToastMagic::error('Unable to delete property!!');
+
+            return back();
+        }
     }
 }

@@ -47,7 +47,8 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/staging', StagingController::class);
     Route::resource('/podcasts', PodcastController::class);
     Route::resource('/contacts', ContactController::class);
-
+    
+    Route::delete('properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy');
     Route::delete('/properties/{property}/thumbnail', [PropertyController::class, 'destroyThumbnail'])
          ->name('property.thumbnail.delete');
     Route::delete('/media/{media}', [MediaController::class, 'destroyOtherImage'])

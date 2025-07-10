@@ -15,10 +15,18 @@
         'danger' => 'border text-danger border-[#022A66]  hover:bg-red-600 hover:text-white hover:border-white',
         'success' => 'bg-[#2DA347] text-white hover:bg-green-800 hover:scale-[1.02]',
         'image' => '',
+        'link' => 'w-full pl-4 py-2 text-danger hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-start',
         
     ];
 
-    $classes = $variant === 'image' ? ($variants['image']) : $base . ' ' . ($variants[$variant] ?? $variants['primary']);
+  
+
+    $classes = $variant === 'image'
+    ? $variants['image']
+    : ($variant === 'link'
+        ? $variants['link']
+        : $base . ' ' . ($variants[$variant] ?? $variants['primary']));
+
 
 @endphp
 

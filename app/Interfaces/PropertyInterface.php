@@ -15,4 +15,6 @@ interface PropertyInterface
     public function getAllProperties(): LengthAwarePaginator;
 
     public function destroyThumbnail(Property $property): bool;
+    
+    public function destroy(Property $property): bool;
 }

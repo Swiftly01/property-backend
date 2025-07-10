@@ -101,4 +101,10 @@ class PropertyService
     {
         return  $this->propertyInterface->destroyThumbnail(property: $property);
     }
+
+
+    public function handlePropertyDelete(Property $property)
+    {
+       return $this->propertyInterface->destroy(property: $property);
+    }
 }

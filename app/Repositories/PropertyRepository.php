@@ -48,4 +48,13 @@ class PropertyRepository implements PropertyInterface
         $thumbnail->delete();
         return true;
     }
+
+
+    public function destroy(Property $property): bool
+    {
+        $property->clearMediaCollection('thumbnail');
+        $property->clearMediaCollection('other_images');
+
+        return  $property->delete();
+    }
 }
