@@ -1,15 +1,25 @@
-@props(['name', 'id' => null, 'options' => [], 'required' => false, 'selected' => '', 'placeholder' => null])
+@props(['name', 'id' => null, 'options' => [], 'required' => false, 'selected' => '', 'placeholder' => null, 'type' => 'default'])
 
 @php
     $id = $id ?? $name;
     $selected = old($name, $selected);
 
+    $variant = match ($type) {
+       'default'  => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+       'custom'  => 'w-full bg-[#F5F5F5]  text-black p-2 pl-8 rounded outline-none shadow-none  appearance-none border-gray-300',
+    };
+
+    $style = $variant === 'custom'
+        ? '-webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: none !important;'
+        : '';
+
+        
+
 @endphp
 
 
-
-<select id="{{ $id }}"
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+<select style="{{ $style  }}" id="{{ $id }}"
+    class="{{ $variant }}"
     name="{{ $name }}" @if ($required) required @endif>
 
 

@@ -19,25 +19,28 @@
             <div class="flex flex-wrap justify-between items-center py-5 px-8">
                 <h3 class="font-bold">All Property</h3>
 
+                <form id="searchForm" action="{{ route('properties.index') }}" method="GET">
+                    <div class="flex flex-wrap items-center gap-2 md:gap-4">
 
-                <div class="flex flex-wrap items-center gap-2 md:gap-4">
-                    <!-- Search Input -->
-                    <div class="relative">
-                        <x-input-search />
+                        <!-- Search Input -->
+                        <div class="relative">
+                            <x-input-search id="searchInput" />
 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+                        </div>
+
+                        <x-filter :options="\App\Enums\PropertyStatusEnum::cases()" name="status"  />
+
+
+
                     </div>
-                    <!-- Filter Dropdown -->
-                    @php
-                        $values = ['name', 'price'];
-                    @endphp
-                    <x-filter :values="$values" />
-                </div>
+                </form>
 
             </div>
 
@@ -116,10 +119,10 @@
                                             </li>
                                             <li>
                                                 <x-button variant="link" target="delete-property-{{ $property->id }}">
-                                                     <a href="#">Delete</a>
+                                                    <a href="#">Delete</a>
                                                 </x-button>
 
-                                               
+
                                             </li>
                                         </ul>
 

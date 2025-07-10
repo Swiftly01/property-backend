@@ -22,9 +22,10 @@ class PropertyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $properties = $this->propertyService->getAllProperties();
+    public function index(Request $request)
+    {   
+         
+        $properties = $this->propertyService->getAllProperties(request:$request);
 
         return view('admin.properties.index', compact('properties'));
     }

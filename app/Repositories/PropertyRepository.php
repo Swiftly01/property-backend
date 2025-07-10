@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\DataTransferObjects\PropertyDTO;
 use App\Interfaces\PropertyInterface;
 use App\Models\Property;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class PropertyRepository implements PropertyInterface
@@ -31,9 +32,32 @@ class PropertyRepository implements PropertyInterface
     }
 
 
-    public function getAllProperties(): LengthAwarePaginator
-    {
-        return Property::paginate(3);
+    public function getAllProperties(Request $request): LengthAwarePaginator
+    {   
+        $query = Property::query();
+
+        if($request->filled('search')) {
+             $query->where( function($q) use ($request){
+                $q->where('title', 'like', "%{$request->search}%")
+                  ->orWhere('location', 'like', "%{$request->search }%")
+                  ->orWhere('price', 'like', "%{$request->search }%")
+                  ->orWhere('description', 'like', "%{$request->search}%"); });
+          
+           
+        }
+      
+        if($request->filled('status')){
+            $query->where('status', 'like', "%{$request->status}%");
+
+          
+        }
+
+
+
+        
+
+
+        return $query->paginate(3);
     }
 
 

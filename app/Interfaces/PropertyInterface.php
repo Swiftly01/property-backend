@@ -4,6 +4,7 @@ namespace App\Interfaces;
 
 use App\DataTransferObjects\PropertyDTO;
 use App\Models\Property;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface PropertyInterface
@@ -12,7 +13,7 @@ interface PropertyInterface
 
     public function update(PropertyDTO $dto, Property $property);
 
-    public function getAllProperties(): LengthAwarePaginator;
+    public function getAllProperties(Request $request): LengthAwarePaginator;
 
     public function destroyThumbnail(Property $property): bool;
     

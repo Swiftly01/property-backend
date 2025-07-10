@@ -9,6 +9,7 @@ use App\Http\Requests\UpdatePropertyRequest;
 use App\Interfaces\PropertyInterface;
 use App\Models\Property;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class PropertyService
@@ -91,9 +92,9 @@ class PropertyService
 
 
 
-    public function getAllProperties(): LengthAwarePaginator
+    public function getAllProperties(Request $request): LengthAwarePaginator
     {
-        return $this->propertyInterface->getAllProperties();
+        return $this->propertyInterface->getAllProperties(request: $request);
     }
 
 
