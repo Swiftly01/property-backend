@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\PropertyStatusEnum;
+use App\Enums\PropertyTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,8 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->enum('status', array_column(PropertyStatusEnum::cases(), 'value'));
+            $table->enum('status', PropertyStatusEnum::values());
+            $table->enum('type', PropertyTypeEnum::values());
             $table->string('location');
             $table->decimal('price', 10, 2);
             $table->text('description');

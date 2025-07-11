@@ -34,7 +34,6 @@
 
 #property-page {
   position: relative; /* Needed for absolute positioning of child */
-  background-image: url(../images/subcontainer.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

@@ -54,11 +54,30 @@
                                 </div>
                                 <div class="mb-5 flex-1">
                                     <x-forms.input-label for="location" label="location" />
-                                    <x-forms.input-select :selected="$property->location" name="location" :options="$location"
+                                    <x-forms.input-select :selected="$property->location" name="location" :options="\App\Enums\LocationEnum::cases()"
                                         placeholder="-- Select a location --" />
                                     <x-input-error :messages="$errors->get('location')" class="mt-2" />
 
                                 </div>
+
+                            </div>
+                            <div class="flex justify-between gap-3 flex-wrap">
+                                <div class="mb-5 flex-1">
+                                    <x-forms.input-label for="type" label="Property type" />
+                                    <x-forms.input-select name="type":selected="$property->property_type" placeholder="-- Select a property type --"
+                                        :options="\App\Enums\PropertyTypeEnum::cases()" />
+                                    <x-input-error :messages="$errors->get('property_type')" class="mt-2" />
+                                   
+                                   
+
+                                </div>
+                                {{-- <div class="mb-5 flex-1">
+                                    <x-forms.input-label for="status" label="Status" />
+                                    <x-forms.input-select name="status" placeholder="-- Select a status --"
+                                        :options="\App\Enums\PropertyStatusEnum::cases()" />
+                                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
+
+                                </div> --}}
 
                             </div>
                             <div>

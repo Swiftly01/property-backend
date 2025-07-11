@@ -3,6 +3,9 @@
 namespace App\Repositories;
 
 use App\DataTransferObjects\PropertyDTO;
+use App\Enums\PropertyStatusEnum;
+use App\Enums\PropertyTypeEnum;
+use App\Filters\PropertyFilter;
 use App\Interfaces\PropertyInterface;
 use App\Models\Property;
 use Illuminate\Http\Request;
@@ -13,7 +16,7 @@ class PropertyRepository implements PropertyInterface
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(public PropertyFilter $propertyFilter)
     {
         //
     }
@@ -32,27 +35,9 @@ class PropertyRepository implements PropertyInterface
     }
 
 
-    public function getAllProperties(Request $request): LengthAwarePaginator
+    public function getProperties(Request $request): LengthAwarePaginator
     {   
-        $query = Property::query();
-
-        if($request->filled('search')) {
-             $query->where( function($q) use ($request){
-                $q->where('title', 'like', "%{$request->search}%")
-                  ->orWhere('location', 'like', "%{$request->search }%")
-                  ->orWhere('price', 'like', "%{$request->search }%")
-                  ->orWhere('description', 'like', "%{$request->search}%"); });
-          
-           
-        }
-      
-        if($request->filled('status')){
-            $query->where('status', 'like', "%{$request->status}%");
-
-          
-        }
-
-        return $query->paginate(3);
+        return $this->propertyFilter->apply(Property::query(), $request)->paginate(3)->withQueryString();
     }
 
 

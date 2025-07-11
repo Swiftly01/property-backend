@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\BuyRequestController;
@@ -20,6 +21,7 @@ Route::prefix('/property')->group(function () {
     Route::get('/', [PropertyController::class, 'showProperty'])->name('property');
     Route::post('/store', [SellRequestController::class, 'store'])->name('listing.store');
     Route::get('/listing', [SellRequestController::class, 'create'])->name('listing.create');
+    Route::get('/{property}', [PropertyController::class, 'showPropertyDetails'])->name('property.show');
 });
 
 
@@ -47,12 +49,12 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/staging', StagingController::class);
     Route::resource('/podcasts', PodcastController::class);
     Route::resource('/contacts', ContactController::class);
-    
+
     Route::delete('properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy');
     Route::delete('/properties/{property}/thumbnail', [PropertyController::class, 'destroyThumbnail'])
-         ->name('property.thumbnail.delete');
+        ->name('property.thumbnail.delete');
     Route::delete('/media/{media}', [MediaController::class, 'destroyOtherImage'])
-          ->name('media.delete');
+        ->name('media.delete');
 });
 
 

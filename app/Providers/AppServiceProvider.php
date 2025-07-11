@@ -6,6 +6,7 @@ use App\Interfaces\PropertyInterface;
 use App\Interfaces\SellRequestInterface;
 use App\Repositories\PropertyRepository;
 use App\Repositories\SellRequestRepository;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        
+    if (request()->is('admin/*')) {
+        Paginator::useTailwind();
+    } else {
+        Paginator::useBootstrapFive();
+    }
     }
 }

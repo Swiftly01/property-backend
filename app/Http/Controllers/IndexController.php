@@ -14,7 +14,7 @@ class IndexController extends Controller
 
     public function index(Request $request)
     {   
-        $properties = $this->propertyService->getAllProperties(request:$request);
+        $properties = $this->propertyService->getProperties(request:$request);
 
          return view('index', compact('properties'));
     }

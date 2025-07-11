@@ -1,0 +1,200 @@
+<x-main-layout>
+    @section('other_css')
+        <link rel="stylesheet" href="{{ asset('assets/css/veiw-property-page.css') }}">
+    @endsection
+    <x-slot:title>
+        Property :: Page
+    </x-slot>
+
+    <section class="py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-auto">
+                    <h4 class="villa mb-2 mb-md-0">
+                        {{ $property->title }} <span></span>
+                    </h4>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <p id="malibu" class="mb-0">
+                        <span class="villa">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </span>
+                        {{ $property->location }}, Nigeria
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="animate" class="py-4 overflow-hidden container">
+        <div class="container">
+            <div class="scroll-animation">
+                @forelse ($property->getImages() as $media)
+                    @php
+                        $image = $media->getUrl();
+                    @endphp
+                    <img src="{{ asset("$image") }}" class="img-fluid me-3" style="height: 70px;">
+
+                @empty
+                @endforelse
+
+            </div>
+        </div>
+        @php
+
+            $images = $property->getImages()->map(fn($media) => $media->getUrl())->toArray();
+
+            $thumbnail = $property->imageUrl();
+        @endphp
+
+        <script>
+            const imageUrls = @json($images);
+        </script>
+
+        <div id="property-page"
+            style='background-image: url({{ asset("$thumbnail") }});min-height: 300px; background-size:100% 100%'
+            class="container d-flex flex-column justify-content-between position-relative">
+           
+            @if(count($images) > 1)
+            <div class="property">
+                <i id="prevBtn" class="bi bi-arrow-left-circle-fill" style="cursor: pointer;"></i>
+                <i id="nextBtn" class="bi bi-arrow-right-circle-fill" style="cursor: pointer;"></i>
+            </div>
+              
+            @endif
+            
+
+        </div>
+
+    </section>
+
+
+
+    <section class="py-2">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- Description Column -->
+                <div class="col-12 col-md-6">
+                    <div class="description">
+                        <h3>Description</h3>
+                        <p class="description2">
+                            {{ $property->description }}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Features Column -->
+                <div class="col-12 col-md-6">
+                    <div class="description3">
+                        <h3>Key Features and Amenities</h3>
+                        <div class="Private">
+                            <p><i class="bi bi-lightning-fill"></i> Expansive oceanfront terrace for outdoor
+                                entertaining</p>
+                        </div>
+                        <div class="Private">
+                            <p><i class="bi bi-lightning-fill"></i> Gourmet kitchen with top-of-the-line appliances</p>
+                        </div>
+                        <div class="Private">
+                            <p><i class="bi bi-lightning-fill"></i> Private beach access for morning strolls and sunset
+                                views</p>
+                        </div>
+                        <div class="Private">
+                            <p><i class="bi bi-lightning-fill"></i> Master suite with a spa-inspired bathroom and
+                                ocean-facing balcony</p>
+                        </div>
+                        <div class="Private">
+                            <p><i class="bi bi-lightning-fill"></i> Private garage and ample storage space</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="side" class="py-5 bg-light">
+        <div id="side" class="container">
+            <div class="row g-5">
+
+                <!-- Left Column: Description -->
+                <div class="col-12 col-lg-6">
+                    <h1>Inquire About {{ $property->title }}</h1>
+                    <p>
+                        Interested in this property? Fill out the form below, and our real estate experts will get back
+                        to you
+                        with more details, including scheduling a viewing and answering any questions you may have.
+                    </p>
+                </div>
+
+                <!-- Right Column: Form -->
+                <div class="col-12 col-lg-6">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstname" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstname"
+                                    placeholder="Enter First Name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="firstname" placeholder="Enter Last Name">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="firstname"
+                                    placeholder="Enter your Email">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="firstname"
+                                    placeholder="Enter Phone Number">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="property" class="form-label">Selected Property</label>
+                            <select id="firstname" class="form-select">
+                                <option selected>Seaside Serenity Villa, Malibu, California</option>
+                                <option value="1">Mountain View Retreat</option>
+                                <option value="2">Urban Penthouse</option>
+                                <option value="3">Countryside Cottage</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="firstname" rows="4" placeholder="Enter your message here..."></textarea>
+                        </div>
+                        <div
+                            class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mt-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agreeCheck">
+                                <label class="form-check-label" for="agreeCheck">
+                                    I agree with <a href="#" class="text-decoration-underline term">Terms of
+                                        Use</a> and <a href="#" class="text-decoration-underline term">Privacy
+                                        Policy</a>
+                                </label>
+                            </div>
+
+                            <button type="submit" id="submit" class="btn btn-primary mt-3 mt-md-0"><a
+                                    class="text-decoration-none text-white"
+                                    href="custom-success.html">Submit</a></button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ asset('assets/js/show.js') }}"></script>
+
+
+
+
+</x-main-layout>

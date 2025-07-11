@@ -10,7 +10,8 @@ readonly class PropertyDTO
     public function __construct(
         public readonly string $title,
         public readonly string $status,
-        public readonly ?string $location,
+        public readonly string $type,
+        public readonly string $location,
         public readonly string $price,
         public readonly string $description
 
@@ -24,9 +25,11 @@ readonly class PropertyDTO
         return new self(
             title: $validatedData['title'],
             status: $validatedData['status'],
-            location: $validatedData['location'] ?? null,
+            type: $validatedData['type'],
+            location: $validatedData['location'],
             price: $validatedData['price'],
             description: $validatedData['description'],
+
         );
     }
 
@@ -36,9 +39,11 @@ readonly class PropertyDTO
         return [
             'title' => $this->title,
             'status' => $this->status,
-            'location' => $this->location ?? 'N/A',
+            'location' => $this->location,
             'price' => $this->price,
             'description' => $this->description,
+            'type' => $this->type
+
 
         ];
     }

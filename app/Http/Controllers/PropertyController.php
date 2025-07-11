@@ -24,16 +24,24 @@ class PropertyController extends Controller
      */
     public function index(Request $request)
     {   
-         
-        $properties = $this->propertyService->getAllProperties(request:$request);
+        $properties = $this->propertyService->getProperties(request:$request);
 
         return view('admin.properties.index', compact('properties'));
     }
 
-    public function showProperty()
+    public function showProperty(Request $request)
     {
-        return view('pages.properties.index');
+        $properties = $this->propertyService->getProperties(request: $request);
+
+        return view('pages.properties.index', compact('properties'));
     }
+
+
+    public function showPropertyDetails(Property $property)
+    {
+        return view('pages.properties.show', compact('property'));
+    }
+
 
 
     /**
@@ -46,7 +54,6 @@ class PropertyController extends Controller
         // if ($location->isEmpty()) {
         //     ToastMagic::error('No location data available.');
         // }
-
         return view('admin.properties.create', compact('location'));
     }
 

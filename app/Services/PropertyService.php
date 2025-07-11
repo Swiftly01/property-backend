@@ -92,9 +92,9 @@ class PropertyService
 
 
 
-    public function getAllProperties(Request $request): LengthAwarePaginator
+    public function getProperties(Request $request): LengthAwarePaginator
     {
-        return $this->propertyInterface->getAllProperties(request: $request);
+        return $this->propertyInterface->getProperties(request: $request);
     }
 
 

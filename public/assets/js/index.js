@@ -81,27 +81,7 @@ AOS.init({
     duration: 800,
     once: true,
 });
-console.log("AOS initialized");
 
-const toggleReads = document.querySelectorAll(".toggle-read");
-
-toggleReads.forEach((toggleRead) => {
-    toggleRead.addEventListener("click", function () {
-        const parent = toggleRead.closest(".main-text");
-        const shortText = parent.querySelector(".short-text");
-        const fullText = parent.querySelector(".full-text");
-
-        if (fullText.classList.contains("hidden")) {
-            fullText.classList.remove("hidden");
-            shortText.classList.add("hidden");
-            toggleRead.textContent = "Read less";
-        } else {
-            fullText.classList.add("hidden");
-            shortText.classList.remove("hidden");
-            toggleRead.textContent = "Read more";
-        }
-    });
-});
 
 
 
