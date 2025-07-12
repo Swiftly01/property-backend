@@ -1,32 +1,34 @@
 @props([
-    'id' =>'popup-modal',
+    'id' => 'popup-modal',
     'variant' => 'success',
     'title' => '',
-    'actionLabel' => $variant === 'delete' ? 'Delete' : 'Confirm',
+    'actionLabel' => $variant === 'delete' ? 'Delete' : ($variant === 'decline' ? 'Decline' : 'Confirm'),
     'cancelLabel' => 'cancel',
     'action' => '#',
     'method' => 'POST',
-    
 ])
 
 @php
-    $icon = $variant === 'delete' ? 'delete-icon.png' : 'success-icon.png';
+
+    $icon = match ($variant) {
+        'delete', 'decline' => 'delete-icon.png',
+        'success', 'approve' => 'success-icon.png',
+        default => '',
+    };
+
     $actionColor =
         $variant === 'delete'
             ? 'bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800'
             : 'bg-green-600 hover:bg-green-800 focus:ring-green-300 dark:focus:ring-green-800';
 
     $message = match ($variant) {
+        'decline' => "Are you sure you want to decline this $title? This action cannot be undone",
         'delete' => "Are you sure you want to delete this $title? This action cannot be undone.",
         'success', 'approve' => "Are you sure you want to approve this $title?",
         default => '',
     };
 
-
-    
 @endphp
- 
-{{-- {{ $type }} --}}
 
 
 <div id="{{ $id }}" tabindex="-1"
@@ -48,7 +50,7 @@
                 @if (in_array(strtoupper($method), ['PUT', 'PATCH', 'DELETE']))
                     @method($method)
                 @endif
-                  
+
                 <div class="p-4 md:p-5 text-center">
                     <img class="block mx-auto my-3" src="{{ asset("assets/icons/$icon") }}"
                         alt="{{ $variant . '-icon' }}">
@@ -65,5 +67,4 @@
             </form>
         </div>
     </div>
-</div> 
-
+</div>

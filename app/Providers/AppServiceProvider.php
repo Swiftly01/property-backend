@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Interfaces\BuyRequestInterface;
 use App\Interfaces\PropertyInterface;
 use App\Interfaces\SellRequestInterface;
+use App\Repositories\BuyRequestRepository;
 use App\Repositories\PropertyRepository;
 use App\Repositories\SellRequestRepository;
 use Illuminate\Pagination\Paginator;
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
          $this->app->bind(SellRequestInterface::class, SellRequestRepository::class);
          $this->app->bind(PropertyInterface::class, PropertyRepository::class);
+         $this->app->bind(BuyRequestInterface::class, BuyRequestRepository::class);
     }
 
     /**

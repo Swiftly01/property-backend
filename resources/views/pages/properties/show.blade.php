@@ -34,6 +34,7 @@
                     @php
                         $image = $media->getUrl();
                     @endphp
+
                     <img src="{{ asset("$image") }}" class="img-fluid me-3" style="height: 70px;">
 
                 @empty
@@ -52,20 +53,21 @@
             const imageUrls = @json($images);
         </script>
 
-        <div id="property-page"
-            style='background-image: url({{ asset("$thumbnail") }});min-height: 300px; background-size:100% 100%'
+
+        <div id="property-page" style='background-image: url({{ asset("$thumbnail") }});'
             class="container d-flex flex-column justify-content-between position-relative">
-           
-            @if(count($images) > 1)
-            <div class="property">
-                <i id="prevBtn" class="bi bi-arrow-left-circle-fill" style="cursor: pointer;"></i>
-                <i id="nextBtn" class="bi bi-arrow-right-circle-fill" style="cursor: pointer;"></i>
-            </div>
-              
+
+            @if (count($images) > 1)
+                <div class="property">
+                    <i id="prevBtn" class="bi bi-arrow-left-circle-fill" style="cursor: pointer;"></i>
+                    <i id="nextBtn" class="bi bi-arrow-right-circle-fill" style="cursor: pointer;"></i>
+                </div>
             @endif
-            
+
 
         </div>
+
+
 
     </section>
 
@@ -129,60 +131,96 @@
 
                 <!-- Right Column: Form -->
                 <div class="col-12 col-lg-6">
-                    <form>
+                    <form action="{{ route('buyRequest.store') }}" method="POST">
+                        @csrf
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="firstname" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstname"
-                                    placeholder="Enter First Name">
+                                <input type="text" class="form-control input-style" id="firstname"
+                                    placeholder="Enter First Name" name="firstname" value="{{ old('firstname') }}"
+                                    required>
+                                @error('firstname')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="lastname" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="firstname" placeholder="Enter Last Name">
+                                <input type="text" class="form-control input-style" id="lastname"
+                                    placeholder="Enter Last Name" name="lastname" value="{{ old('lastname') }}"
+                                    required>
+                                @error('lastname')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="firstname"
-                                    placeholder="Enter your Email">
+                                <input type="email" class="form-control input-style" id="email"
+                                    placeholder="Enter your Email" name="email" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <span class="text-danger">
+                                        {{ $message }}
+
+                                    </span>
+                                @enderror
+
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="tel" class="form-control" id="firstname"
-                                    placeholder="Enter Phone Number">
+                                <input type="tel" class="form-control input-style" id="phone"
+                                    placeholder="Enter Phone Number" name="phone_number"
+                                    value="{{ old('phone_number') }}" required>
+                                @error('phone_number')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="property" class="form-label">Selected Property</label>
-                            <select id="firstname" class="form-select">
-                                <option selected>Seaside Serenity Villa, Malibu, California</option>
-                                <option value="1">Mountain View Retreat</option>
-                                <option value="2">Urban Penthouse</option>
-                                <option value="3">Countryside Cottage</option>
-                            </select>
+                            <input class="form-control input-style" id="property" type="text"
+                                value="{{ $property->title }}" readonly>
+                            <input name="property_id" type="text" value="{{ $property->id }}" hidden>
                         </div>
 
                         <div class="mb-3">
                             <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="firstname" rows="4" placeholder="Enter your message here..."></textarea>
+                            <textarea class="form-control input-style" id="message" rows="4" placeholder="Enter your message here...">{{ old('message') }}</textarea>
+                            @error('message')
+                                <span class="text-danger">
+                                    {{ $message }}
+
+                                </span>
+                            @enderror
                         </div>
                         <div
                             class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mt-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="agreeCheck">
+                                <input class="form-check-input" type="checkbox" id="agreeCheck" name="terms"
+                                    {{ old('terms') ? 'checked' : '' }} required>
                                 <label class="form-check-label" for="agreeCheck">
                                     I agree with <a href="#" class="text-decoration-underline term">Terms of
                                         Use</a> and <a href="#" class="text-decoration-underline term">Privacy
                                         Policy</a>
                                 </label>
+                                @error('terms')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
 
-                            <button type="submit" id="submit" class="btn btn-primary mt-3 mt-md-0"><a
-                                    class="text-decoration-none text-white"
-                                    href="custom-success.html">Submit</a></button>
+                            <button type="submit" id="submit"
+                                class="btn btn-primary mt-3 mt-md-0">Submit</button>
                         </div>
 
                     </form>

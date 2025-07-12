@@ -19,9 +19,10 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Route::prefix('/property')->group(function () {
     Route::get('/', [PropertyController::class, 'showProperty'])->name('property');
-    Route::post('/store', [SellRequestController::class, 'store'])->name('listing.store');
-    Route::get('/listing', [SellRequestController::class, 'create'])->name('listing.create');
+    Route::post('/store', [SellRequestController::class, 'store'])->name('sellRequest.store');
+    Route::get('/listing', [SellRequestController::class, 'create'])->name('sellRequest.create');
     Route::get('/{property}', [PropertyController::class, 'showPropertyDetails'])->name('property.show');
+    Route::post('/buy-request', [BuyRequestController::class, 'store'])->name('buyRequest.store');
 });
 
 
@@ -49,6 +50,9 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/staging', StagingController::class);
     Route::resource('/podcasts', PodcastController::class);
     Route::resource('/contacts', ContactController::class);
+
+    Route::patch('buy-requests/{buy_request}/{action}', [BuyRequestController::class, 'handleStatusUpdate'])
+         ->name('buy-requests.update-status');
 
     Route::delete('properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy');
     Route::delete('/properties/{property}/thumbnail', [PropertyController::class, 'destroyThumbnail'])

@@ -26,34 +26,33 @@
                     <div class="flex items-center md:items-start justify-between border-b pb-4 flex-wrap">
                         <div>
                             <h1 class="font-bold text-lg">Booking Information</h1>
-                            <p class="text-custom-blue-gray">ID: #PRPID1001</p>
+                            <p class="text-custom-blue-gray">ID: #BKGID{{ $buyRequest->id }}</p>
 
                         </div>
-                      <x-badge variant='pending'/>
+                      <x-badge :variant="$buyRequest->status"/>
                     
                     </div>
                     <div class="border-b py-4">
                         <div>
-                            <h1 class="font-medium text-2xl">Sarah Johnson	</h1>
-                            <p class="text-custom-blue-gray">Booking Date: <span class="font-medium text-darkest">2024/01/20 - 2:00 PM</span></p>
+                            <h1 class="font-medium text-2xl">{{ Str::ucfirst($buyRequest->firstname) }} {{ Str::ucfirst($buyRequest->lastname) }}</h1>
+                            <p class="text-custom-blue-gray">Booking Date: <span class="font-medium text-darkest">
+                                {{ $buyRequest->created_at->format('Y/m/d - H:i:s:A') }}</span></p>
 
                         </div>
                     </div>
                     <div class="border-b py-7">
                         <h1 class="font-bold text-lg pb-2">Contact Information</h1>
                         <div class="flex gap-2 items-center">
-                            <img class="w-5" src="{{ asset('assets/icons/sms.png') }}" alt="sms-image"> <span>john.doe@email.com</span>
+                            <img class="w-5" src="{{ asset('assets/icons/sms.png') }}" alt="sms-image"> <span>{{ Str::ucfirst($buyRequest->email)  }}</span>
                         </div>
                         <div class="flex gap-2 items-center">
-                            <img src="{{ asset('assets/icons/call.png') }}" alt="call-image"> <span>(234) 801-234-5678</span>
+                            <img src="{{ asset('assets/icons/call.png') }}" alt="call-image"> <span>(234) {{ $buyRequest->phone_number }}</span>
                         </div>
                     </div>
                     <div class="border-b py-7">
 
                         <h1 class="font-bold text-lg">Description</h1>
-                        <p class="text-custom-blue-gray">Discover your own piece of paradise with the Seaside Serenity Villa. T
-                            With an open floor plan, breathtaking ocean views from every room, and direct access to a
-                            pristine sandy beach, this property is the epitome of coastal living.</p>
+                        <p class="text-custom-blue-gray">{{ $buyRequest->message ?? $buyRequest->property->description }}</p>
 
 
                     </div>
@@ -64,33 +63,31 @@
                      <div class="flex items-center md:items-start justify-between border-b pb-4 flex-wrap">
                         <div>
                             <h1 class="font-bold text-lg">Property Information</h1>
-                            <p class="text-custom-blue-gray">ID: #PRPID1001</p>
+                            <p class="text-custom-blue-gray">ID: #PRPID{{ $buyRequest->property->id }}</p>
 
                         </div>
-                          <x-badge variant='available'/>
+                          <x-badge :variant="$buyRequest->property->status"/>
 
 
                     </div>
                     <div class="flex items-center justify-between border-b py-4 flex-wrap">
                         <div>
-                            <h1 class="font-bold text-lg">Modern Downtown Condo</h1>
-                            <p class="text-custom-blue-gray">Downtown, NYC</p>
+                            <h1 class="font-bold text-lg">Location</h1>
+                            <p class="text-custom-blue-gray">{{ $buyRequest->property->location }}, Nigeria</p>
 
                         </div>
-                        <span class="font-bold">$450,000</span>
+                        <span class="font-bold"> &#8358;{{ number_format($buyRequest->property->price) }}</span>
                     </div>
                      <div class="border-b py-7">
 
                         <h1 class="font-bold text-lg">Description</h1>
-                        <p class="text-custom-blue-gray">Discover your own piece of paradise with the Seaside Serenity Villa. T
-                            With an open floor plan, breathtaking ocean views from every room, and direct access to a
-                            pristine sandy beach, this property is the epitome of coastal living.</p>
+                        <p class="text-custom-blue-gray">{{ $buyRequest->property->description }}</p>
 
 
                     </div>
 
                     <h1 class="font-bold py-5">Thumbnail</h1>
-                     <x-image-preview  />
+                     <x-image-preview :src="$buyRequest->property->imageUrl()" :name="$buyRequest->property->name" />
                 </div>
             </div>
 

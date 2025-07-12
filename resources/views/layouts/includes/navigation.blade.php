@@ -49,7 +49,7 @@
 
         <!-- Buttons on the right with right margin -->
         <div class="d-flex gap-2 me-5">
-          <a href="{{ route('listing.create') }}" class="sell" >Sell</a>
+          <a href="{{ route('sellRequest.create') }}" class="sell" >Sell</a>
           <a href="{{ route('property') }}" class="buy">Buy</a>
         </div>
       </div>

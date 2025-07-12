@@ -62,4 +62,9 @@ class Property extends Model implements HasMedia
     {
         return $this->getMedia($collection);
     }
+
+    public function buyRequests()
+    {
+        return $this->hasMany(BuyRequest::class);
+    }
 }

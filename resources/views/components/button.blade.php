@@ -3,8 +3,6 @@
     'type' => 'button',
     'variant' => 'primary',
     'target' => '',
-    
-    
 ])
 
 
@@ -17,32 +15,20 @@
         'danger' => 'border text-danger border-[#022A66]  hover:bg-red-600 hover:text-white hover:border-white',
         'success' => 'bg-[#2DA347] text-white hover:bg-green-800 hover:scale-[1.02]',
         'image' => '',
-        'link' =>
-            'w-full pl-4 py-2 text-danger hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-start',
+        'link' => 'w-full pl-4 py-2 text-danger hover:bg-gray-100  text-start',
+        'approve' => 'w-full pl-4 py-2 text-green-500 hover:bg-gray-100 text-start',
     ];
 
-    $classes =
-        $variant === 'image'
-            ? $variants['image']
-            : ($variant === 'link'
-                ? $variants['link']
-                : $base . ' ' . ($variants[$variant] ?? $variants['primary']));
+    $classes = match ($variant) {
+        'image' => $variants['image'],
+        'link' => $variants['link'],
+        'approve' => $variants['approve'],
+        default => $base . ' ' . ($variants[$variant] ?? $variants['primary']),
+    };
 
-@endphp 
-
-
+@endphp
 
 
-
-{{-- @if ($href)
-    <a href="{{ $href }}"
-        @if ($target) data-modal-target="{{ $target }}" data-modal-toggle="{{ $target }}" @endif
-        {{ $attributes->merge(['class' => $classes]) }}> {{ $slot }}</a>
-@else
-    <button type="{{ $type }}"
-        @if ($target) data-modal-target="{{ $target }}" data-modal-toggle="{{ $target }}" @endif
-        {{ $attributes->merge(['class' => $classes]) }}> {{ $slot }}</button>
-@endif --}}
 
 
 @if ($href)
@@ -50,7 +36,7 @@
         @if ($target && $type === 'button') data-modal-target="{{ $target }}" data-modal-toggle="{{ $target }}" @endif
         {{ $attributes->merge(['class' => $classes]) }}> {{ $slot }}</a>
 @else
-    <button  type="{{ $type }}"
+    <button type="{{ $type }}"
         @if ($target && $type === 'button') data-modal-target="{{ $target }}" data-modal-toggle="{{ $target }}" @endif
-        {{ $attributes->merge(['class' => $classes]) }} > {{ $slot }}</button>
+        {{ $attributes->merge(['class' => $classes]) }}> {{ $slot }}</button>
 @endif

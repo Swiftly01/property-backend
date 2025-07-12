@@ -13,7 +13,7 @@
                 <p>Fill in the details below to showcase your property to potential buyers.</p>
             </div>
 
-            <form action="{{ route('listing.store') }}" method="POST">
+            <form action="{{ route('sellRequest.store') }}" method="POST">
 
                 @csrf
 

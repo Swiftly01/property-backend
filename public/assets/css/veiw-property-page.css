@@ -1,3 +1,4 @@
+
 #malibu{
     background-color:#E7EDF5 ;
     border-radius: 5px solid #E7EDF5;
@@ -36,8 +37,8 @@
   position: relative; /* Needed for absolute positioning of child */
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  min-height: 50vh;
+  background-size: 100% 100%;
+  min-height: 300px;
   padding: 2rem;
   margin-bottom: 2rem;
 }
@@ -108,7 +109,7 @@
     background-color:#F5F5F6 ;
 }
 
-#firstname{
+.input-style{
   background-color: #F1F1F3;
 }
 .term{

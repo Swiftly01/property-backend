@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\PropertyTypeEnum;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
-class StoreSellRequest extends FormRequest
+class StoreBuyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +22,14 @@ class StoreSellRequest extends FormRequest
     public function rules(): array
     {
         return [
-             'name' => ['required', 'string', 'lowercase', 'max:255'],
-             'email' => ['required', 'lowercase', 'email:rfc,dns', 'max:255'],
-             'phone_number' => ['required','regex:/^(080|091|090|070|081)[0-9]{8}$/'],
-             'location' => ['nullable', 'string'],
-             'address' => ['required', 'string'],
-             'description' => ['required', 'string', 'max:900'],
-             'property_type' => ['required', new Enum(PropertyTypeEnum::class)],
-             
+            'property_id' => ['bail', 'required', 'integer', 'exists:properties,id'],
+            'firstname' => ['bail', 'required', 'string', 'max:255'],
+            'lastname' => ['bail', 'required', 'string', 'max:255'],
+            'email' => ['bail', 'required', 'email:rfc,dns'],
+            'phone_number' => ['bail', 'required', 'regex:/^(080|091|090|070|081)[0-9]{8}$/'],
+            'message' => ['nullable', 'string', 'max:500'],
+            'terms' => ['accepted']
+
         ];
     }
 
@@ -39,6 +37,7 @@ class StoreSellRequest extends FormRequest
     {
         return [
             'phone_number.regex' => 'Enter a valid phone number (e.g. 08012345678).',
+            'terms.accepted' => 'You must accept the terms and condition',
 
         ];
     }
