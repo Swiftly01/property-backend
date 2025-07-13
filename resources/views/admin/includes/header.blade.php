@@ -1,5 +1,5 @@
  <header
-        class="fixed top-0 left-0 right-0 flex items-center justify-between flex-1 w-full px-10 h-14 md:h-24 bg-darkest">
+        class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between flex-1 w-full px-10 h-14 md:h-24 bg-darkest">
         <div class="flex items-center">
             <button onclick="toggleSidebar()" id="menuToggleBtn" class="md:hidden focus:outline-none">
                 <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

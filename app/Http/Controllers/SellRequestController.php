@@ -17,15 +17,18 @@ class SellRequestController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('admin.sell-requests.index');
+    {   
+        $sellRequests = $this->sellRequestService->getSellRequests();
+
+        return view('admin.sell-requests.index', compact('sellRequests'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        
         return view('pages.properties.listing');
     }
 
@@ -51,10 +54,9 @@ class SellRequestController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(SellRequest $sellRequest)
-    public function show()
+    public function show(SellRequest $sellRequest)
     {
-        return view('admin.sell-requests.show');
+        return view('admin.sell-requests.show', compact('sellRequest'));
     }
 
     /**

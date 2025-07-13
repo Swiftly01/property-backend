@@ -36,7 +36,7 @@ class BuyRequestService
             actionMessage: __('activity.buy_request', ['name' => $buyRequestData->firstname])
         );
 
-          $this->dispatchNotification(buyRequestData: $buyRequestData);
+          $this->dispatchEvent(buyRequestData: $buyRequestData);
 
        
     }
@@ -46,7 +46,7 @@ class BuyRequestService
         return BuyRequestDTO::fromRequest($validatedData);
     }
 
-    public  function dispatchNotification(BuyRequest $buyRequestData)
+    public  function dispatchEvent(BuyRequest $buyRequestData)
     {
        event(new BuyRequestSubmitted($buyRequestData));
     }

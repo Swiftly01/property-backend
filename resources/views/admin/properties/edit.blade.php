@@ -68,14 +68,13 @@
                                         :options="\App\Enums\PropertyTypeEnum::cases()" />
                                     <x-input-error :messages="$errors->get('type')" class="mt-2" />
                                 </div>
-                                {{-- <div class="mb-5 flex-1">
-                                    <x-forms.input-label for="status" label="Status" />
-                                    <x-forms.input-select name="status" placeholder="-- Select a status --"
-                                        :options="\App\Enums\PropertyStatusEnum::cases()" />
-                                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                                 <div class="mb-5 flex-1">
+                                    <x-forms.input-label for="sell_request_id" label="Link to Sell Request (optional)" />
+                                    <x-forms.input-select name="sell_request_id" placeholder="-- Select a sell request to attach --"
+                                        :options="$pendingSellRequests" :selected="$property->sell_request_id" />
+                                    <x-input-error :messages="$errors->get('sell_request_id')" class="mt-2" />
 
-                                </div> --}}
-
+                                </div>
                             </div>
                             <div>
                                 <x-forms.input-label for="description" label="Description" />

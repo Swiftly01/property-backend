@@ -8,6 +8,7 @@ readonly class PropertyDTO
      * Create a new class instance.
      */
     public function __construct(
+        public readonly ?int $sellRequestId,
         public readonly string $title,
         public readonly string $status,
         public readonly string $type,
@@ -23,12 +24,14 @@ readonly class PropertyDTO
     public static function fromRequest(array $validatedData): self
     {
         return new self(
+            sellRequestId: $validatedData['sell_request_id'] ?? null,
             title: $validatedData['title'],
             status: $validatedData['status'],
             type: $validatedData['type'],
             location: $validatedData['location'],
             price: $validatedData['price'],
             description: $validatedData['description'],
+
 
         );
     }
@@ -37,6 +40,7 @@ readonly class PropertyDTO
     public function toArray(): array
     {
         return [
+            'sell_request_id' => $this->sellRequestId,
             'title' => $this->title,
             'status' => $this->status,
             'location' => $this->location,

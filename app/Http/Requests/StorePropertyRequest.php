@@ -26,6 +26,7 @@ class StorePropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'sell_request_id' => ['nullable', 'exists:sell_requests,id'],
             'title' => ['required', 'string', 'max:255'],
             'status' => ['required', new Enum(PropertyStatusEnum::class)],
             'type' => ['required', new Enum(PropertyTypeEnum::class)],

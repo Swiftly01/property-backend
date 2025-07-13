@@ -57,7 +57,7 @@ class AppHelper
     }
 
 
-    public function dispatchActivityEvent(string $type, string $actionMessage, ?string $performedBy = null)
+    public function dispatchActivityEvent(string $type, string $actionMessage, ?string $performedBy = null) :void
     {
         event(new ActivityLogged(
             action: $actionMessage,

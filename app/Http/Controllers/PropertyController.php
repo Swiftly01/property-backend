@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\AppHelper;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Models\Property;
@@ -16,15 +15,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class PropertyController extends Controller
 {
     public function __construct(
-        public AppHelper $appHelper,
         public PropertyService $propertyService
     ) {}
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {   
-        $properties = $this->propertyService->getProperties(request:$request);
+    {
+        $properties = $this->propertyService->getProperties(request: $request);
 
         return view('admin.properties.index', compact('properties'));
     }
@@ -49,12 +47,11 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        $location =  $this->appHelper->mapStateToArray();
+        $location =  $this->propertyService->mapStateToArray();
 
-        // if ($location->isEmpty()) {
-        //     ToastMagic::error('No location data available.');
-        // }
-        return view('admin.properties.create', compact('location'));
+        $pendingSellRequests = $this->propertyService->getPendingSellRequests();
+
+        return view('admin.properties.create', compact('location', 'pendingSellRequests'));
     }
 
     /**
@@ -93,7 +90,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        $location =  $this->appHelper->mapStateToArray();
+        $location =  $this->propertyService->mapStateToArray();
 
         // if ($location->isEmpty()) {
         //     ToastMagic::error('No location data available.');
@@ -149,14 +146,14 @@ class PropertyController extends Controller
     }
 
 
-    
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Property $property)
     {
-       
+
         try {
             $isDeleted =  $this->propertyService->handlePropertyDelete(property: $property);
 
@@ -170,7 +167,6 @@ class PropertyController extends Controller
             ToastMagic::success('Property  deleted successfully');
 
             return redirect()->route('properties.index');
-            
         } catch (Exception $e) {
 
             Log::error("Error during property delete process {$e->getMessage()}");

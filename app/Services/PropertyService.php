@@ -3,11 +3,14 @@
 namespace App\Services;
 
 use App\DataTransferObjects\PropertyDTO;
+use App\Events\PropertyListed;
 use App\Helpers\AppHelper;
+use App\Helpers\RepositoryHelper;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Interfaces\PropertyInterface;
 use App\Models\Property;
+use App\Models\SellRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -20,6 +23,7 @@ class PropertyService
     public function __construct(
         public PropertyInterface $propertyInterface,
         public AppHelper $appHelper,
+        public RepositoryHelper $repositoryHelper
     ) {
         //
     }
@@ -34,13 +38,55 @@ class PropertyService
             throw new Exception('property data could not be saved');
         }
 
+        $this->handleSellRequestUpdate(request: $request);
+
         $this->processFileUploads(request: $request, property: $propertyData);
 
+        $this->processActivityEvent();
+
+        $this->processEventDispatch(property:$propertyData);
+
+        
+    }
+
+    public function handleSellRequestUpdate(object $request): ?bool
+    {
+        if ($request->filled('sell_request_id')) {  
+            return  $this->repositoryHelper->updateSellRequestStatus(request: $request);
+        }
+
+        return null;
+    }
+
+    public function processActivityEvent(): void
+    {
         $this->appHelper->dispatchActivityEvent(
             type: 'Property listing',
             actionMessage: __('activity.property_listing'),
 
         );
+        
+    }
+
+    public function processEventDispatch(Property $property) : void
+    {
+        $propertyData = $this->getSellRequestData(property: $property);
+
+        if ($propertyData) {
+
+            $this->dispatchEvent(propertyData: $propertyData);
+        }
+
+    }
+
+    public function dispatchEvent(Property $propertyData): void
+    {
+        event(new PropertyListed($propertyData));
+    }
+
+    public function getSellRequestData(Property $property)
+    {
+        return $this->propertyInterface->getSellRequestData(property:$property);
     }
 
     public function handleUpdateProperty(UpdatePropertyRequest $request, Property $property)
@@ -52,11 +98,10 @@ class PropertyService
         if (!$propertyData) {
             throw new Exception('Property data could not be updated');
         }
-       
-    
-         
-        if ($request->hasFile('thumbnail') || $request->hasFile('other_images')) {
 
+
+
+        if ($request->hasFile('thumbnail') || $request->hasFile('other_images')) {
             
             $this->processFileUploads(request: $request, property: $propertyData);
         }
@@ -106,6 +151,16 @@ class PropertyService
 
     public function handlePropertyDelete(Property $property)
     {
-       return $this->propertyInterface->destroy(property: $property);
+        return $this->propertyInterface->destroy(property: $property);
+    }
+
+    public function getPendingSellRequests()
+    {
+        return $this->repositoryHelper->getPendingSellRequests();
+    }
+
+    public function mapStateToArray()
+    {
+        return $this->appHelper->mapStateToArray();
     }
 }

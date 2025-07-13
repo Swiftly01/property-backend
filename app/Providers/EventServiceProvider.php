@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Events\ActivityLogged;
 use App\Events\BuyRequestStatusUpdated;
 use App\Events\BuyRequestSubmitted;
+use App\Events\PropertyListed;
 use App\Listeners\LogActivity;
 use App\Listeners\NotifyAdminsOfBuyRequest;
 use App\Listeners\SendBuyRequestStatusNotification;
+use App\Listeners\SendPropertyListedNotification;
 use Illuminate\Support\ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -21,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         BuyRequestStatusUpdated::class => [
             SendBuyRequestStatusNotification::class
+        ],
+        PropertyListed::class => [
+            SendPropertyListedNotification::class
         ]
 
     ];

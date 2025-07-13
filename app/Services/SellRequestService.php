@@ -41,4 +41,12 @@ class SellRequestService
     {
         return SellRequestDTO::fromRequest($validatedData);
     }
+
+    public function getSellRequests()
+    {  
+        return $this->sellRequestInterface->getSellRequests();
+
+    }
+
+   
 }

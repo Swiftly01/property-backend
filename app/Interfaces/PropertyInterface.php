@@ -11,7 +11,10 @@ interface PropertyInterface
 {
     public function store(PropertyDTO $dto);
 
+    public function getSellRequestData(Property $property): Property;
+
     public function update(PropertyDTO $dto, Property $property);
+
 
     public function getProperties(Request $request): LengthAwarePaginator;
 

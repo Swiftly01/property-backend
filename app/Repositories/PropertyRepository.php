@@ -27,6 +27,15 @@ class PropertyRepository implements PropertyInterface
         return Property::create($dto->toArray());
     }
 
+    
+    public function getSellRequestData(Property $property): Property
+    {
+          return Property::with('sellRequest')->find($property->id);
+    }
+
+
+
+
     public function update(PropertyDTO $dto, Property $property): Property
     {
         $property->fill($dto->toArray())->save();
@@ -36,7 +45,7 @@ class PropertyRepository implements PropertyInterface
 
 
     public function getProperties(Request $request): LengthAwarePaginator
-    {   
+    {
         return $this->propertyFilter->apply(Property::query(), $request)->paginate(3)->withQueryString();
     }
 

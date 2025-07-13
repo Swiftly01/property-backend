@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sell_request_id')->nullable()->constrained('sell_requests')->nullOnDelete();
             $table->string('title');
             $table->enum('status', PropertyStatusEnum::values());
             $table->enum('type', PropertyTypeEnum::values());
@@ -26,6 +27,7 @@ return new class extends Migration
         });
     }
 
+    
     /**
      * Reverse the migrations.
      */
