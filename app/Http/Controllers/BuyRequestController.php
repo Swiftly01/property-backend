@@ -21,7 +21,7 @@ class BuyRequestController extends Controller
      */
     public function index(Request $request)
     {
-        $buyRequests = $this->buyRequestService->getAllRequests();
+        $buyRequests = $this->buyRequestService->getAllRequests(request: $request);
 
         return view('admin.buy-requests.index', compact('buyRequests'));
     }

@@ -3,7 +3,6 @@ const form = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 const statusFilter = document.getElementById('status');
 
-console.log(true);
 
 let debounceTimer = '';
 

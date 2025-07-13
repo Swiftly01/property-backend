@@ -129,102 +129,107 @@
                     </p>
                 </div>
 
-                <!-- Right Column: Form -->
-                <div class="col-12 col-lg-6">
-                    <form action="{{ route('buyRequest.store') }}" method="POST">
-                        @csrf
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="firstname" class="form-label">First Name</label>
-                                <input type="text" class="form-control input-style" id="firstname"
-                                    placeholder="Enter First Name" name="firstname" value="{{ old('firstname') }}"
-                                    required>
-                                @error('firstname')
+
+                @if ($property->status === \App\Enums\PropertyStatusEnum::AVAILABLE->value)
+                    <!-- Right Column: Form -->
+                    <div class="col-12 col-lg-6">
+                        <form action="{{ route('buyRequest.store') }}" method="POST">
+                            @csrf
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="firstname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control input-style" id="firstname"
+                                        placeholder="Enter First Name" name="firstname" value="{{ old('firstname') }}"
+                                        required>
+                                    @error('firstname')
+                                        <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control input-style" id="lastname"
+                                        placeholder="Enter Last Name" name="lastname" value="{{ old('lastname') }}"
+                                        required>
+                                    @error('lastname')
+                                        <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control input-style" id="email"
+                                        placeholder="Enter your Email" name="email" value="{{ old('email') }}"
+                                        required>
+                                    @error('email')
+                                        <span class="text-danger">
+                                            {{ $message }}
+
+                                        </span>
+                                    @enderror
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control input-style" id="phone"
+                                        placeholder="Enter Phone Number" name="phone_number"
+                                        value="{{ old('phone_number') }}" required>
+                                    @error('phone_number')
+                                        <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="property" class="form-label">Selected Property</label>
+                                <input class="form-control input-style" id="property" type="text"
+                                    value="{{ $property->title }}" readonly>
+                                <input name="property_id" type="text" value="{{ $property->id }}" hidden>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control input-style" id="message" rows="4" placeholder="Enter your message here...">{{ old('message') }}</textarea>
+                                @error('message')
                                     <span class="text-danger">
                                         {{ $message }}
+
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-6">
-                                <label for="lastname" class="form-label">Last Name</label>
-                                <input type="text" class="form-control input-style" id="lastname"
-                                    placeholder="Enter Last Name" name="lastname" value="{{ old('lastname') }}"
-                                    required>
-                                @error('lastname')
-                                    <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
+                            <div
+                                class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mt-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agreeCheck" name="terms"
+                                        {{ old('terms') ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="agreeCheck">
+                                        I agree with <a href="#" class="text-decoration-underline term">Terms of
+                                            Use</a> and <a href="#"
+                                            class="text-decoration-underline term">Privacy
+                                            Policy</a>
+                                    </label>
+                                    @error('terms')
+                                        <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
 
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control input-style" id="email"
-                                    placeholder="Enter your Email" name="email" value="{{ old('email') }}" required>
-                                @error('email')
-                                    <span class="text-danger">
-                                        {{ $message }}
-
-                                    </span>
-                                @enderror
-
-                            </div>
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label">Phone</label>
-                                <input type="tel" class="form-control input-style" id="phone"
-                                    placeholder="Enter Phone Number" name="phone_number"
-                                    value="{{ old('phone_number') }}" required>
-                                @error('phone_number')
-                                    <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="property" class="form-label">Selected Property</label>
-                            <input class="form-control input-style" id="property" type="text"
-                                value="{{ $property->title }}" readonly>
-                            <input name="property_id" type="text" value="{{ $property->id }}" hidden>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control input-style" id="message" rows="4" placeholder="Enter your message here...">{{ old('message') }}</textarea>
-                            @error('message')
-                                <span class="text-danger">
-                                    {{ $message }}
-
-                                </span>
-                            @enderror
-                        </div>
-                        <div
-                            class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mt-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="agreeCheck" name="terms"
-                                    {{ old('terms') ? 'checked' : '' }} required>
-                                <label class="form-check-label" for="agreeCheck">
-                                    I agree with <a href="#" class="text-decoration-underline term">Terms of
-                                        Use</a> and <a href="#" class="text-decoration-underline term">Privacy
-                                        Policy</a>
-                                </label>
-                                @error('terms')
-                                    <span class="text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
+                                <button type="submit" id="submit"
+                                    class="btn btn-primary mt-3 mt-md-0">Submit</button>
                             </div>
 
-                            <button type="submit" id="submit"
-                                class="btn btn-primary mt-3 mt-md-0">Submit</button>
-                        </div>
-
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                @endif
 
             </div>
         </div>

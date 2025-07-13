@@ -9,6 +9,7 @@ use App\Helpers\AppHelper;
 use App\Interfaces\BuyRequestInterface;
 use App\Models\BuyRequest;
 use Exception;
+use Illuminate\Http\Request;
 
 class BuyRequestService
 {
@@ -50,9 +51,9 @@ class BuyRequestService
        event(new BuyRequestSubmitted($buyRequestData));
     }
 
-    public function getAllRequests()
+    public function getAllRequests(Request $request)
     {
-        return $this->buyRequestInterface->getAllRequests();
+        return $this->buyRequestInterface->getAllRequests(request: $request);
     }
 
     public function handleStatusUpdate(BuyRequest $buyRequest, string $action)

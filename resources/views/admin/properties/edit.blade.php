@@ -62,14 +62,11 @@
 
                             </div>
                             <div class="flex justify-between gap-3 flex-wrap">
-                                <div class="mb-5 flex-1">
+                                 <div class="mb-5 flex-1">
                                     <x-forms.input-label for="type" label="Property type" />
-                                    <x-forms.input-select name="type":selected="$property->property_type" placeholder="-- Select a property type --"
+                                    <x-forms.input-select :selected="$property->type" name="type" placeholder="-- Select a property type --"
                                         :options="\App\Enums\PropertyTypeEnum::cases()" />
-                                    <x-input-error :messages="$errors->get('property_type')" class="mt-2" />
-                                   
-                                   
-
+                                    <x-input-error :messages="$errors->get('type')" class="mt-2" />
                                 </div>
                                 {{-- <div class="mb-5 flex-1">
                                     <x-forms.input-label for="status" label="Status" />

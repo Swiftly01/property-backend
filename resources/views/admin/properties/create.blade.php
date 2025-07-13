@@ -63,9 +63,6 @@
                                     <x-forms.input-select name="type" placeholder="-- Select a property type --"
                                         :options="\App\Enums\PropertyTypeEnum::cases()" />
                                     <x-input-error :messages="$errors->get('type')" class="mt-2" />
-                                   
-                                   
-
                                 </div>
                                 {{-- <div class="mb-5 flex-1">
                                     <x-forms.input-label for="status" label="Status" />
