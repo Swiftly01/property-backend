@@ -17,6 +17,15 @@ class SellRequestRepository implements SellRequestInterface
      */
     public function __construct() {}
 
+    public function getTotalPendingSellRequests(): int
+    {
+        return SellRequest::where('status', SellRequestStatusEnum::PENDING->value)->count();
+    }
+
+    public function getRecentSellRequests()
+    {
+        return SellRequest::with('property')->latest()->take(5)->get()->map(fn($item) => $item->forceFill(['type' => 'sell']));
+    }
 
     public function create(SellRequestDTO $dto)
     {

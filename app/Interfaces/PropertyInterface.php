@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface PropertyInterface
-{
+{   
+    public function getTotalProperties(): int;
+
     public function store(PropertyDTO $dto);
 
     public function getSellRequestData(Property $property): Property;

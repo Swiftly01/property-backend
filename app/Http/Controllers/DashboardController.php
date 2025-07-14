@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    public function __construct(public DashboardService $dashboardService) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $propertyCount = $this->dashboardService->getPropertyMetrics();
+        $pendingSellRequestsCount = $this->dashboardService->getSellRequestMetrics();
+        $pendingBuyRequestsCount = $this->dashboardService->getBuyRequestMetrics();
+        $recentRequests = $this->dashboardService->getRecentRequests();
+        $activityLogs = $this->dashboardService->getActivityLogs();
+
+        return view('admin.dashboard', compact('propertyCount', 'pendingSellRequestsCount', 'pendingBuyRequestsCount', 'recentRequests', 'activityLogs'));
     }
 
     public function showSettings(Request $request)
-    {   
+    {
         $user =  $request->user();
         return view('admin.settings', compact('user'));
     }

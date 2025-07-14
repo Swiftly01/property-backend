@@ -21,6 +21,16 @@ class BuyRequestRepository implements BuyRequestInterface
         //
     }
 
+    public function getTotalPendingBuyRequests(): int
+    {
+        return BuyRequest::where('status', BuyRequestEnum::PENDING->value)->count();
+    }
+
+    public function getRecentBuyRequests()
+    {
+        return BuyRequest::with('property')->latest()->take(5)->get()->map(fn($item) => $item->forceFill(['type' => 'buy']));
+    }
+
     public function store(BuyRequestDTO $dto): BuyRequest
     {
         return BuyRequest::create($dto->toArray());

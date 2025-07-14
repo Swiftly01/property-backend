@@ -21,6 +21,11 @@ class PropertyRepository implements PropertyInterface
         //
     }
 
+    public function getTotalProperties(): int
+    {
+      return Property::count();
+    }
+
 
     public function store(PropertyDTO $dto): Property
     {

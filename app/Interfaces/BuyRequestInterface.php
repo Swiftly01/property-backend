@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface BuyRequestInterface
-{
+{   
+    public function getTotalPendingBuyRequests(): int;
+
+    public function getRecentBuyRequests();
+
     public function store(BuyRequestDTO $dto): BuyRequest;
 
     public function getAllRequests(Request $request): LengthAwarePaginator;
