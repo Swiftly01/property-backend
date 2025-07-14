@@ -16,9 +16,9 @@ class SellRequestController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {   
-        $sellRequests = $this->sellRequestService->getSellRequests();
+        $sellRequests = $this->sellRequestService->getSellRequests(request: $request);
 
         return view('admin.sell-requests.index', compact('sellRequests'));
     }

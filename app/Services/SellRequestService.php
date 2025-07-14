@@ -9,6 +9,7 @@ use App\Interfaces\SellRequestInterface;
 use App\Models\SellRequest;
 use Exception;
 use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Http\Request;
 
 class SellRequestService
 {
@@ -42,9 +43,9 @@ class SellRequestService
         return SellRequestDTO::fromRequest($validatedData);
     }
 
-    public function getSellRequests()
+    public function getSellRequests(Request $request)
     {  
-        return $this->sellRequestInterface->getSellRequests();
+        return $this->sellRequestInterface->getSellRequests(request: $request);
 
     }
 

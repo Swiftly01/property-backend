@@ -5,18 +5,18 @@
 @section('content')
     <div class="p-4 sm:p-6 lg:p-10">
 
-        <x-page-header backRoute='properties.index' title="View Request Details">
-            <x-button variant="danger" target='delete-request-modal'>
+        <x-page-header backRoute='sell-requests.index' title="View Request Details">
+            {{-- <x-button variant="danger" target='delete-request-modal'>
                 Delete
-            </x-button>
-            <x-button variant="success" target='listing-request-modal'>
+            </x-button> --}}
+            {{-- <x-button variant="success" target='listing-request-modal'>
                 List Property
-            </x-button>
+            </x-button> --}}
 
         </x-page-header>
 
-        <x-alert-modal variant='delete' id="delete-request-modal" title="booking" />
-        <x-alert-modal variant='approve' id="listing-request-modal" title="booking" />
+        {{-- <x-alert-modal variant='delete' id="delete-request-modal" title="booking" />
+        <x-alert-modal variant='approve' id="listing-request-modal" title="booking" /> --}}
 
 
         <div class="mt-5 lg:mt-10">

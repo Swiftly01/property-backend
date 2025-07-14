@@ -92,10 +92,9 @@ class PropertyController extends Controller
     {
         $location =  $this->propertyService->mapStateToArray();
 
-        // if ($location->isEmpty()) {
-        //     ToastMagic::error('No location data available.');
-        // }
-        return view('admin.properties.edit', compact('property', 'location'));
+        $pendingSellRequests = $this->propertyService->getPendingSellRequests();
+
+        return view('admin.properties.edit', compact('property', 'location', 'pendingSellRequests'));
     }
 
     /**

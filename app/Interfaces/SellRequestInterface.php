@@ -4,6 +4,7 @@ namespace App\Interfaces;
 
 use App\DataTransferObjects\SellRequestDTO;
 use App\Models\SellRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 interface SellRequestInterface
@@ -12,7 +13,7 @@ interface SellRequestInterface
 
      public function updateSellRequestStatus(object $request);
 
-     public function getSellRequests();
+     public function getSellRequests(Request $request);
 
      public function getPendingSellRequests() : Collection;
 }

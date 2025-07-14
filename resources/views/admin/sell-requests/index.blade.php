@@ -12,7 +12,7 @@
         <div class="mt-5 lg:mt-14 bg-white rounded">
             <div class="flex flex-wrap justify-between items-center py-5 px-8">
                 <h3 class="font-bold">All Sell Requests</h3>
-                <form id="searchForm" action="{{ route('buy-requests.index') }}" method="GET">
+                <form id="searchForm" action="{{ route('sell-requests.index') }}" method="GET">
                     <div class="flex flex-wrap items-center gap-2 md:gap-4">
                         <!-- Search Input -->
                         <div class="relative">
@@ -99,33 +99,33 @@
                                                 <a href="{{ route('sell-requests.show', ['sell_request' => $sellRequest->id]) }}"
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View</a>
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 <x-button variant="approve"
                                                     target="confirm-sell-request-{{ $sellRequest->id }}">
                                                     List property
                                                 </x-button>
-                                            </li>
-                                            <li>
+                                            </li> --}}
+                                            {{-- <li>
                                                 <x-button variant="link" target="decline-sell-request-{{ $sellRequest->id }}">
                                                     Decline
                                                 </x-button>
-                                            </li>
+                                            </li> --}}
                                         </ul>
 
                                     </div>
 
                                 </td>
                             </tr>
-                            <x-alert-modal variant='decline' id="decline-sell-request-{{ $sellRequest->id }}"
+                            {{-- <x-alert-modal variant='decline' id="decline-sell-request-{{ $sellRequest->id }}"
                                 title="List Request" :action="route('sell-requests.update-status', [
                                     'sell_request' => $sellRequest->id,
                                     'action' => \App\Enums\SellRequestStatusEnum::REJECTED->value,
-                                ])" method="PATCH" />
-                            <x-alert-modal variant='approve' id="confirm-sell-request-{{ $sellRequest->id }}"
+                                ])" method="PATCH" /> --}}
+                            {{-- <x-alert-modal variant='approve' id="confirm-sell-request-{{ $sellRequest->id }}"
                                 title="List Request" :action="route('sell-requests.update-status', [
                                     'sell_request' => $sellRequest->id,
                                     'action' => \App\Enums\SellRequestStatusEnum::APPROVED->value,
-                                ])" method="PATCH" />
+                                ])" method="PATCH" /> --}}
                         @endforeach
 
 
