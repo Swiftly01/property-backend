@@ -13,7 +13,7 @@
                 <img src="{{ asset('assets/icons/home-icon.png') }}" alt="">
                 <div class="pt-8">
                     <h6 class="text-[#B5B5C3]">Total properties</h6>
-                    <h1 class="text-2xl font-bold">{{ number_format($propertyCount) }}</h1>
+                    <h1 class="text-2xl font-bold">{{ str_pad($propertyCount, 2, '0', STR_PAD_LEFT) }}</h1>
                 </div>
 
             </div>
@@ -29,7 +29,7 @@
                 <img src="{{ asset('assets/icons/folder-open-1.png') }}" alt="">
                 <div class="pt-8">
                     <h6 class="text-[#B5B5C3]">Pending sell request</h6>
-                    <h1 class="text-2xl font-bold">{{ number_format($pendingSellRequestsCount) }}</h1>
+                    <h1 class="text-2xl font-bold">{{ str_pad($pendingSellRequestsCount, 2, '0', STR_PAD_LEFT) }}</h1>
                 </div>
 
             </div>
@@ -37,7 +37,7 @@
                 <img src="{{ asset('assets/icons/folder-open.png') }}" alt="">
                 <div class="pt-8">
                     <h6 class="text-[#B5B5C3]">Pending booking request</h6>
-                    <h1 class="text-2xl font-bold">{{ number_format($pendingBuyRequestsCount) }}</h1>
+                    <h1 class="text-2xl font-bold">{{ str_pad($pendingBuyRequestsCount, 2, '0', STR_PAD_LEFT) }}</h1>
                 </div>
 
             </div>
@@ -58,7 +58,14 @@
                     @forelse ($recentRequests as $request)
                         <div class="sm:flex sm:justify-between items-center my-3 bg-secondary py-2 px-3 rounded-md">
                             <div class="flex gap-3">
-                                <img class="h-20 w-52" src="{{ asset($request?->property?->imageUrl() ?? '') }}"
+                                @php
+                                    $image = match ($request->type) {
+                                       'sell'  => $request?->property?->imageUrl() ?? 'assets/images/sell-request-default.png',
+                                        'buy'  =>  $request?->property?->imageUrl() ?? 'assets/images/buy-request-default.png',
+                                        default => 'assets/images/buy-request-default.png', 
+                                    }
+                                @endphp
+                                <img class="h-20 w-52 rounded-lg" src="{{ asset($image) }}"
                                     alt="image-property">
                                 <div>
                                     <p class="font-bold truncate">{{ $request->property->title ?? 'Untitled' }}</p>
