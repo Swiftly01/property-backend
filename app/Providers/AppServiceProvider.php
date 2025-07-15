@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {   
-        //$buyRequestsCount = BuyRequest::count();
-        //View::share('buyRequestsCount', $buyRequestsCount);
+        $buyRequestsCount = BuyRequest::count();
+        View::share('buyRequestsCount', $buyRequestsCount);
 
         if (request()->is('admin/*')) {
             Paginator::useTailwind();
