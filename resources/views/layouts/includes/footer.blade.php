@@ -14,11 +14,11 @@
         <div class="col-6 col-md-3 mb-4 mb-md-0">
           <h5 class="quick3">Quick Links</h5>
           <ul class="list-unstyled">
-            <li><a class="quick2 text-white text-decoration-none" href="index.html">Home</a></li>
-            <li><a class="quick2 text-white text-decoration-none" href="property-page.html">Properties</a></li>
+            <li><a class="quick2 text-white text-decoration-none" href="{{ route('home') }}">Home</a></li>
+            <li><a class="quick2 text-white text-decoration-none" href="{{ route('property') }}">Properties</a></li>
             <li><a class="quick2 text-white text-decoration-none" href="index.html">Testimonials</a></li>
-            <li><a class="quick2 text-white text-decoration-none" href="contact.html">Contact</a></li>
-            <li><a class="quick2 text-white text-decoration-none" href="podcast.html">Podcast</a></li>
+            <li><a class="quick2 text-white text-decoration-none" href="{{ route('contact') }}">Contact</a></li>
+            <li><a class="quick2 text-white text-decoration-none" href="{{ route('podcasts') }}">Podcast</a></li>
           </ul>
         </div>
 
@@ -36,7 +36,7 @@
         <div class="col-12 col-md-3">
           <h5 class="quick3">Contact</h5>
           <ul class="list-unstyled">
-            <li><a class="quick2 text-white text-decoration-none" href="contact.html">Contact Form</a></li>
+            <li><a class="quick2 text-white text-decoration-none" href="{{ route('contact') }}">Contact Form</a></li>
             <li><a class="quick2 text-white text-decoration-none" href="#">Somewhere in the world</a></li>
           </ul>
         </div>
