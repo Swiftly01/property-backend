@@ -51,7 +51,7 @@
                     href="{{ route($item['route']) }}"> <img src="{{ asset('assets/icons/' . $item['icon']) }}"
                         alt="dashboard">
                     <span>{{ $item['label'] }}</span> <span
-                        class="bg-[#00A8FF] text-white px-1 ml-5 text-sm rounded-sm">{{ $item['route'] === 'buy-requests.index' ?  str_pad($buyRequestsCount, 2, '0', STR_PAD_LEFT) :'' }}</span></a>
+                        class="bg-[#00A8FF] text-white px-1 ml-5 text-sm rounded-sm">{{ $item['route'] === 'buy-requests.index' ?  str_pad($buyRequestsCount, 2, '0', STR_PAD_LEFT) :'00' }}</span></a>
             </li>
         @endforeach
     </ul>
