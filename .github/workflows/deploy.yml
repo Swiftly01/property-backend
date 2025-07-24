@@ -26,7 +26,7 @@ jobs:
         run: cp .env.example .env
 
       - name: Install dependencies
-        run: composer install --no-dev --prefer-dist --optimize-autoloader
+       run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Set file cache driver temporarily
         run: echo "CACHE_DRIVER=file" >> .env
@@ -56,8 +56,8 @@ jobs:
             cd $DEPLOY_PATH || exit 1
             git pull origin master
             composer install
-            php artisan migrate:fresh
-            php artisan db:seed
+            php artisan migrate:fresh --force
+            php artisan db:seed --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
