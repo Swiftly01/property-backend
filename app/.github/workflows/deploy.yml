@@ -1,0 +1,40 @@
+name: Deploy to Shared Hosting
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/monarsh
+          chmod 600 ~/.ssh/monarsh
+          ssh-keyscan -p 21098 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy Application
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          ssh -p 21098 $SSH_USER@$SSH_HOST "
+            cd $DEPLOY_PATH || exit;
+            git pull origin master;
+            composer install --no-interaction --prefer-dist --optimize-autoloader;
+            php artisan migrate --force;
+            php artisan db:seed;
+            php artisan config:cache;
+            php artisan route:cache;
+            php artisan view:cache;
+        
