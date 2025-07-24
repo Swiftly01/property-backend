@@ -31,6 +31,13 @@ jobs:
       - name: Set Application Encryption Key
         run: php artisan key:generate --ansi
 
+      - name: Clear and cache config
+        run: |
+          php artisan config:clear
+          php artisan cache:clear
+          php artisan config:cache
+
+
       - name: Run Migrations
         run: php artisan migrate:fresh
 
