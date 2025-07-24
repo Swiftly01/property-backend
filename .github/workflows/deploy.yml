@@ -28,7 +28,9 @@ jobs:
       - name: Install dependencies
         run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-  
+      - name: Set Application Encryption Key
+        run: php artisan key:generate --ansi
+
       - name: Deploy Application
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
