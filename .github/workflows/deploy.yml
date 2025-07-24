@@ -28,7 +28,7 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
-          ssh -p 21098 $SSH_USER@$SSH_HOST "
+          ssh -p 21098 $SSH_USER@$SSH_HOST
             cd $DEPLOY_PATH || exit;
             git pull origin master;
             composer install --no-interaction --prefer-dist --optimize-autoloader;
