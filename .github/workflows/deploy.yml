@@ -1,4 +1,4 @@
-name: Deploy to Share Hosting
+name: Deploy to Shared Hosting
 
 on:
   push:
@@ -23,18 +23,20 @@ jobs:
           ssh-keyscan -p 21098 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy Application
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        run: |
-          ssh -p 21098 $SSH_USER@$SSH_HOST
-            cd $DEPLOY_PATH || exit;
-            git pull origin master;
-            composer install --no-interaction --prefer-dist --optimize-autoloader;
-            php artisan migrate --force;
-            php artisan db:seed;
-            php artisan config:cache;
-            php artisan route:cache;
-            php artisan view:cache;
+          env:
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            SSH_USER: ${{ secrets.SSH_USER }}
+            DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          run: |
+            ssh -p 21098 -i ~/.ssh/monarsh $SSH_USER@$SSH_HOST << 'EOF'
+              cd $DEPLOY_PATH || exit;
+              git pull origin master;
+              composer install --no-interaction --prefer-dist --optimize-autoloader;
+              php artisan migrate --force;
+              php artisan db:seed;
+              php artisan config:cache;
+              php artisan route:cache;
+              php artisan view:cache;
+            EOF
+
         
