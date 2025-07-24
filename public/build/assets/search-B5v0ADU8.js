@@ -1,0 +1,1 @@
+const t=document.getElementById("searchForm"),n=document.getElementById("searchInput"),s=document.getElementById("status");let e="";n.addEventListener("input",()=>{clearTimeout(e),e=setTimeout(()=>{t.submit()},400)});s.addEventListener("change",()=>{t.submit()});

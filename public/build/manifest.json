@@ -9,5 +9,17 @@
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
+  },
+  "resources/js/nav.js": {
+    "file": "assets/nav-5VLSkWLx.js",
+    "name": "nav",
+    "src": "resources/js/nav.js",
+    "isEntry": true
+  },
+  "resources/js/search.js": {
+    "file": "assets/search-B5v0ADU8.js",
+    "name": "search",
+    "src": "resources/js/search.js",
+    "isEntry": true
   }
 }
