@@ -28,24 +28,7 @@ jobs:
       - name: Install dependencies
         run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Set file cache driver temporarily
-        run: echo "CACHE_DRIVER=file" >> .env
-
-      - name: Clear and cache config
-        run: |
-          php artisan config:clear
-          php artisan cache:clear
-          php artisan config:cache
-
-      - name: Test DB via CLI
-        run: mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME -p"$DB_PASSWORD" $DB_DATABASE -e "SHOW TABLES;"
-
-      - name: Run migrations and seeders
-        run: |
-          php artisan migrate:fresh --force
-          php artisan db:seed --force
-
-
+  
       - name: Deploy Application
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
