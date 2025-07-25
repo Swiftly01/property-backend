@@ -41,14 +41,14 @@ class StorePropertyRequest extends FormRequest
                 'required',
                 'image',
                 'mimes:png,jpg,jpeg,',
-                'max:1024',
+                'max:1024'
                 // 'dimensions:min_width=400,min_height=400'
             ],
             'other_images' => ['required', 'array', 'min:1'],
             'other_images.*' => [
                 'image',
                 'mimes:png,jpg,jpeg',
-                'max:1024',
+                'max:1024'
                 //  'dimensions:min_width=400,min_height=400'
             ]
 

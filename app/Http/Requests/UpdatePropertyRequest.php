@@ -35,7 +35,7 @@ class UpdatePropertyRequest extends FormRequest
             'description' => ['required', 'string', 'max:1000'],
             'thumbnail' => ['nullable', 'image', 'mimes:png,jpg,jpeg', 'max:1024'],
             'other_images' => ['nullable', 'array', 'min:1'],
-            'other_images.*' => ['image', 'mimes:png,jpg,jpeg','max:1024'], 
+            'other_images.*' => ['image', 'mimes:png,jpg,jpeg','max:1024']
         ];
     }
 }
