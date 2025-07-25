@@ -2149,7 +2149,6 @@
             "time": "2024-12-08T08:18:47+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "maennchen/zipstream-php",
             "version": "3.1.2",
             "source": {
@@ -2228,8 +2227,6 @@
             "time": "2025-01-27T12:07:53+00:00"
         },
         {
-=======
->>>>>>> f7e52b051903d0f777714b0a064b5c8b6be26af7
             "name": "monolog/monolog",
             "version": "3.9.0",
             "source": {
