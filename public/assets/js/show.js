@@ -27,14 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
         updateBackground();
     });
 
-    // Set initial thumbnail index if matches one of the imageUrls
     const initialUrl = propertyPage.style.backgroundImage
-        .replace(/^url\(["']?/, '')
-        .replace(/["']?\)$/, '');
-    const foundIndex = imageUrls.findIndex((url) =>
-        initialUrl.includes(url)
-    );
-    if (foundIndex !== -1) {
-        currentIndex = foundIndex;
-    }
+    .replace(/^url\(["']?/, '')
+    .replace(/["']?\)$/, '')
+    .replace(location.origin, ''); // normalize to relative URL
+
+const foundIndex = imageUrls.findIndex((url) =>
+    initialUrl.includes(url)
+);
 });

@@ -27,7 +27,6 @@ class SendBuyRequestStatusNotificationJob implements ShouldQueue
      */
     public function handle(): void
     {   
-
         $message = match($this->buyRequest->status){
              BuyRequestEnum::CONFIRMED->value => 'We are glad to inform you that your booking request has been confirmed.We will kindly reach out to you soon.',
              BuyRequestEnum::DECLINED->value => 'We are sorry to inform you that your booking request could not be approved at this time, Kindly reach out to our support',

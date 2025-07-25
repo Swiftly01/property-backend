@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-md-auto">
-                    <h4 class="villa mb-2 mb-md-0">
+                    <h4 class="mb-2 villa mb-md-0">
                         {{ $property->title }} <span></span>
                     </h4>
                 </div>
@@ -27,7 +27,7 @@
     </section>
 
 
-    <section id="animate" class="py-4 overflow-hidden container">
+    <section id="animate" class="container py-4 overflow-hidden">
         <div class="container">
             <div class="scroll-animation">
                 @forelse ($property->getImages() as $media)
@@ -47,6 +47,7 @@
             $images = $property->getImages()->map(fn($media) => $media->getUrl())->toArray();
 
             $thumbnail = $property->imageUrl();
+
         @endphp
 
         <script>
@@ -135,7 +136,7 @@
                     <div class="col-12 col-lg-6">
                         <form action="{{ route('buyRequest.store') }}" method="POST">
                             @csrf
-                            <div class="row mb-3">
+                            <div class="mb-3 row">
                                 <div class="col-md-6">
                                     <label for="firstname" class="form-label">First Name</label>
                                     <input type="text" class="form-control input-style" id="firstname"
@@ -161,7 +162,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="mb-3 row">
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control input-style" id="email"
@@ -206,7 +207,7 @@
                                 @enderror
                             </div>
                             <div
-                                class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mt-3">
+                                class="mt-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="agreeCheck" name="terms"
                                         {{ old('terms') ? 'checked' : '' }} required>
@@ -224,7 +225,7 @@
                                 </div>
 
                                 <button type="submit" id="submit"
-                                    class="btn btn-primary mt-3 mt-md-0">Submit</button>
+                                    class="mt-3 btn btn-primary mt-md-0">Submit</button>
                             </div>
 
                         </form>
