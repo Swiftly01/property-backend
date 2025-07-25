@@ -28,7 +28,7 @@ Route::prefix('/property')->group(function () {
 });
 
 
-Route::get('/staging', [StagingController::class, 'showStaging'])->name('staging');
+//Route::get('/staging', [StagingController::class, 'showStaging'])->name('staging');
 //Route::get('/staging/{stage}', [StagingController::class, 'showStagingDetails'])->name('staging-details.show');
 Route::get('/photographs', [PhotographController::class, 'showPhotographs'])->name('photographs');
 Route::get('/podcasts', [PodcastController::class, 'showPodcasts'])->name('podcasts');
