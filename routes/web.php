@@ -16,6 +16,7 @@ use App\Http\Controllers\StagingController;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Route::prefix('/property')->group(function () {
@@ -28,7 +29,7 @@ Route::prefix('/property')->group(function () {
 
 
 Route::get('/staging', [StagingController::class, 'showStaging'])->name('staging');
-Route::get('/staging/{stage}', [StagingController::class, 'showStagingDetails'])->name('staging-details.show');
+//Route::get('/staging/{stage}', [StagingController::class, 'showStagingDetails'])->name('staging-details.show');
 Route::get('/photographs', [PhotographController::class, 'showPhotographs'])->name('photographs');
 Route::get('/podcasts', [PodcastController::class, 'showPodcasts'])->name('podcasts');
 Route::get('/contact', [ContactController::class, 'showContactPage'])->name('contact');
@@ -48,7 +49,7 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/buy-requests', BuyRequestController::class);
     Route::resource('/sell-requests', SellRequestController::class);
     Route::resource('/photographs', PhotographController::class);
-    Route::resource('/staging', StagingController::class)->names('admin.staging');
+    Route::resource('/staging', StagingController::class);
     Route::resource('/podcasts', PodcastController::class);
     Route::resource('/contacts', ContactController::class);
 
