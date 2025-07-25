@@ -2,7 +2,8 @@ name: Deploy to Shared Hosting
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   deploy:
@@ -10,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Setup SSH
         env:
@@ -19,16 +20,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/monarsh
           chmod 600 ~/.ssh/monarsh
-          ssh-keyscan -p 21098 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Debug Server Access
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        run: |
-          ssh -p 21098 -T $SSH_USER@$SSH_HOST "echo 'SSH test successful!'"
-          ssh -p 21098 $SSH_USER@$SSH_HOST "ls -ld $DEPLOY_PATH"
+          ssh-keyscan -p 21098 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy Application
         env:
@@ -36,14 +28,13 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
-          ssh -p 21098 $SSH_USER@$SSH_HOST "
-            cd $DEPLOY_PATH || exit
-            echo 'Current directory: $(pwd)'
-            git reset --hard HEAD
+          ssh -i ~/.ssh/monarsh -p 21098 $SSH_USER@$SSH_HOST << 'EOF'
+            cd $DEPLOY_PATH || exit 1
             git pull origin master
             composer install --no-interaction --prefer-dist --optimize-autoloader
             php artisan migrate --force
+            php artisan db:seed
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-          "
+          EOF
