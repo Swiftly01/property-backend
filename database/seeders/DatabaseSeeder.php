@@ -14,17 +14,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $users = [
-            'name' => 'Test user',
-            'email' => 'test@example.com',
-            'name' => 'admin',
-            'email' => 'kareemkazeem100@gmail.com'
+            ['name' => 'Test user', 'email' => 'test@example.com'],
+            ['name' => 'admin', 'email' => 'kareemkazeem100@gmail.com'],
         ];
 
-
-        foreach ($users as $user) {
+      
+        foreach ($users as $user){
             User::factory()->create($user);
-        }
 
+        }
+        
         /*
         $this->call([
             SellRequestSeeder::class
