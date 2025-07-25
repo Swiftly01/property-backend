@@ -54,7 +54,7 @@
                         class="bg-[#00A8FF] text-white px-1 ml-5 text-sm rounded-sm">{{ $item['route'] === 'buy-requests.index'
                             ? ($buyRequestsCount > 0
                                 ? str_pad($buyRequestsCount, 2, '0', STR_PAD_LEFT)
-                                : 0)
+                                : '00')
                             : '' }}</span></a>
             </li>
         @endforeach
