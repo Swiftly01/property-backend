@@ -7,6 +7,7 @@ use App\Models\BuyRequest;
 use App\Notifications\BuyRequestStatusNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 
 class SendBuyRequestStatusNotificationJob implements ShouldQueue
@@ -33,6 +34,8 @@ class SendBuyRequestStatusNotificationJob implements ShouldQueue
              default => throw new InvalidArgumentException("Invalid status {$this->buyRequest->status}"),
 
         };
+
+        Log::info($this->buyRequest->email);
 
         $this->buyRequest->notify(new BuyRequestStatusNotification($this->buyRequest, $message));
     }
