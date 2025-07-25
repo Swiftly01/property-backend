@@ -13,7 +13,17 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SellRequestController;
 use App\Http\Controllers\StagingController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/mail', function () {
+
+    Mail::raw('This is a raw test email', function ($msg) {
+        $msg->to('kareemkazeem100@gmail.com')
+            ->subject('Raw Email Test');
+    });
+    return 'Raw email sent!';
+});
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
