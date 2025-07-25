@@ -32,7 +32,7 @@ jobs:
             cd $DEPLOY_PATH || exit 1
             git pull origin master
             composer install --no-interaction --prefer-dist --optimize-autoloader
-            php artisan migrate --force
+            php artisan migrate:fresh --force
             php artisan db:seed
             php artisan config:cache
             php artisan route:cache

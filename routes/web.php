@@ -37,7 +37,7 @@ Route::prefix('/property')->group(function () {
 
 
 Route::get('/staging', [StagingController::class, 'showStaging'])->name('staging');
-Route::get('/staging/{staging}', [StagingController::class, 'showStagingDetails'])->name('staging.show');
+Route::get('/staging/{staging}', [StagingController::class, 'showStagingDetails'])->name('staging-details.show');
 Route::get('/photographs', [PhotographController::class, 'showPhotographs'])->name('photographs');
 Route::get('/podcasts', [PodcastController::class, 'showPodcasts'])->name('podcasts');
 Route::get('/contact', [ContactController::class, 'showContactPage'])->name('contact');
