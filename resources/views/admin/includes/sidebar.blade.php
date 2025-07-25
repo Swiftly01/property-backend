@@ -34,12 +34,12 @@
 @endphp
 
 <nav id="sideNav"
-    class="fixed bottom-0 left-0 z-50 duration-300 ease-in-out transform -translate-x-full border-t-2 border-white transition-transform md:translate-x-0 bg-darkest w-60 md:top-24 md:block top-14 flex flex-col h-full">
+    class="fixed bottom-0 left-0 z-50 flex flex-col h-full transition-transform duration-300 ease-in-out transform -translate-x-full border-t-2 border-white md:translate-x-0 bg-darkest w-60 md:top-24 md:block top-14">
 
 
     <div class="flex justify-between pt-4">
-        <p class="text-white mx-6">Menu</p>
-        <svg id="closeIcon" onclick="toggleSidebar()" class="hidden w-6 h-6 text-white mr-4 cursor-pointer"
+        <p class="mx-6 text-white">Menu</p>
+        <svg id="closeIcon" onclick="toggleSidebar()" class="hidden w-6 h-6 mr-4 text-white cursor-pointer"
             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -51,19 +51,23 @@
                     href="{{ route($item['route']) }}"> <img src="{{ asset('assets/icons/' . $item['icon']) }}"
                         alt="dashboard">
                     <span>{{ $item['label'] }}</span> <span
-                        class="bg-[#00A8FF] text-white px-1 ml-5 text-sm rounded-sm">{{ $item['route'] === 'buy-requests.index' ?  str_pad($buyRequestsCount, 2, '0', STR_PAD_LEFT) :'00' }}</span></a>
+                        class="bg-[#00A8FF] text-white px-1 ml-5 text-sm rounded-sm">{{ $item['route'] === 'buy-requests.index'
+                            ? ($buyRequestsCount > 0
+                                ? str_pad($buyRequestsCount, 2, '0', STR_PAD_LEFT)
+                                : 0)
+                            : '00' }}</span></a>
             </li>
         @endforeach
     </ul>
 
 
-    <div class="mx-5 border-t border-brown absolute bottom-16 md:bottom-24 w-48">
-        <p class="text-brown py-2">Profile</p>
-        <div class="flex gap-2 items-center">
-            <img class="h-9 rounded-full" src="{{ auth()->user()->imageUrl() }}" alt="">
+    <div class="absolute w-48 mx-5 border-t border-brown bottom-16 md:bottom-24">
+        <p class="py-2 text-brown">Profile</p>
+        <div class="flex items-center gap-2">
+            <img class="rounded-full h-9" src="{{ auth()->user()->imageUrl() }}" alt="">
             <div class="">
-                <h3 class="text-white font-medium">{{ Str::ucfirst(auth()->user()->name) }}</h3>
-                <p class="text-brown text-sm break-all font-thin">{{ Str::ucfirst(auth()->user()->email) }}</p>
+                <h3 class="font-medium text-white">{{ Str::ucfirst(auth()->user()->name) }}</h3>
+                <p class="text-sm font-thin break-all text-brown">{{ Str::ucfirst(auth()->user()->email) }}</p>
             </div>
         </div>
 
