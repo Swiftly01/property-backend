@@ -28,7 +28,7 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
-          ssh -i ~/.ssh/monarsh -p 21098 $SSH_USER@$SSH_HOST << 'EOF'
+          ssh -i ~/.ssh/monarsh -p 21098 $SSH_USER@$SSH_HOST "
             cd $DEPLOY_PATH || exit 1
             git pull origin master
             composer install --no-interaction --prefer-dist --optimize-autoloader
@@ -37,4 +37,4 @@ jobs:
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
-          EOF
+          "
