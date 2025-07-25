@@ -13,13 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
+        $users = [
+            'name' => 'Test user',
             'email' => 'test@example.com',
-        ]);
-        
+            'name' => 'admin',
+            'email' => 'kareemkazeem100@gmail.com'
+        ];
+
+
+        foreach ($users as $user) {
+            User::factory()->create($user);
+        }
+
         /*
         $this->call([
             SellRequestSeeder::class
