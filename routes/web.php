@@ -48,7 +48,7 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/buy-requests', BuyRequestController::class);
     Route::resource('/sell-requests', SellRequestController::class);
     Route::resource('/photographs', PhotographController::class);
-    Route::resource('/staging', StagingController::class);
+    Route::resource('/staging', StagingController::class)->names('admin.staging');
     Route::resource('/podcasts', PodcastController::class);
     Route::resource('/contacts', ContactController::class);
 
