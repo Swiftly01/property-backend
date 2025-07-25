@@ -1,58 +1,58 @@
-name: Deploy to Shared Hosting
+# name: Deploy to Shared Hosting
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-      - name: Setup SSH
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/monarsh
-          chmod 600 ~/.ssh/monarsh
-          ssh-keyscan -p 21098 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          echo "SSH setup completed"
+#       - name: Setup SSH
+#         env:
+#           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#         run: |
+#           mkdir -p ~/.ssh
+#           echo "$SSH_PRIVATE_KEY" > ~/.ssh/monarsh
+#           chmod 600 ~/.ssh/monarsh
+#           ssh-keyscan -p 21098 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+#           echo "SSH setup completed"
 
-      - name: Install dependencies locally (for testing)
-        run: |
-          composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          echo "Local dependencies installed"
+#       - name: Install dependencies locally (for testing)
+#         run: |
+#           composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+#           echo "Local dependencies installed"
 
-      - name: Deploy Application
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        run: |
-          ssh -i ~/.ssh/monarsh -p 21098 $SSH_USER@$SSH_HOST << 'EOF'
-            set -e
-            echo "Changing to deployment directory: $DEPLOY_PATH"
-            cd $DEPLOY_PATH || { echo "Failed to change directory"; exit 1; }
+#       - name: Deploy Application
+#         env:
+#           SSH_HOST: ${{ secrets.SSH_HOST }}
+#           SSH_USER: ${{ secrets.SSH_USER }}
+#           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+#         run: |
+#           ssh -i ~/.ssh/monarsh -p 21098 $SSH_USER@$SSH_HOST << 'EOF'
+#             set -e
+#             echo "Changing to deployment directory: $DEPLOY_PATH"
+#             cd $DEPLOY_PATH || { echo "Failed to change directory"; exit 1; }
             
-            echo "Pulling latest code..."
-            git pull origin master || { echo "Git pull failed"; exit 1; }
+#             echo "Pulling latest code..."
+#             git pull origin master || { echo "Git pull failed"; exit 1; }
             
-            echo "Installing dependencies..."
-            composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+#             echo "Installing dependencies..."
+#             composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
             
-            echo "Clearing caches..."
-            php artisan cache:clear
-            php artisan view:clear
-            php artisan route:clear
-            php artisan config:clear
+#             echo "Clearing caches..."
+#             php artisan cache:clear
+#             php artisan view:clear
+#             php artisan route:clear
+#             php artisan config:clear
             
-            echo "Optimizing application..."
-            php artisan optimize
+#             echo "Optimizing application..."
+#             php artisan optimize
             
-            echo "Deployment completed successfully!"
-          EOF
+#             echo "Deployment completed successfully!"
+#           EOF
