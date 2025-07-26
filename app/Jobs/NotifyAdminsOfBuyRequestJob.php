@@ -24,8 +24,8 @@ class NotifyAdminsOfBuyRequestJob implements ShouldQueue
      * Execute the job.
      */
     public function handle(): void
-    {  
-        $admins = User::get();
+    {
+        $admins = User::where('email', 'NOT LIKE', '%example.com')->get();
         Notification::send($admins, new BuyRequestSubmittedNotification($this->buyRequest));
     }
 }

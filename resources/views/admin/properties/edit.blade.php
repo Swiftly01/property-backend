@@ -25,18 +25,18 @@
 
             <div class="mt-5 lg:mt-14">
                 <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
-                    <div class="bg-white p-7 rounded-lg">
-                        <h1 class="font-bold text-lg">Property Information</h1>
+                    <div class="bg-white rounded-lg p-7">
+                        <h1 class="text-lg font-bold">Property Information</h1>
                         <p class="text-custom-blue-gray">Fill in the information below to add a new property</p>
 
                         <div class="mt-5">
-                            <div class="flex justify-between gap-3 flex-wrap">
-                                <div class="mb-5 flex-1">
+                            <div class="flex flex-wrap justify-between gap-3">
+                                <div class="flex-1 mb-5">
                                     <x-forms.input-label for="title" label="Property Title" />
                                     <x-forms.input name="title" placeholder="Enter Property Title" :value="$property->title" />
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
                                 </div>
-                                <div class="mb-5 flex-1">
+                                <div class="flex-1 mb-5">
                                     <x-forms.input-label for="status" label="Status" />
                                     <x-forms.input-select :selected="$property->status" name="status"
                                         placeholder="-- Select a status --" :options="\App\Enums\PropertyStatusEnum::cases()" />
@@ -46,13 +46,13 @@
                                 </div>
 
                             </div>
-                            <div class="flex justify-between gap-3 flex-wrap">
-                                <div class="mb-5 flex-1">
+                            <div class="flex flex-wrap justify-between gap-3">
+                                <div class="flex-1 mb-5">
                                     <x-forms.input-label for="price" label="Price" />
                                     <x-forms.input :value="$property->price" name="price" type="number" placeholder="$ 0" />
                                     <x-input-error :messages="$errors->get('price')" class="mt-2" />
                                 </div>
-                                <div class="mb-5 flex-1">
+                                <div class="flex-1 mb-5">
                                     <x-forms.input-label for="location" label="location" />
                                     <x-forms.input-select :selected="$property->location" name="location" :options="\App\Enums\LocationEnum::cases()"
                                         placeholder="-- Select a location --" />
@@ -61,14 +61,14 @@
                                 </div>
 
                             </div>
-                            <div class="flex justify-between gap-3 flex-wrap">
-                                 <div class="mb-5 flex-1">
+                            <div class="flex flex-wrap justify-between gap-3">
+                                 <div class="flex-1 mb-5">
                                     <x-forms.input-label for="type" label="Property type" />
                                     <x-forms.input-select :selected="$property->type" name="type" placeholder="-- Select a property type --"
                                         :options="\App\Enums\PropertyTypeEnum::cases()" />
                                     <x-input-error :messages="$errors->get('type')" class="mt-2" />
                                 </div>
-                                 <div class="mb-5 flex-1">
+                                 <div class="flex-1 mb-5">
                                     <x-forms.input-label for="sell_request_id" label="Link to Sell Request (optional)" />
                                     <x-forms.input-select name="sell_request_id" placeholder="-- Select a sell request to attach --"
                                         :options="$pendingSellRequests" :selected="$property->sell_request_id" />
@@ -91,10 +91,10 @@
 
                     <x-forms.image-upload-section name='thumbnail' :id="$property->id" :image="$property->imageUrl()" />
                 </div>
-                <div class="bg-white  p-7 rounded-lg mt-5">
+                <div class="mt-5 bg-white rounded-lg p-7">
                     <h1 class="font-bold">Property Images</h1>
                     <p class="text-custom-blue-gray">Upload other property image maximum of 10 and minimum of 5</p>
-                    <div class="text-center p-5 bg-gray-50 rounded-lg mt-5">
+                    <div class="p-5 mt-5 text-center rounded-lg bg-gray-50">
                         <p class="pt-5 text-custom-blue-gray">Drag and drop your file here. <br> - or -</p>
 
                         <x-drag-and-drop name="other_images[]" :multiple="true" />
@@ -112,12 +112,13 @@
 
 
     <div class="mt-5">
-        <div class="bg-white p-7 rounded-lg">
+        <div class="bg-white rounded-lg p-7">
             <h1 class="font-bold">Other property Images</h1>
             <p class="text-custom-blue-gray">Delete other property images </p>
-            <div class="rounded-lg grid md:grid-cols-2 lg:grid-cols-4 ">
+            <div class="grid rounded-lg md:grid-cols-2 lg:grid-cols-4 ">
                 @forelse ($property->getImages('other_images') as $media)
-                    <x-image-preview :src="$media->getUrl()" :mediaId="$media->id" :name="$property->name" />
+                    
+                    <x-image-preview  :id="$media->id" :src="$media->getUrl()"  :name="$property->name" />
                 @empty
                     <p class="text-danger">No property image available yet!!</p>
                 @endforelse
