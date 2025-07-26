@@ -14,7 +14,8 @@
   @isset($id)
   {{ $id }}
    <x-button variant="image" target="delete-property-{{ $id }}">
-       <img class="absolute right-0 z-20"  src="{{ asset('assets/icons/iconography.png') }}" alt="">
+      img
+       <img class="absolute right-0 z-20"  src="{{ asset('assets/icons/iconography.png') }}" alt="icon">
     </x-button>
    <x-alert-modal variant='delete' id="delete-property-{{ $id }}" title="property image" :action="route('media.delete', ['media' => $id])" method="DELETE"  />
   @endisset
