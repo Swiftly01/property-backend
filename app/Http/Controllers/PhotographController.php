@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePhotographsRequest;
 use App\Models\Photograph;
+use App\Services\PhotographService;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PhotographController extends Controller
 {
+
+    public function __construct(public PhotographService $photographService) {}
     /**
      * Display a listing of the resource.
+     * Get data for admin dashboard
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.photographs.index');
+        $photographs = $this->photographService->getPhotographs(request: $request);
+
+        return view('admin.photographs.index', compact('photographs'));
     }
 
 
@@ -32,27 +42,40 @@ class PhotographController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePhotographsRequest $request)
     {
-        //
+        try {
+            $this->photographService->handlePhotographUploads(request: $request);
+
+            ToastMagic::success("Photograph uploaded successfully");
+
+            return back();
+        } catch (Exception $e) {
+
+            Log::error("Error occured during Photograph store process: {$e->getMessage()}");
+
+            ToastMagic::error("An error occured while saving photographs");
+
+            return back();
+        }
     }
 
     /**
      * Display the specified resource.
      */
-     public function show()
+    public function show()
     // public function show(Photograph $photography)
     {
-       return view('admin.photographs.show');
+        return view('admin.photographs.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-     public function edit()
-   // public function edit(Photograph $photography)
+    public function edit()
+    // public function edit(Photograph $photography)
     {
-         return view('admin.photographs.edit');
+        return view('admin.photographs.edit');
     }
 
     /**

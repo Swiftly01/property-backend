@@ -40,7 +40,7 @@ class PropertyService
 
         $this->handleSellRequestUpdate(request: $request);
 
-        $this->processFileUploads(request: $request, property: $propertyData);
+        $this->appHelper->processFileUploads(request: $request, model: $propertyData);
 
         $this->processActivityEvent();
 
@@ -99,40 +99,15 @@ class PropertyService
             throw new Exception('Property data could not be updated');
         }
 
-
-
         if ($request->hasFile('thumbnail') || $request->hasFile('other_images')) {
             
-            $this->processFileUploads(request: $request, property: $propertyData);
+            $this->appHelper->processFileUploads(request: $request, model: $propertyData);
         }
     }
 
     public function mapRequestDataToDto(array $validatedData)
     {
         return PropertyDTO::fromRequest($validatedData);
-    }
-
-
-    public function processFileUploads(object $request,  Property $property): void
-    {
-        if ($request->hasFile('thumbnail')) {
-            $property->clearMediaCollection('thumbnail');
-            $property->addMediaFromRequest('thumbnail')
-                ->toMediaCollection('thumbnail');
-        }
-
-        if ($request->hasFile('other_images')) {
-            $files = $request->file('other_images');
-            $files = is_array($files) ? $files : [$files];
-
-
-            foreach ($files as $file) {
-                if ($file->isValid()) {
-                    $property->addMedia($file)
-                        ->toMediaCollection('other_images');
-                }
-            }
-        }
     }
 
 
