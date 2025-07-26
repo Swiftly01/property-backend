@@ -9,9 +9,10 @@
    $classes = $id ? 'relative'  : '';
 @endphp
 
-   {{ $id }}
+   
  <div class="w-full {{ $ratio }} overflow-hidden rounded-md {{$classes}}">
   @isset($id)
+  {{ $id }}
    <x-button variant="image" target="delete-property-{{ $id }}">
        <img class="absolute right-0 z-20"  src="{{ asset('assets/icons/iconography.png') }}" alt="">
     </x-button>
