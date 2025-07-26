@@ -115,7 +115,7 @@
         <div class="bg-white rounded-lg p-7">
             <h1 class="font-bold">Other property Images</h1>
             <p class="text-custom-blue-gray">Delete other property images </p>
-            <div class="grid rounded-lg md:grid-cols-2 lg:grid-cols-4 ">
+            <div class="grid gap-5 rounded-lg md:grid-cols-2 lg:grid-cols-4">
                 @forelse ($property->getImages('other_images') as $media)
                     
                     <x-image-preview  :id="$media->id" :src="$media->getUrl()"  :name="$property->name" />
