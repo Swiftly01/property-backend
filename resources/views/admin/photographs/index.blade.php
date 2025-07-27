@@ -131,7 +131,7 @@
 
                                 </td>
                             </tr>
-                            <x-alert-modal variant='delete' id="delete-photograph-{{ $photograph->id }}" title="property"
+                            <x-alert-modal variant='delete' id="delete-photograph-{{ $photograph->id }}" title="Photograph"
                                 :action="route('photographs.destroy', ['photograph' => $photograph->id])" method="DELETE" />
                         @endforeach
 
@@ -139,7 +139,7 @@
                     </tbody>
                 </table>
 
-                {{-- {{ $properties->links() }} --}}
+                {{ $photographs->links() }}
             </div>
 
         </div>

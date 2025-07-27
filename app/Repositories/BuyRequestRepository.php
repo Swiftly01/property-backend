@@ -39,7 +39,7 @@ class BuyRequestRepository implements BuyRequestInterface
 
     public function getAllRequests(Request $request): LengthAwarePaginator
     {
-        return $this->apply(BuyRequest::with('property'), $request)->paginate(3)->withQueryString();
+        return $this->apply(BuyRequest::with('property'), $request)->paginate(6)->withQueryString();
     }
 
     public function apply(Builder $query, Request $request): Builder

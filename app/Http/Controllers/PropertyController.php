@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MediaProcessingException;
+use App\Exceptions\PropertyListingException;
 use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Models\Property;
@@ -67,13 +69,14 @@ class PropertyController extends Controller
             ToastMagic::success('Property uploaded successfully');
 
             return back();
-        } catch (Exception $e) {
+        } catch (MediaProcessingException $e) {
 
-            Log::error("Error during property store process: {$e->getMessage()}");
+            Log::error("Media upload error: {$e->getMessage()}");
+            ToastMagic::error('Image upload failed!');
+        } catch (PropertyListingException $e) {
 
-            ToastMagic::error('An error occured while saving property!');
-
-            return back();
+            Log::error("Property create error: {$e->getMessage()}");
+            ToastMagic::error('Property listing failed!');
         }
     }
 
@@ -109,41 +112,16 @@ class PropertyController extends Controller
             ToastMagic::success('Property updated successfully');
 
             return back();
-        } catch (Exception $e) {
+        } catch (MediaProcessingException $e) {
 
-            Log::error("Error during property update {$e->getMessage()}");
+            Log::error("Media upload error: {$e->getMessage()}");
+            ToastMagic::error('Image upload failed!');
+        } catch (PropertyListingException $e) {
 
-            ToastMagic::error('Unable to update property');
-
-            return back();
+            Log::error("Property update error: {$e->getMessage()}");
+            ToastMagic::error('Property update failed!');
         }
     }
-
-    public function destroyThumbnail(Property $property)
-    {
-        try {
-            $isDeleted = $this->propertyService->handleDeleteThumbnail(property: $property);
-
-            if (!$isDeleted) {
-
-                ToastMagic::error('Unable to delete thumbnail!!');
-
-                return back();
-            }
-
-            ToastMagic::success('Property thumbnail deleted successfully');
-
-            return back();
-        } catch (Exception $e) {
-
-            Log::error("Error during thumbnail delete process {$e->getMessage()}");
-
-            ToastMagic::error('Unable to delete thumbnail!!');
-
-            return back();
-        }
-    }
-
 
 
 

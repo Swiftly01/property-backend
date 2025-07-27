@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\RepositoryHelper;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MediaController extends Controller
 {
+    public function __construct(private RepositoryHelper $repositoryHelper) {}
     /**
      * Display a listing of the resource.
      */
@@ -75,6 +78,31 @@ class MediaController extends Controller
             Log::error(message: "Failed to delete media: {$e->getMessage()}");
 
             ToastMagic::error('Unable to delete image!!');
+
+            return back();
+        }
+    }
+
+    public function destroyThumbnail(Model $model)
+    {
+        try {
+
+            $isDeleted = $this->repositoryHelper->handleDeleteThumbnail(model: $model);
+
+            if (!$isDeleted) {
+
+                ToastMagic::error('Unable to delete thumbnail!!');
+
+                return back();
+            }
+
+            ToastMagic::success("thumbnail deleted successfully");
+            return back();
+        } catch (Exception $e) {
+
+            Log::error("Error during thumbnail delete process {$e->getMessage()}");
+
+            ToastMagic::error('Unable to delete thumbnail!!');
 
             return back();
         }

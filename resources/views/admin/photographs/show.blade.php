@@ -5,83 +5,61 @@ View :: Property
 @section('content')
 <div class="p-4 sm:p-6 lg:p-10">
 
-    <x-page-header backRoute='properties.index' title="View Photograph Details">
-        <x-button variant="danger" target="delete-property-modal">
-            Delete
-        </x-button>
-        <x-button href="{{ route('photographs.index') }}">
-            Edit Details
-        </x-button>
+    
+    
+    <x-page-header backRoute='photographs.index' title="View Photograph Details">
+            <x-button variant="danger" target="delete-photograph-{{ $photograph->id }}">
+                Delete
+            </x-button>
+            <x-button href="{{ route('photographs.edit', ['photograph' => $photograph->id]) }}">
+                Edit Details
+            </x-button>
 
     </x-page-header>
 
-    <x-alert-modal variant='delete' id="delete-property-modal" title="property" />
+     <x-alert-modal variant='delete' id="delete-photograph-{{ $photograph->id }}" title="photograph" :action="route('photographs.destroy', ['photograph' => $photograph->id])" method="DELETE" />
 
 
     <div class="mt-5 lg:mt-10">
         <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5 items-start">
-            <div class="bg-white px-10 py-14 rounded-lg">
-                <div class="flex items-center md:items-start justify-between border-b pb-4 flex-wrap">
-                    <div>
-                        <h1 class="font-bold text-lg">Property Information</h1>
-                        <p class="text-custom-blue-gray">ID: #PRPID1001</p>
+            <div class="px-10 py-10 bg-white rounded-lg">
+                    <div class="pb-4 border-b f md:items-start">
+                        <h1 class="text-lg font-bold">Photograph Information</h1>
+                        <p class="text-custom-blue-gray">ID: #PHYID{{ $photograph->id }}</p>
 
                     </div>
-                    <span
-                        class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300 ">Available</span>
-                </div>
-                <div class="flex items-center justify-between border-b py-4 flex-wrap">
+                    
+                
+                <div class="flex flex-wrap items-center justify-between py-4 border-b">
                     <div>
-                        <h1 class="font-bold text-lg">Modern Downtown Condo</h1>
-                        <p class="text-custom-blue-gray">Downtown, NYC</p>
+                        <h1 class="text-lg font-bold">{{ Str::ucfirst($photograph->title) }}</h1>
+                        <p class="text-custom-blue-gray">{{ $photograph->location }}, Nigeria</p>
 
                     </div>
-                    <span class="font-bold">$450,000</span>
+                    <div>
+                         <h1 class="text-lg font-bold">Video Link</h1>
+                         <a href="{{ $photograph->video_url }}">{{ $photograph->video_url ?? 'N/A' }}</a>
+                        
+                    </div>
+                   
                 </div>
                 <div class="border-b py-7">
 
-                    <h1 class="font-bold text-lg">Description</h1>
-                    <p class="text-custom-blue-gray">Discover your own piece of paradise with the Seaside Serenity
-                        Villa. T
-                        With an open floor plan, breathtaking ocean views from every room, and direct access to a
-                        pristine sandy beach, this property is the epitome of coastal living.</p>
+                    <h1 class="text-lg font-bold">Description</h1>
+                    <p class="text-custom-blue-gray">{{ $photograph->description }}</p>
 
 
                 </div>
-                <h1 class="font-bold pt-5">Images</h1>
+                <h1 class="pt-5 font-bold">Images</h1>
                 <div>
-                    <div class="rounded-lg mt-5 grid grid-cols-3 gap-2 lg:gap-5">
-                        <div class="w-full aspect-[1060/706] overflow-hidden rounded-lg">
-                            <img src="{{ asset('assets/images/7342b3aa7bd3146d097b1420c47d7e81803faa4c (1).jpg') }}"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-full aspect-[1060/706] overflow-hidden rounded-lg">
-                            <img src="{{ asset('assets/images/7342b3aa7bd3146d097b1420c47d7e81803faa4c (1).jpg') }}"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-full aspect-[1060/706] overflow-hidden rounded-lg">
-                            <img src="{{ asset('assets/images/7342b3aa7bd3146d097b1420c47d7e81803faa4c.jpg') }}"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-full aspect-[1060/706] overflow-hidden rounded-lg">
-                            <img src="{{ asset('assets/images/7342b3aa7bd3146d097b1420c47d7e81803faa4c.jpg') }}"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-full aspect-[1060/706] overflow-hidden rounded-lg">
-                            <img src="{{ asset('assets/images/7342b3aa7bd3146d097b1420c47d7e81803faa4c.jpg') }}"
-                                class="w-full h-full object-cover" />
-                        </div>
-                        <div class="w-full aspect-[1060/706] overflow-hidden rounded-lg">
-                            <img src="{{ asset('assets/images/7342b3aa7bd3146d097b1420c47d7e81803faa4c.jpg') }}"
-                                class="w-full h-full object-cover" />
-                        </div>
+                    
+                    <div class="grid grid-cols-3 gap-2 mt-5 rounded-lg lg:gap-5">
+                            @forelse ($photograph->getImages('other_images', 'other_images') as $url)
+                                <x-image-preview :src="$url" :name="$photograph->title" />
 
-
-
-
-
-
-
+                            @empty
+                                <p class="text-danger">No photograph image available yet!!</p>
+                            @endforelse
                     </div>
 
                 </div>
@@ -89,9 +67,9 @@ View :: Property
             </div>
 
 
-            <div class="bg-white p-7 rounded-lg">
-                <h1 class="font-bold pb-5">Thumbnail</h1>
-                <x-image-preview />
+            <div class="bg-white rounded-lg p-7">
+                <h1 class="pb-5 font-bold">Thumbnail</h1>
+                  <x-image-preview :src="$photograph->imageUrl('thumbnail', 'thumbnail')" :name="$photograph->title" />
             </div>
         </div>
 

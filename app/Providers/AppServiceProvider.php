@@ -12,9 +12,13 @@ use App\Repositories\PhotographRepository;
 use App\Repositories\PropertyRepository;
 use App\Repositories\SellRequestRepository;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {   
@@ -34,6 +38,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {   
+        Route::bind('model', function($value, $route){
+            $class = 'App\\Models\\' . Str::studly($value);
+            return $class::findOrFail($route->parameter('id'));
+
+        });
+
         $buyRequestsCount = BuyRequest::count();
         View::share('buyRequestsCount', $buyRequestsCount);
 

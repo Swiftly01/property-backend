@@ -51,21 +51,9 @@ class PropertyRepository implements PropertyInterface
 
     public function getProperties(Request $request): LengthAwarePaginator
     {
-        return $this->propertyFilter->apply(Property::query(), $request)->paginate(3)->withQueryString();
+        return $this->propertyFilter->apply(Property::query(), $request)->paginate(6)->withQueryString();
     }
 
-
-    public function destroyThumbnail(Property $property): bool
-    {
-        $thumbnail = $property->getFirstMedia('thumbnail');
-
-        if ($thumbnail === null) {
-            return false;
-        }
-
-        $thumbnail->delete();
-        return true;
-    }
 
 
     public function destroy(Property $property): bool

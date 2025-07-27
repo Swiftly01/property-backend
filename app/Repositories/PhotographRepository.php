@@ -19,16 +19,23 @@ class PhotographRepository implements PhotographInterface
         //
     }
 
+    public function getPhotographs(Request $request): LengthAwarePaginator
+    {
+        return $this->apply(Photograph::query(), $request)->paginate(6)->withQueryString();
+    }
 
-    public function store(PhotographDTO $dto): Photograph
+     public function store(PhotographDTO $dto): Photograph
     {
         return Photograph::create($dto->toArray());
     }
 
-    public function getPhotographs(Request $request): LengthAwarePaginator
+    public function update(PhotographDTO $dto, Photograph $photograph): Photograph
     {
-        return $this->apply(Photograph::query(), $request)->paginate(10)->withQueryString();
+         $photograph->fill($dto->toArray())->save();
+
+         return $photograph->refresh();
     }
+
 
     public function apply(Builder $query, Request $request): Builder
     {
@@ -45,4 +52,6 @@ class PhotographRepository implements PhotographInterface
                 ->orWhere('description', 'like', "%{$terms}%");
         });
     }
+
+    
 }

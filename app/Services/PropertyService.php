@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\DataTransferObjects\PropertyDTO;
 use App\Events\PropertyListed;
+use App\Exceptions\MediaProcessingException;
+use App\Exceptions\PropertyListingException;
 use App\Helpers\AppHelper;
 use App\Helpers\RepositoryHelper;
 use App\Http\Requests\StorePropertyRequest;
@@ -14,6 +16,8 @@ use App\Models\SellRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class PropertyService
 {
@@ -23,35 +27,45 @@ class PropertyService
     public function __construct(
         public PropertyInterface $propertyInterface,
         public AppHelper $appHelper,
-        public RepositoryHelper $repositoryHelper
+        public RepositoryHelper $repositoryHelper,
+        public MediaService $mediaService
     ) {
         //
     }
 
     public function handleStoreProperty(StorePropertyRequest $request)
     {
-        $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
 
-        $propertyData = $this->propertyInterface->store(dto: $dto);
+        try {
 
-        if (!$propertyData) {
-            throw new Exception('property data could not be saved');
+            $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
+
+            $propertyData = DB::transaction(fn() => $this->createPropertyWithMedia(dto: $dto, request: $request));
+
+            $this->processEventDispatch(property: $propertyData);
+        } catch (MediaProcessingException $e) {
+            throw $e;
+        } catch (Throwable $e) {
+            throw new PropertyListingException($e->getMessage());
         }
+    }
+
+    public function createPropertyWithMedia(PropertyDTO $dto, StorePropertyRequest $request): Property
+    {
+        $propertyData = $this->propertyInterface->store(dto: $dto);
 
         $this->handleSellRequestUpdate(request: $request);
 
-        $this->appHelper->processFileUploads(request: $request, model: $propertyData);
+        $this->mediaService->attachMedia(request: $request, model: $propertyData);
 
         $this->processActivityEvent();
 
-        $this->processEventDispatch(property:$propertyData);
-
-        
+        return $propertyData;
     }
 
     public function handleSellRequestUpdate(object $request): ?bool
     {
-        if ($request->filled('sell_request_id')) {  
+        if ($request->filled('sell_request_id')) {
             return  $this->repositoryHelper->updateSellRequestStatus(request: $request);
         }
 
@@ -65,10 +79,9 @@ class PropertyService
             actionMessage: __('activity.property_listing'),
 
         );
-        
     }
 
-    public function processEventDispatch(Property $property) : void
+    public function processEventDispatch(Property $property): void
     {
         $propertyData = $this->getSellRequestData(property: $property);
 
@@ -76,7 +89,6 @@ class PropertyService
 
             $this->dispatchEvent(propertyData: $propertyData);
         }
-
     }
 
     public function dispatchEvent(Property $propertyData): void
@@ -86,23 +98,34 @@ class PropertyService
 
     public function getSellRequestData(Property $property)
     {
-        return $this->propertyInterface->getSellRequestData(property:$property);
+        return $this->propertyInterface->getSellRequestData(property: $property);
     }
 
-    public function handleUpdateProperty(UpdatePropertyRequest $request, Property $property)
+    public function handleUpdateProperty(UpdatePropertyRequest $request, Property $property): Property
     {
-        $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
+        try {
+            $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
 
+            $propertyData = DB::transaction(fn() => $this->updatePropertyWithMedia(dto: $dto, request: $request, property: $property));
+
+            return $propertyData;
+        } catch (MediaProcessingException $e) {
+            throw $e;
+        } catch (Throwable $e) {
+            throw new PropertyListingException(message: "Property update failed");
+        }
+    }
+
+    public function updatePropertyWithMedia(PropertyDTO $dto, UpdatePropertyRequest $request, Property $property): Property
+    {
         $propertyData = $this->propertyInterface->update(dto: $dto, property: $property);
 
-        if (!$propertyData) {
-            throw new Exception('Property data could not be updated');
+        if ($request->hasFile('thumbnail') || $request->hasFile('other_images')) {
+
+            $this->mediaService->attachMedia(request: $request, model: $propertyData);
         }
 
-        if ($request->hasFile('thumbnail') || $request->hasFile('other_images')) {
-            
-            $this->appHelper->processFileUploads(request: $request, model: $propertyData);
-        }
+        return $propertyData;
     }
 
     public function mapRequestDataToDto(array $validatedData)
@@ -115,12 +138,6 @@ class PropertyService
     public function getProperties(Request $request): LengthAwarePaginator
     {
         return $this->propertyInterface->getProperties(request: $request);
-    }
-
-
-    public function handleDeleteThumbnail(Property $property)
-    {
-        return  $this->propertyInterface->destroyThumbnail(property: $property);
     }
 
 

@@ -9,7 +9,7 @@
             <x-button variant="danger" target="delete-property-{{ $property->id }}">
                 Delete
             </x-button>
-            <x-button href="{{ route('properties.index') }}">
+            <x-button href="{{ route('properties.edit', ['property' => $property->id]) }}">
                 Edit Details
             </x-button>
 
@@ -20,18 +20,18 @@
 
         <div class="mt-5 lg:mt-10">
             <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5 items-start">
-                <div class="bg-white px-10 py-14 rounded-lg">
-                    <div class="flex items-center md:items-start justify-between border-b pb-4 flex-wrap">
+                <div class="px-10 bg-white rounded-lg py-14">
+                    <div class="flex flex-wrap items-center justify-between pb-4 border-b md:items-start">
                         <div>
-                            <h1 class="font-bold text-lg">Property Information</h1>
+                            <h1 class="text-lg font-bold">Property Information</h1>
                             <p class="text-custom-blue-gray">ID: #PRPID{{ $property->id }}</p>
 
                         </div>
                         <x-badge :variant="$property->status" />
                     </div>
-                    <div class="flex items-center justify-between border-b py-4 flex-wrap">
+                    <div class="flex flex-wrap items-center justify-between py-4 border-b">
                         <div>
-                            <h1 class="font-bold text-lg">Location</h1>
+                            <h1 class="text-lg font-bold">Location</h1>
                             <p class="text-custom-blue-gray">{{ $property->location }}</p>
 
                         </div>
@@ -39,14 +39,14 @@
                     </div>
                     <div class="border-b py-7">
 
-                        <h1 class="font-bold text-lg">Description</h1>
+                        <h1 class="text-lg font-bold">Description</h1>
                         <p class="text-custom-blue-gray">{{ $property->description }}</p>
 
 
                     </div>
-                    <h1 class="font-bold pt-5">Images</h1>
+                    <h1 class="pt-5 font-bold">Images</h1>
                     <div>
-                        <div class="rounded-lg mt-5 grid grid-cols-3 gap-2 lg:gap-5">
+                        <div class="grid grid-cols-3 gap-2 mt-5 rounded-lg lg:gap-5">
                             @forelse ($property->getImages('other_images') as $media)
                                 <x-image-preview :src="$media->getUrl()" :name="$property->name" />
 
@@ -60,8 +60,8 @@
                 </div>
 
 
-                <div class="bg-white p-7 rounded-lg">
-                    <h1 class="font-bold pb-5">Thumbnail</h1>
+                <div class="bg-white rounded-lg p-7">
+                    <h1 class="pb-5 font-bold">Thumbnail</h1>
                     <x-image-preview :src="$property->imageUrl()" :name="$property->name" />
                 </div>
             </div>

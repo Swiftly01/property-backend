@@ -3,12 +3,17 @@
 namespace App\Services;
 
 use App\DataTransferObjects\PhotographDTO;
+use App\Exceptions\MediaProcessingException;
+use App\Exceptions\PhotographUpdateException;
 use App\Helpers\AppHelper;
 use App\Http\Requests\StorePhotographsRequest;
+use App\Http\Requests\UpdatePhotographRequest;
 use App\Interfaces\PhotographInterface;
+use App\Models\Photograph;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class PhotographService
 {
@@ -17,29 +22,61 @@ class PhotographService
      */
     public function __construct(
         public PhotographInterface $photographInterface,
-        public AppHelper $appHelper
+        public AppHelper $appHelper,
+        private MediaService $mediaService
     ) {
         //
     }
 
-    public function getPhotographs(Request $request) : LengthAwarePaginator
+    public function getPhotographs(Request $request): LengthAwarePaginator
     {
         return $this->photographInterface->getPhotographs(request: $request);
     }
 
-    public function handlePhotographUploads(StorePhotographsRequest $request) : void
+    public function handleCreatePhotograph(StorePhotographsRequest $request)
     {
-        $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
+        try {
 
-        $photographData = $this->photographInterface->store(dto: $dto);
+            $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
 
-        if (!$photographData) {
-            throw new Exception(message: "Photograph data could not be saved");
+            return DB::transaction(function () use ($dto, $request) {
+
+                $photographData = $this->photographInterface->store(dto: $dto);
+
+                $this->mediaService->attachMedia(request: $request, model: $photographData);
+
+                $this->processActivityEvent();
+
+                return $photographData;
+            });
+        } catch (MediaProcessingException $e) {
+            throw $e;
+        } catch (PhotographUpdateException $e) {
+            throw new PhotographUpdateException($e->getMessage());
         }
+    }
 
-        $this->appHelper->processFileUploads(request: $request, model: $photographData);
+    public function handleUpdatePhotograph(UpdatePhotographRequest $request, Photograph $photograph)
+    {
+        try {
 
-        $this->processActivityEvent();
+            $dto = $this->mapRequestDataToDto(validatedData: $request->validated());
+
+            return DB::transaction(function () use ($dto, $photograph, $request) {
+
+                $photographData = $this->photographInterface->update(dto: $dto, photograph: $photograph);
+
+                if ($request->hasFile('thumbnail') || $request->hasFile('other_images')) {
+                    $this->mediaService->attachMedia(request: $request, model: $photographData);
+                }
+
+                return $photographData;
+            });
+        } catch (MediaProcessingException $e) {
+            throw $e;
+        } catch (Exception $e) {
+            throw new PhotographUpdateException($e->getMessage());
+        }
     }
 
     public function mapRequestDataToDto(array $validatedData): PhotographDTO
@@ -47,12 +84,17 @@ class PhotographService
         return PhotographDTO::fromRequest(validatedData: $validatedData);
     }
 
-    public function processActivityEvent() : void
+    public function processActivityEvent(): void
     {
         $this->appHelper->dispatchActivityEvent(
             type: 'Photograph listing',
             actionMessage: __('activity.photograph_listed'),
 
         );
+    }
+
+    public function handleDeletePhotograph(Photograph $photograph)
+    {
+         return $this->mediaService->destroy(model: $photograph);
     }
 }

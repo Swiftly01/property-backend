@@ -8,6 +8,7 @@ use App\Repositories\BuyRequestRepository;
 use App\Repositories\PropertyRepository;
 use App\Repositories\SellRequestRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class RepositoryHelper
 {
@@ -61,6 +62,18 @@ class RepositoryHelper
     public function getActivityLogs(): Collection
     {
         return $this->activityLogRepository->getActivityLogs();
+    }
+
+    public function handleDeleteThumbnail(Model $model)
+    {
+         $thumbnail = $model->getFirstMedia('thumbnail');
+
+        if ($thumbnail === null) {
+            return false;
+        }
+
+        $thumbnail->delete();
+        return true;
     }
 
 

@@ -2,7 +2,7 @@
     'name',
     //'id' => null,
     'accept' => '.png,.jpg,.jpeg',
-    'text' => 'Max file size is 5MB PNG, JPG or JPEG file',
+    'text' => 'Max file size is 1MB PNG, JPG or JPEG file',
     'required' => false
 ])
 

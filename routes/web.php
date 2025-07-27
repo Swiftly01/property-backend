@@ -54,17 +54,18 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/contacts', ContactController::class);
 
     Route::patch('buy-requests/{buy_request}/{action}', [BuyRequestController::class, 'handleStatusUpdate'])
-         ->name('buy-requests.update-status');
+        ->name('buy-requests.update-status');
     Route::patch('sell-requests/{sell_request}/{action}', [BuyRequestController::class, 'handleStatusUpdate'])
-         ->name('sell-requests.update-status');
-    
+        ->name('sell-requests.update-status');
+
 
 
     Route::delete('properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy');
-    Route::delete('/properties/{property}/thumbnail', [PropertyController::class, 'destroyThumbnail'])
-        ->name('property.thumbnail.delete');
-    Route::delete('/media/{media}', [MediaController::class, 'destroyOtherImage'])
-        ->name('media.delete');
+    
+   
+
+    Route::delete('thumbnail/{model}/{id}', [MediaController::class, 'destroyThumbnail'])->name('thumbnail.delete');
+    Route::delete('/media/{media}', [MediaController::class, 'destroyOtherImage'])->name('media.delete');
 });
 
 

@@ -89,11 +89,11 @@
 
                     </div>
 
-                    <x-forms.image-upload-section name='thumbnail' :id="$property->id" :image="$property->imageUrl()" />
+                    <x-forms.image-upload-section name='thumbnail' :id="$property->id" :image="$property->imageUrl()" target="delete-property" />
                 </div>
                 <div class="mt-5 bg-white rounded-lg p-7">
                     <h1 class="font-bold">Property Images</h1>
-                    <p class="text-custom-blue-gray">Upload other property image maximum of 10 and minimum of 5</p>
+                    <p class="text-custom-blue-gray">Upload other property image maximum of 4 and minimum of 2</p>
                     <div class="p-5 mt-5 text-center rounded-lg bg-gray-50">
                         <p class="pt-5 text-custom-blue-gray">Drag and drop your file here. <br> - or -</p>
 
@@ -118,7 +118,7 @@
             <div class="grid gap-4 rounded-lg md:grid-cols-2 lg:grid-cols-4">
                 @forelse ($property->getImages('other_images') as $media)
                     
-                    <x-image-preview  :mediaId="$media->id" :src="$media->getUrl()"  :name="$property->name" />
+                    <x-image-preview  :mediaId="$media->id" :src="$media->getUrl()"  :name="$property->name" title="Property image" />
                 @empty
                     <p class="text-danger">No property image available yet!!</p>
                 @endforelse
@@ -132,7 +132,7 @@
 
 
 
-    <x-alert-modal :action="route('property.thumbnail.delete', ['property' => $property->id])" variant="delete" id="delete-property-{{ $property->id }}" title="property thumbnail"
+    <x-alert-modal :action="route('thumbnail.delete', [ 'model' => 'Property', 'id' => $property->id])" variant="delete" id="delete-property-{{ $property->id }}" title="property thumbnail"
         method="DELETE" />
 
 

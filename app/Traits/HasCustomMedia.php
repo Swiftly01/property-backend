@@ -63,6 +63,8 @@ trait HasCustomMedia
             });
         }
 
+        
+
         return $mediaItems;
     }
 }
