@@ -9,7 +9,7 @@
         </p>
       </div>
       <div>
-        <a id="submit" href="contact.html" class="btn btn-primary px-4 py-2">Contact Us</a>
+        <a id="submit" href="{{ route('contact') }}" class="btn btn-primary px-4 py-2">Contact Us</a>
       </div>
     </div>
 

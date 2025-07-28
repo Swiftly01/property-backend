@@ -10,8 +10,10 @@ use App\Models\Photograph;
 use App\Services\PhotographService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Exception;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+
 
 class PhotographController extends Controller
 {
@@ -23,16 +25,21 @@ class PhotographController extends Controller
      */
     public function index(Request $request)
     {
-        $photographs = $this->photographService->getPhotographs(request: $request);
-
+        $photographs = $this->getPhotographsData(request: $request);
         return view('admin.photographs.index', compact('photographs'));
     }
 
-
-    public function showPhotographs()
+    public function showPhotographs(Request $request)
     {
-        return view('pages.photographs');
+        $photographs = $this->getPhotographsData(request: $request);
+        return view('pages.photographs.index', compact('photographs'));
     }
+
+    public function getPhotographsData(Request $request)
+    {
+        return $this->photographService->getPhotographs(request: $request);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -69,16 +76,21 @@ class PhotographController extends Controller
      * Display the specified resource.
      */
 
-    public function show(Photograph $photograph)
+    public function show(Photograph $photograph) : View
     {
         return view('admin.photographs.show', compact('photograph'));
+    }
+
+    public function showDetails(Photograph $photograph) : View
+    {
+        return view('pages.photographs.show', compact('photograph'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
 
-    public function edit(Photograph $photograph)
+    public function edit(Photograph $photograph): View
     {
         return view('admin.photographs.edit', compact('photograph'));
     }
@@ -119,7 +131,7 @@ class PhotographController extends Controller
 
             return back();
         } catch (Exception $e) {
-            
+
             Log::error("photograph delete error: {$e->getMessage()}");
             ToastMagic::error('Unable to delete photograph');
         }

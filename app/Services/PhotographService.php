@@ -28,7 +28,7 @@ class PhotographService
         //
     }
 
-    public function getPhotographs(Request $request): LengthAwarePaginator
+    public function getPhotographs(?Request $request = null): LengthAwarePaginator
     {
         return $this->photographInterface->getPhotographs(request: $request);
     }

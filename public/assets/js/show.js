@@ -22,17 +22,27 @@ document.addEventListener("DOMContentLoaded", function () {
     prevBtn?.addEventListener("click", function () {
         if (imageUrls.length === 0) return;
 
-        currentIndex =
-            (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+        currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
         updateBackground();
     });
 
-    const initialUrl = propertyPage.style.backgroundImage
-    .replace(/^url\(["']?/, '')
-    .replace(/["']?\)$/, '')
-    .replace(location.origin, ''); // normalize to relative URL
+    // 🔍 Detect which image is currently shown from background style
+    const bg = propertyPage.style.backgroundImage;
+    const cleanUrl = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
 
-const foundIndex = imageUrls.findIndex((url) =>
-    initialUrl.includes(url)
-);
+    // Normalize both for better matching
+    const foundIndex = imageUrls.findIndex((url) => {
+        const absoluteUrl = new URL(url, window.location.origin).href;
+        return absoluteUrl === cleanUrl;
+    });
+
+    // Use foundIndex if valid
+    if (foundIndex >= 0) {
+        currentIndex = foundIndex;
+    } else {
+        // fallback: start at 0
+        currentIndex = 0;
+    }
+
+    updateBackground();
 });

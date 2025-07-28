@@ -31,6 +31,7 @@ Route::prefix('/property')->group(function () {
 Route::get('/staging', [StagingController::class, 'showStaging'])->name('staging');
 Route::get('/staging/{stage}', [StagingController::class, 'showStagingDetails'])->name('staging-details.show');
 Route::get('/photographs', [PhotographController::class, 'showPhotographs'])->name('photographs');
+Route::get('/photographs/{photograph}/show', [PhotographController::class, 'showDetails'])->name('photograph.details');
 Route::get('/podcasts', [PodcastController::class, 'showPodcasts'])->name('podcasts');
 Route::get('/contact', [ContactController::class, 'showContactPage'])->name('contact');
 Route::get('/custom-build', [CustomBuildController::class, 'create'])->name('custom-build');
@@ -58,12 +59,7 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::patch('sell-requests/{sell_request}/{action}', [BuyRequestController::class, 'handleStatusUpdate'])
         ->name('sell-requests.update-status');
 
-
-
     Route::delete('properties/{property}', [PropertyController::class, 'destroy'])->name('properties.destroy');
-    
-   
-
     Route::delete('thumbnail/{model}/{id}', [MediaController::class, 'destroyThumbnail'])->name('thumbnail.delete');
     Route::delete('/media/{media}', [MediaController::class, 'destroyOtherImage'])->name('media.delete');
 });
