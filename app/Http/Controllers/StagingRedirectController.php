@@ -17,6 +17,22 @@ class StagingRedirectController extends Controller
     {
         return app(PropertyMediaController::class)->index($this->mergeRequest(request: $request));
     }
+
+    public function showStagings(Request $request)
+    {
+        $this->mergeRequest(request: $request);
+        return app(PropertyMediaController::class)->mediaList(request: $request);
+    }
+
+     public function showStagingDetails(PropertyMedia $staging)
+    {
+         $type = PropertyMediaTypeEnum::STAGING->value;
+         $propertyMedia = $staging;
+
+         return app(PropertyMediaController::class)->showPropertyMediaDetails(propertyMedia: $propertyMedia, type: $type);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

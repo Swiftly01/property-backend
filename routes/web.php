@@ -30,8 +30,8 @@ Route::prefix('/property')->group(function () {
 });
 
 
-Route::get('/staging', [StagingController::class, 'showStaging'])->name('staging');
-Route::get('/staging/{stage}', [StagingController::class, 'showStagingDetails'])->name('staging-details.show');
+Route::get('/staging', [StagingRedirectController::class, 'showStagings'])->name('staging');
+Route::get('/staging/{staging}/show', [StagingRedirectController::class, 'showStagingDetails'])->name('staging.details');
 Route::get('/photographs', [PhotographRedirectContoller::class, 'showPhotographs'])->name('photographs');
 Route::get('/photographs/{photograph}/show', [PhotographRedirectContoller::class, 'showPhotographDetails'])->name('photograph.details');
 Route::get('/podcasts', [PodcastController::class, 'showPodcasts'])->name('podcasts');

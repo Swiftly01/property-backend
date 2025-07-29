@@ -8,11 +8,11 @@
         <form action="{{ route('stagings.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <x-page-header backRoute='stagings.index' title="Add New Stagings">
-                <x-button variant="outline" href="{{ route('photographs.index') }}">
+                <x-button variant="outline" href="{{ route('stagings.index') }}">
                     Cancel
                 </x-button>
                 <x-button type="submit">
-                    Add Photographs
+                    Add stagings
                 </x-button>
 
             </x-page-header>
@@ -21,8 +21,8 @@
             <div class="mt-5 lg:mt-14">
                 <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
                     <div class="bg-white rounded-lg p-7">
-                        <h1 class="text-lg font-bold">Photography Information</h1>
-                        <p class="text-custom-blue-gray">Fill in the information below to add a new photograph</p>
+                        <h1 class="text-lg font-bold">staging Information</h1>
+                        <p class="text-custom-blue-gray">Fill in the information below to add a new staging</p>
 
                         <div class="mt-5">
                             <div class="flex flex-wrap justify-between gap-3">
