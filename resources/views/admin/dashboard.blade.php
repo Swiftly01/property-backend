@@ -227,7 +227,7 @@
                             <img class="block mx-auto" src="{{ asset('assets/icons/plus.png') }}" alt="">
                             <p>Add property</p>
                         </a>
-                        <a href="{{ route('staging.create') }}"
+                        <a href="{{ route('stagings.create') }}"
                             class="bg-[#EEDCFF] rounded-lg text-center  py-8  hover:shadow-md hover:scale-[1.02] transition duration-200">
                             <img class="block mx-auto" src="{{ asset('assets/icons/staging-icon.png') }}" alt="">
                             <p>Add Staging</p>
