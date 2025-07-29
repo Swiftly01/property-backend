@@ -26,7 +26,7 @@
             'route' => 'photographs.index',
             'sub_route' => 'photographs.*',
         ],
-        ['label' => 'Staging', 'icon' => 'staging.svg', 'route' => 'staging.index', 'sub_route' => 'staging.*'],
+        ['label' => 'Staging', 'icon' => 'staging.svg', 'route' => 'stagings.index', 'sub_route' => 'stagings.*'],
         ['label' => 'Podcast', 'icon' => 'podcast.svg', 'route' => 'podcasts.index', 'sub_route' => 'podcasts.*'],
         ['label' => 'Contact', 'icon' => 'contact.svg', 'route' => 'contacts.index', 'sub_route' => 'contacts.*'],
         ['label' => 'Settings', 'icon' => 'settings.png', 'route' => 'settings', 'sub_route' => 'settings.*'],

@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\ActivityLog;
+use App\Models\Property;
 use App\Repositories\ActivityLogRepository;
 use App\Repositories\BuyRequestRepository;
 use App\Repositories\PropertyRepository;
@@ -31,6 +32,11 @@ class RepositoryHelper
     public function getPendingSellRequests()
     {
         return $this->sellRequestRepository->getPendingSellRequests();
+    }
+
+    public function getAllProperties(): Collection
+    {
+        return $this->propertyRepository->getAllProperties();
     }
 
     public function getTotalProperties(): int

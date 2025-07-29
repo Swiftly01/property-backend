@@ -1,30 +1,32 @@
+
 @extends('layouts.admin')
 @section('title')
-    Photographs
+    Staging
 @endsection
 @section('content')
 
     @php
-        $photographs = $type === \App\Enums\PropertyMediaTypeEnum::PHOTOGRAPHY->value  ? $data : [];
+        $stagings = $type === \App\Enums\PropertyMediaTypeEnum::STAGING->value  ? $data : [];
+
     @endphp
     <div class="p-4 sm:p-6 lg:p-10">
 
         <div class="flex flex-wrap items-center justify-between mt-16 md:mt-0">
-            <h1 class="font-bold text-gray-900 md:text-2xl">Photography Management</h1>
+            <h1 class="font-bold text-gray-900 md:text-2xl">All Staging</h1>
 
             <a class="flex    bg-[#022A66] text-white px-2 py-1  md:px-4 md:py-2 rounded hover:bg-primary hover:scale-[1.02] transition-duration-200 active:scale-100"
-                href="{{ route('photographs.create') }}">
+                href="{{ route('stagings.create') }}">
                 <img src="{{ asset('assets/icons/plus-icon.png') }}" alt="">
-                <span class="sm:font-normal md:font-medium">Add Photograph</span>
+                <span class="sm:font-normal md:font-medium">Add Staging</span>
             </a>
 
         </div>
 
         <div class="mt-5 bg-white rounded lg:mt-14">
             <div class="flex flex-wrap items-center justify-between px-8 py-5">
-                <h3 class="font-bold">All Photographs</h3>
+                <h3 class="font-bold">All Staging</h3>
 
-                <form id="searchForm" action="{{ route('photographs.index') }}" method="GET">
+                <form id="searchForm" action="{{ route('stagings.index') }}" method="GET">
                     <div class="flex flex-wrap items-center gap-2 md:gap-4">
 
                         <!-- Search Input -->
@@ -51,13 +53,13 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Photography ID
+                                Staging ID
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Photograph Title
+                                Property Title
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Photos Count
+                                Location
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Date Created
@@ -68,38 +70,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($photographs as $photograph)
+                        @foreach ($stagings as $staging)
                             <tr
                                 class="border-b border-gray-200 odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    #PHYID{{ $loop->iteration }}
+                                    #STGID{{ $loop->iteration }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ Str::ucfirst($photograph->title) }}
+                                    {{ Str::of(optional($staging?->property)->title ?? 'No property linked')->ucfirst() }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    @php
-                                        $photographCount = 0;
-                                        $thumbnail = $photograph->imageUrl();
-                                        $otherImages = $photograph->getImages();
-
-                                        $photographCount += $thumbnail ? 1 : 0;
-                                        $photographCount += count($otherImages);
-
-                                    @endphp
-                                    {{ $photographCount }}
+                                    {{ $staging->location }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $photograph->created_at->format('Y/m/d - H:i:s:A') }}
+                                    {{ $staging->created_at->format('Y/m/d - H:i:s:A') }}
                                 </td>
 
                                 <td class="px-6 py-4">
                                     @php
-                                        $dropdownId = 'dropdown-' . $photograph->id;
+                                        $dropdownId = 'dropdown-' . $staging->id;
                                     @endphp
 
-                                    <button id="toggle-{{ $photograph->id }}" data-dropdown-toggle="{{ $dropdownId }}"
+                                    <button id="toggle-{{ $staging->id }}" data-dropdown-toggle="{{ $dropdownId }}"
                                         class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                                         type="button">
                                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -115,15 +108,15 @@
                                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="dropdownMenuIconButton">
                                             <li>
-                                                <a href="{{ route('photographs.show', ['photograph' => $photograph->id]) }}"
+                                                <a href="{{ route('stagings.show', ['staging' => $staging->id]) }}"
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('photographs.edit', ['photograph' => $photograph->id]) }}"
+                                                <a href="{{ route('stagings.edit', ['staging' => $staging->id]) }}"
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                             </li>
                                             <li>
-                                                <x-button variant="link" target="delete-photograph-{{ $photograph->id }}">
+                                                <x-button variant="link" target="delete-staging-{{ $staging->id }}">
                                                     <a href="#">Delete</a>
                                                 </x-button>
 
@@ -135,15 +128,15 @@
 
                                 </td>
                             </tr>
-                            <x-alert-modal variant='delete' id="delete-photograph-{{ $photograph->id }}" title="Photograph"
-                                :action="route('photographs.destroy', ['photograph' => $photograph->id])" method="DELETE" />
+                            <x-alert-modal variant='delete' id="delete-staging-{{ $staging->id }}" title="Photograph"
+                                :action="route('stagings.destroy', ['staging' => $staging->id])" method="DELETE" />
                         @endforeach
 
 
                     </tbody>
                 </table>
 
-                {{ $photographs->links() }}
+                {{ $stagings->links() }}
             </div>
 
         </div>

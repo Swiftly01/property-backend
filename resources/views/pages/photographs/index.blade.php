@@ -7,7 +7,9 @@
         Photography
     </x-slot>
 
-
+     @php
+         $photographs = $type === \App\Enums\PropertyMediaTypeEnum::PHOTOGRAPHY->value ? $data : [];
+     @endphp
 
     <section id="stage" class="py-5">
         <div class="container">

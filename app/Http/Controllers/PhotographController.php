@@ -27,6 +27,8 @@ class PhotographController extends Controller
     {
         $photographs = $this->getPhotographsData(request: $request);
         return view('admin.photographs.index', compact('photographs'));
+
+        
     }
 
     public function showPhotographs(Request $request)

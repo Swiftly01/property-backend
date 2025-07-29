@@ -1,28 +1,30 @@
+
 @extends('layouts.admin')
 @section('title')
-View :: Property
+View :: Staging
 @endsection
 @section('content')
 <div class="p-4 sm:p-6 lg:p-10">
 
     
      @php
-         $photograph = $type === \App\Enums\PropertyMediaTypeEnum::PHOTOGRAPHY->value  ? $propertyMedia : ""
+         $staging = $type === \App\Enums\PropertyMediaTypeEnum::STAGING->value  ? $propertyMedia : ""
      @endphp
-    <x-page-header backRoute='photographs.index' title="View Photograph Details">
-            <x-button variant="danger" target="delete-photograph-{{ $photograph->id }}">
+    <x-page-header backRoute='stagings.index' title="View staging Details">
+            <x-button variant="danger" target="delete-staging-{{ $staging->id }}">
                 Delete
             </x-button>
             <x-button 
-             href="{{ route('photographs.edit', ['photograph' => $photograph->id]) }}" 
+             href="{{ route('stagings.edit', ['staging' => $staging->id]) }}" 
             >
                 Edit Details
             </x-button>
 
     </x-page-header>
 
-     <x-alert-modal variant='delete' id="delete-photograph-{{ $photograph->id }}" title="photograph" 
-        :action="route('photographs.destroy', ['photograph' => $photograph->id])" 
+     <x-alert-modal variant='delete' id="delete-staging-{{ $staging->id }}" title="staging" 
+        :action="route('stagings.destroy', ['staging' => $staging->id])" 
+        
         method="DELETE" />
 
 
@@ -30,21 +32,21 @@ View :: Property
         <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5 items-start">
             <div class="px-10 py-10 bg-white rounded-lg">
                     <div class="pb-4 border-b f md:items-start">
-                        <h1 class="text-lg font-bold">Photograph Information</h1>
-                        <p class="text-custom-blue-gray">ID: #PHYID{{ $photograph->id }}</p>
+                        <h1 class="text-lg font-bold">staging Information</h1>
+                        <p class="text-custom-blue-gray">ID: #PHYID{{ $staging->id }}</p>
 
                     </div>
                     
                 
                 <div class="flex flex-wrap items-center justify-between py-4 border-b">
                     <div>
-                        <h1 class="text-lg font-bold">{{ Str::ucfirst($photograph->title) }}</h1>
-                        <p class="text-custom-blue-gray">{{ $photograph->location }}, Nigeria</p>
+                        <h1 class="text-lg font-bold">{{ Str::ucfirst($staging->title) }}</h1>
+                        <p class="text-custom-blue-gray">{{ $staging->location }}, Nigeria</p>
 
                     </div>
                     <div>
                          <h1 class="text-lg font-bold">Video Link</h1>
-                         <a href="{{ $photograph->video_url }}">{{ $photograph->video_url ?? 'N/A' }}</a>
+                         <a href="{{ $staging->video_url }}">{{ $staging->video_url ?? 'N/A' }}</a>
                         
                     </div>
                    
@@ -52,7 +54,7 @@ View :: Property
                 <div class="border-b py-7">
 
                     <h1 class="text-lg font-bold">Description</h1>
-                    <p class="text-custom-blue-gray">{{ $photograph->description }}</p>
+                    <p class="text-custom-blue-gray">{{ $staging->description }}</p>
 
 
                 </div>
@@ -60,11 +62,11 @@ View :: Property
                 <div>
                     
                     <div class="grid grid-cols-3 gap-2 mt-5 rounded-lg lg:gap-5">
-                            @forelse ($photograph->getImages('other_images', 'other_images') as $url)
-                                <x-image-preview :src="$url" :name="$photograph->title" />
+                            @forelse ($staging->getImages('other_images', 'other_images') as $url)
+                                <x-image-preview :src="$url" :name="$staging->title" />
 
                             @empty
-                                <p class="text-danger">No photograph image available yet!!</p>
+                                <p class="text-danger">No staging image available yet!!</p>
                             @endforelse
                     </div>
 
@@ -75,7 +77,7 @@ View :: Property
 
             <div class="bg-white rounded-lg p-7">
                 <h1 class="pb-5 font-bold">Thumbnail</h1>
-                  <x-image-preview :src="$photograph->imageUrl('thumbnail', 'thumbnail')" :name="$photograph->title" />
+                  <x-image-preview :src="$staging->imageUrl('thumbnail', 'thumbnail')" :name="$staging->title" />
             </div>
         </div>
 

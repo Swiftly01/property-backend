@@ -4,11 +4,14 @@ namespace App\Interfaces;
 
 use App\DataTransferObjects\PropertyDTO;
 use App\Models\Property;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface PropertyInterface
 {   
+    public function getAllProperties(): Collection;
+
     public function getTotalProperties(): int;
 
     public function store(PropertyDTO $dto);

@@ -8,6 +8,7 @@ use App\Enums\PropertyTypeEnum;
 use App\Filters\PropertyFilter;
 use App\Interfaces\PropertyInterface;
 use App\Models\Property;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -19,6 +20,11 @@ class PropertyRepository implements PropertyInterface
     public function __construct(public PropertyFilter $propertyFilter)
     {
         //
+    }
+
+    public function getAllProperties(): Collection
+    {
+        return Property::get();
     }
 
     public function getTotalProperties(): int

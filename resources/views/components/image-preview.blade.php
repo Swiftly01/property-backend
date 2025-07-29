@@ -1,5 +1,5 @@
 @props([
-    'src' => asset('assets/images/image-placeholder.png'),
+    'src' => "",
     'name' => 'image',
     'ratio' => 'aspect-[1060/706]',
     'mediaId' => null,

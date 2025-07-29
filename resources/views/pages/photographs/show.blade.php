@@ -7,7 +7,9 @@
     Photograph Details :: Page
     </x-slot>
 
-
+      @php
+        $photograph = $type === \App\Enums\PropertyMediaTypeEnum::PHOTOGRAPHY->value ? $propertyMedia : null;
+      @endphp
     <section class="py-4">
       <div class="container">
         <div class="row align-items-center">

@@ -8,11 +8,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PhotographController;
+use App\Http\Controllers\PhotographRedirectContoller;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SellRequestController;
 use App\Http\Controllers\StagingController;
+use App\Http\Controllers\StagingRedirectController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,12 +32,12 @@ Route::prefix('/property')->group(function () {
 
 Route::get('/staging', [StagingController::class, 'showStaging'])->name('staging');
 Route::get('/staging/{stage}', [StagingController::class, 'showStagingDetails'])->name('staging-details.show');
-Route::get('/photographs', [PhotographController::class, 'showPhotographs'])->name('photographs');
-Route::get('/photographs/{photograph}/show', [PhotographController::class, 'showDetails'])->name('photograph.details');
+Route::get('/photographs', [PhotographRedirectContoller::class, 'showPhotographs'])->name('photographs');
+Route::get('/photographs/{photograph}/show', [PhotographRedirectContoller::class, 'showPhotographDetails'])->name('photograph.details');
 Route::get('/podcasts', [PodcastController::class, 'showPodcasts'])->name('podcasts');
 Route::get('/contact', [ContactController::class, 'showContactPage'])->name('contact');
 Route::get('/custom-build', [CustomBuildController::class, 'create'])->name('custom-build');
-
+    
 Route::get('/success', function () {
     return view('pages.success');
 })->name('success');
@@ -49,8 +51,12 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/properties', PropertyController::class);
     Route::resource('/buy-requests', BuyRequestController::class);
     Route::resource('/sell-requests', SellRequestController::class);
-    Route::resource('/photographs', PhotographController::class);
-    Route::resource('/staging', StagingController::class);
+  //  Route::resource('/photographs', PhotographController::class);
+  //Route::resource('/stagings', StagingController::class);
+  
+    Route::resource('/photographs',PhotographRedirectContoller::class );
+    Route::resource('/stagings', StagingRedirectController::class );
+    
     Route::resource('/podcasts', PodcastController::class);
     Route::resource('/contacts', ContactController::class);
 

@@ -1,12 +1,13 @@
+
 @extends('layouts.admin')
 @section('title')
-    Add :: Photographs
+    Add :: Stagings
 @endsection
 @section('content')
     <div class="p-4 sm:p-6 lg:p-10">
-        <form action="{{ route('photographs.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('stagings.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <x-page-header backRoute='photographs.index' title="Add New Photographs">
+            <x-page-header backRoute='stagings.index' title="Add New Stagings">
                 <x-button variant="outline" href="{{ route('photographs.index') }}">
                     Cancel
                 </x-button>
@@ -26,8 +27,8 @@
                         <div class="mt-5">
                             <div class="flex flex-wrap justify-between gap-3">
                                 <div class="flex-1 mb-5">
-                                    <x-forms.input-label for="title" label="Photograph Title" />
-                                    <x-forms.input name="title" placeholder="Enter Photograph Title" />
+                                    <x-forms.input-label for="title" label="Staging Title" />
+                                    <x-forms.input name="title" placeholder="Enter Staging Title" />
                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
                                 </div>
@@ -90,8 +91,8 @@
             </div>
 
             <div class="mt-5 bg-white rounded-lg p-7">
-                <h1 class="font-bold">Photograph Images</h1>
-                <p class="text-custom-blue-gray">Upload other photography image maximum of 4 and minimum of 1</p>
+                <h1 class="font-bold">Staging Images</h1>
+                <p class="text-custom-blue-gray">Upload other Stagings image maximum of 4 and minimum of 1</p>
 
                 <div class="p-5 mt-5 text-center rounded-lg bg-gray-50">
                     <p class="pt-5 text-custom-blue-gray">Drag and drop your file here. <br> - or -</p>
