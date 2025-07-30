@@ -23,16 +23,18 @@ class StorePropertyMediaRequest extends FormRequest
      */
     public function rules(): array
     {
+        $isPodcastRoute = $this->routeIs('podcasts.*');
+
         return [
             'title' => ['bail', 'required', 'string', 'max:255'],
-            'property_id' => ['nullable', 'exists:properties,id'], 
+            'property_id' => $isPodcastRoute ? ['required', 'exists:properties,id'] :  ['nullable', 'exists:properties,id'],
             'type' => ['required', new Enum(PropertyMediaTypeEnum::class)],
             'location' => ['bail', 'required', 'string'],
-            'video_url' => ['nullable',  'url'],
+            'video_url' => $isPodcastRoute  ? ['required',  'url'] : ['nullable',  'url'],
             'description' => ['bail', 'required', 'max:1500'],
             'thumbnail' => ['bail', 'required', 'image', 'mimes:png,jpg,jpeg', 'max:1024'],
-            'other_images' => ['bail', 'required', 'array', 'min:2', 'max:4'],
-            'other_images.*' => ['bail','image', 'mimes:png,jpg,jpeg', 'max:1024' ]
+            'other_images' => $isPodcastRoute ? ['bail', 'nullable', 'array', 'min:0', 'max:0'] : ['bail', 'required', 'array', 'min:2', 'max:4'],
+            'other_images.*' => ['bail', 'image', 'mimes:png,jpg,jpeg', 'max:1024']
         ];
     }
 }

@@ -166,7 +166,7 @@ class PropertyMediaService
         return match ($type) {
             PropertyMediaTypeEnum::PHOTOGRAPHY->value => 'pages.photographs.index',
             PropertyMediaTypeEnum::STAGING->value => 'pages.stagings.index',
-            PropertyMediaTypeEnum::PODCAST->value => 'pages.podcasts.index',
+            PropertyMediaTypeEnum::PODCAST->value => 'pages.podcasts',
             default => throw new InvalidArgumentException("Invalid property media type: {$type}"),
         };
     }
@@ -188,6 +188,7 @@ class PropertyMediaService
         return match ($type) {
             PropertyMediaTypeEnum::PHOTOGRAPHY->value => $this->propertyMediaInterface->getMediaData(request: $request, type: $type),
             PropertyMediaTypeEnum::STAGING->value => $this->propertyMediaInterface->getMediaData(request: $request, type: $type),
+            PropertyMediaTypeEnum::PODCAST->value => $this->propertyMediaInterface->getMediaData(request: $request, type: $type),
         };
     }
 

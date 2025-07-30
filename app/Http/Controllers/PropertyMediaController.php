@@ -28,7 +28,7 @@ class PropertyMediaController extends Controller
         $view = $response['view'];
         $data = $response['data'];
         $type = $response['type'];
-
+        
         return view($view, compact('data', 'type'));
     }
 

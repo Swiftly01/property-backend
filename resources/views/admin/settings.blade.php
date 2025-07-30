@@ -5,7 +5,7 @@
   @section('content')
       <div class="p-4 sm:p-6 lg:p-10">
 
-          <x-page-header backRoute='staging.index' title="Settings">
+          <x-page-header backRoute='stagings.index' title="Settings">
           </x-page-header>
 
           <div class="mt-5 lg:mt-10">

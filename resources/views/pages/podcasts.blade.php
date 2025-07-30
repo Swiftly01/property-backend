@@ -20,10 +20,12 @@
         </div>
     </section>
 
-
+    @php
+        $podcasts = $type === \App\Enums\PropertyMediaTypeEnum::PODCAST->value ? $data : [];
+    @endphp
 
     <section class="py-4">
-        <div class="container">
+        {{-- <div class="container">
             <div class="row g-4">
                 <!-- First Card (Left, bigger) -->
                 <div class="col-12 col-md-7">
@@ -56,15 +58,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="container py-4">
             <div class="row g-4">
-                <!-- Third Card -->
-                <div class="col-12 col-md-4">
+                 @forelse ($podcasts as $podcast)
+
+                 <div class="col-12 col-md-4">
                     <div class="card h-100 border-0 shadow-sm">
-                        <a target="_blank" href="https://www.youtube.com/hussein/composer">
-                            <img src="{{ asset('assets/images/Frame 6 (3).png') }}" class="card-img-top object-cover rounded-top"
+                        <a target="_blank" href="{{$podcast->url  }}">
+
+                            <img src="{{ asset($podcast->imageUrl('thumbnail', 'thumbnail')) }}" class="card-img-top object-cover rounded-top"
                                 alt="Image 3" style="height: 250px; object-fit: cover;">
                         </a>
                         <div class="card-body">
@@ -75,36 +79,15 @@
                         </div>
                     </div>
                 </div>
+                     
+                 @empty
 
-                <!-- Fourth Card -->
-                <div class="col-12 col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <a target="_blank" href="https://www.youtube.com/hussein/composer">
-                            <img src="{{ asset('assets/images/Frame 6 (4).png') }}" class="card-img-top object-cover rounded-top"
-                                alt="Image 4" style="height: 250px; object-fit: cover;">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="card-title">Built to Inspire</h6>
-                            <p class="card-text">Explore stunning homes, smart design, and visionary architecture. Each
-                                episode dives into real build projects and the creative minds behind them.</p>
-                        </div>
-                    </div>
-                </div>
+                 <p>No podcasts available yet!!</p>
+                     
+                 @endforelse
+                
 
-                <!-- Fifth Card -->
-                <div class="col-12 col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <a target="_blank" href="https://www.youtube.com/hussein/composer">
-                            <img src="{{ asset('assets/images/Frame 6 (5).png') }}" class="card-img-top object-cover rounded-top"
-                                alt="Image 5" style="height: 250px; object-fit: cover;">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="card-title">The Property Blueprint</h6>
-                            <p class="card-text">A video podcast dedicated to helping you understand the property
-                                market, from investment tips to behind-the-scenes of dream home builds.</p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>

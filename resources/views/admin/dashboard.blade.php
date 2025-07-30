@@ -237,7 +237,7 @@
                             <img class="block mx-auto" src="{{ asset('assets/icons/photo-icon.png') }}" alt="">
                             <p>Add Photography</p>
                         </a>
-                        <a href="{{ route('buy-requests.create') }}"
+                        <a href="{{ route('buy-requests.index') }}"
                             class="bg-[#FFE4D1] rounded-lg text-center  py-8  hover:shadow-md hover:scale-[1.02] transition duration-200">
                             <img class="block mx-auto" src="{{ asset('assets/icons/request-icon.png') }}" alt="">
                             <p>Buy request</p>

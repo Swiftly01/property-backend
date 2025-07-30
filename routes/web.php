@@ -10,6 +10,7 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PhotographRedirectContoller;
 use App\Http\Controllers\PhotographRedirectController;
 use App\Http\Controllers\PodcastController;
+use App\Http\Controllers\PodcastRedirectController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SellRequestController;
@@ -35,7 +36,7 @@ Route::get('/staging/{staging}/show', [StagingRedirectController::class, 'showSt
 Route::get('/photographs', [PhotographRedirectController::class, 'showPhotographs'])->name('photographs');
 Route::get('/photographs/{photograph}/show', [PhotographRedirectController::class, 'showPhotographDetails'])->name('photograph.details');
 
-Route::get('/podcasts', [PodcastController::class, 'showPodcasts'])->name('podcasts');
+Route::get('/podcasts', [PodcastRedirectController::class, 'showPodcasts'])->name('podcasts');
 Route::get('/contact', [ContactController::class, 'showContactPage'])->name('contact');
 Route::get('/custom-build', [CustomBuildController::class, 'create'])->name('custom-build');
 
@@ -55,8 +56,7 @@ Route::middleware('auth')->prefix('/admin')->group(function () {
 
     Route::resource('/photographs', PhotographRedirectController::class);
     Route::resource('/stagings', StagingRedirectController::class);
-
-    Route::resource('/podcasts', PodcastController::class);
+    Route::resource('/podcasts', PodcastRedirectController::class);
     Route::resource('/contacts', ContactController::class);
 
     Route::patch('buy-requests/{buy_request}/{action}', [BuyRequestController::class, 'handleStatusUpdate'])
