@@ -14,8 +14,11 @@
 
         </div>
         <div class="flex items-center gap-5">
-            <img class="h-8" src="{{ asset('assets/icons/notification.png') }}" alt="">
-            <img class="h-10 rounded-full " src="{{ auth()->user()->imageUrl() }}" alt="">
+            @php
+                $url = auth()->user()->imageUrl() ?? 'assets/icons/profile.png'
+            @endphp
+            {{-- <img class="h-8" src="{{ asset('assets/icons/notification.png') }}" alt=""> --}}
+            <img class="h-10 rounded-full " src="{{ $url }}" alt="">
 
         </div>
 

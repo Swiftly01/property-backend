@@ -46,6 +46,9 @@ Route::get('/success', function () {
 
 Route::get('/test', function () {})->name('test');
 
+ Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
+
+
 Route::middleware('auth')->prefix('/admin')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
