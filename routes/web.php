@@ -46,7 +46,7 @@ Route::get('/success', function () {
 
 Route::get('/test', function () {})->name('test');
 
- Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
+ Route::post('/contacts', [ContactController::class, 'store'])->name('contactForm.store');
 
 
 Route::middleware('auth')->prefix('/admin')->group(function () {

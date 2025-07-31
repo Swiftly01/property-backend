@@ -85,7 +85,7 @@
                     </div>
 
                     <!-- Form Section -->
-                    <form action="{{ route('contacts.store') }}" method="POST">
+                    <form action="{{ route('contactForm.store') }}" method="POST">
                       @csrf
                         <div class="row mb-3">
                             <div class="col-md-6">
