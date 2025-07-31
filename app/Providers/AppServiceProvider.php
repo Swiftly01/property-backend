@@ -48,8 +48,8 @@ class AppServiceProvider extends ServiceProvider
 
         });
 
-        $buyRequestsCount = BuyRequest::count();
-        View::share('buyRequestsCount', $buyRequestsCount);
+       // $buyRequestsCount = BuyRequest::count();
+       // View::share('buyRequestsCount', $buyRequestsCount);
 
         Schema::defaultStringLength(191);
 
