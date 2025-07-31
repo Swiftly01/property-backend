@@ -92,7 +92,7 @@
 
             <div class="mt-5 bg-white rounded-lg p-7">
                 <h1 class="font-bold">Staging Images</h1>
-                <p class="text-custom-blue-gray">Upload other Stagings image maximum of 4 and minimum of 1</p>
+                <p class="text-custom-blue-gray">Upload other Stagings image maximum of 4 and minimum of 2</p>
 
                 <div class="p-5 mt-5 text-center rounded-lg bg-gray-50">
                     <p class="pt-5 text-custom-blue-gray">Drag and drop your file here. <br> - or -</p>

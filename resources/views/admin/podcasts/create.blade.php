@@ -167,20 +167,7 @@
 
             </div>
 
-            {{-- <div class="mt-5 bg-white rounded-lg p-7">
-                <h1 class="font-bold">podcast Images</h1>
-                <p class="text-custom-blue-gray">Upload other podcasts image maximum of 4 and minimum of 1</p>
-
-                <div class="p-5 mt-5 text-center rounded-lg bg-gray-50">
-                    <p class="pt-5 text-custom-blue-gray">Drag and drop your file here. <br> - or -</p>
-
-                    <x-drag-and-drop name="other_images[]" :multiple="true" />
-                    <x-input-error :messages="$errors->get('other_images')" class="mt-2" />
-
-                </div>
-
-
-            </div> --}}
+           
         </form>
 
     </div>
