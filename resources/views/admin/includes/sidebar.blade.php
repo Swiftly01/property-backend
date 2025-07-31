@@ -59,11 +59,14 @@
             </li>
         @endforeach
     </ul>
-   
-    <div class="mt-auto pb-14 w-48 mx-5 border-t border-brown md:absolute md:bottom-24 md:pb-0">
+
+    <div class="mt-auto pb-20 w-48 mx-5 border-t border-brown md:absolute md:bottom-24 md:pb-0">
         <p class="py-2 text-brown">Profile</p>
         <div class="flex items-center gap-2">
-            <img class="rounded-full h-9" src="{{ auth()->user()->imageUrl() }}" alt="">
+            @php
+                $url = auth()->user()->imageUrl() ?? 'assets/icons/profile.png';
+            @endphp
+            <img class="rounded-full w-9 h-9" src="{{ asset($url) }}" alt="">
             <div class="">
                 <h3 class="font-medium text-white">{{ Str::ucfirst(auth()->user()->name) }}</h3>
                 <p class="text-sm font-thin break-all text-brown">{{ Str::ucfirst(auth()->user()->email) }}</p>
