@@ -2,8 +2,10 @@
 
 namespace App\Helpers;
 
-use App\Models\ActivityLog;
-use App\Models\Property;
+use App\Interfaces\BuyRequestInterface;
+use App\Interfaces\ContactFormInterface;
+use App\Interfaces\PropertyInterface;
+use App\Interfaces\SellRequestInterface;
 use App\Repositories\ActivityLogRepository;
 use App\Repositories\BuyRequestRepository;
 use App\Repositories\PropertyRepository;
@@ -17,48 +19,54 @@ class RepositoryHelper
      * Create a new class instance.
      */
     public function __construct
-    (private SellRequestRepository $sellRequestRepository,
-     private PropertyRepository $propertyRepository,
-     private BuyRequestRepository $buyRequestRepository,
-     private ActivityLogRepository $activityLogRepository
+    (private SellRequestInterface $sellRequestInterface,
+     private PropertyInterface $propertyInterface,
+     private BuyRequestInterface $buyRequestInterface,
+     private ActivityLogRepository $activityLogRepository,
+     private ContactFormInterface $contactFormInterface
     ) {}
 
     public function updateSellRequestStatus(object $request): ?bool
     {
-        return $this->sellRequestRepository->updateSellRequestStatus(request: $request);
+        return $this->sellRequestInterface->updateSellRequestStatus(request: $request);
     }
 
    
     public function getPendingSellRequests()
     {
-        return $this->sellRequestRepository->getPendingSellRequests();
+        return $this->sellRequestInterface->getPendingSellRequests();
     }
 
     public function getAllProperties(): Collection
     {
-        return $this->propertyRepository->getAllProperties();
+        return $this->propertyInterface->getAllProperties();
+    }
+
+    public function getTotalContactCount(): int
+    {
+        return $this->contactFormInterface->getTotalContactCount();
     }
 
     public function getTotalProperties(): int
     {
-        return $this->propertyRepository->getTotalProperties();
+        return $this->propertyInterface->getTotalProperties();
     }
 
     public function getTotalPendingSellRequests(): int
     {
-        return $this->sellRequestRepository->getTotalPendingSellRequests();
+        return $this->sellRequestInterface->getTotalPendingSellRequests();
     }
 
     public function getTotalPendingBuyRequests(): int
     {
-        return $this->buyRequestRepository->getTotalPendingBuyRequests();
+        return $this->buyRequestInterface->getTotalPendingBuyRequests();
     }
 
 
     public function getRecentRequests()
     {
-      $recentBuyRequests = $this->buyRequestRepository->getRecentBuyRequests();
-      $recentSellRequests = $this->sellRequestRepository->getRecentSellRequests();
+      $recentBuyRequests = $this->buyRequestInterface->getRecentBuyRequests();
+      $recentSellRequests = $this->sellRequestInterface->getRecentSellRequests();
   
       return $recentSellRequests->merge($recentBuyRequests)->sortByDesc('created_at');
 

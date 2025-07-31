@@ -10,4 +10,6 @@ interface ContactFormInterface
     public function store(ContactDTO $dto);
 
     public function getContacts(Request $request);
+
+    public function getTotalContactCount(): int;
 }

@@ -14,12 +14,14 @@ class DashboardController extends Controller
     public function index()
     {
         $propertyCount = $this->dashboardService->getPropertyMetrics();
+        $contactCount = $this->dashboardService->getContactCount();
         $pendingSellRequestsCount = $this->dashboardService->getSellRequestMetrics();
         $pendingBuyRequestsCount = $this->dashboardService->getBuyRequestMetrics();
         $recentRequests = $this->dashboardService->getRecentRequests();
         $activityLogs = $this->dashboardService->getActivityLogs();
 
-        return view('admin.dashboard', compact('propertyCount', 'pendingSellRequestsCount', 'pendingBuyRequestsCount', 'recentRequests', 'activityLogs'));
+
+        return view('admin.dashboard', compact('propertyCount', 'pendingSellRequestsCount', 'pendingBuyRequestsCount', 'recentRequests', 'activityLogs', 'contactCount'));
     }
 
     public function showSettings(Request $request)

@@ -20,6 +20,11 @@ class DashboardService
       return $this->repositoryHelper->getTotalProperties();
     }
 
+    public function getContactCount(): int
+    {
+        return $this->repositoryHelper->getTotalContactCount();
+    }
+
     public function getSellRequestMetrics(): int
     {
         return $this->repositoryHelper->getTotalPendingSellRequests();

@@ -24,6 +24,11 @@ class ContactFormRepository implements ContactFormInterface
          return Contact::create($dto->toArray());
     }
 
+    public function getTotalContactCount(): int
+    {
+        return Contact::count();
+    }
+
     public function getContacts(Request $request)
     {
         return $this->apply(Contact::query(), $request)->latest()->paginate(6)->withQueryString();
