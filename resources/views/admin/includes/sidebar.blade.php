@@ -34,7 +34,7 @@
 @endphp
 
 <nav id="sideNav"
-    class="fixed bottom-0 left-0 z-50 flex flex-col h-full transition-transform duration-300 ease-in-out transform -translate-x-full border-t-2 border-white md:translate-x-0 bg-darkest w-60 md:top-24 md:block top-14">
+    class="fixed bottom-0 left-0 z-50 flex flex-col h-full transition-transform duration-300 ease-in-out transform -translate-x-full border-t-2 border-white md:translate-x-0 bg-darkest w-60 md:top-24 md:block top-14 overflow-y-auto">
 
 
     <div class="flex justify-between pt-4">
@@ -59,9 +59,8 @@
             </li>
         @endforeach
     </ul>
-
-
-    <div class="absolute w-48 mx-5 border-t border-brown bottom-16 md:bottom-24">
+   
+    <div class="mt-auto pb-14 w-48 mx-5 border-t border-brown md:absolute md:bottom-24 md:pb-0">
         <p class="py-2 text-brown">Profile</p>
         <div class="flex items-center gap-2">
             <img class="rounded-full h-9" src="{{ auth()->user()->imageUrl() }}" alt="">
