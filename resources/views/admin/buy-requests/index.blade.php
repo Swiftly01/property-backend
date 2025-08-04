@@ -75,7 +75,7 @@
                                     {{ Str::ucfirst($buyRequest->firstname) }} {{ Str::ucfirst($buyRequest->lastname) }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $buyRequest->property->title }}
+                                    {{ $buyRequest->property?->title ?? 'N/A' }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $buyRequest->created_at->format('Y-m-d H:i:s:A') }}
