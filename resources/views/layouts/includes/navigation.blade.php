@@ -1,9 +1,5 @@
 
 <section class="main bg-dark text-white py-2">
-  <p class="main1 text-center mb-2">
-    ✨ Discover Your Dream Property with Monarsh Properties 
-    <a class="main2 ms-2" href="#">Learn More</a>
-  </p>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       

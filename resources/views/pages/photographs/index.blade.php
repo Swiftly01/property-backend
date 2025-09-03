@@ -61,7 +61,7 @@
     </section>
 
 
-    <x-stand-out />
+    <x-stand-out title="Photographs" />
 
 
 </x-main-layout>

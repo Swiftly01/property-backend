@@ -43,12 +43,14 @@
                                         <label for="location" class="form-label fw-bold">
                                             Location <i class="bi bi-geo-alt-fill"></i>
                                         </label>
+                                        
                                         <select id="locate" name="location" class="form-select form-select-sm"
                                             aria-label="Select location">
-                                            <option selected disabled>Select your state</option>
+                                            <option disabled {{ old("location", "FCT" )===null ? "selected" : "" }}>
+                                                Select your state</option>
 
                                             @foreach (\App\Enums\LocationEnum::cases() as $case)
-                                            <option {{ old('location')===$case->value ? 'selected' : '' }}
+                                            <option {{ old('location', "FCT" )===$case->value ? 'selected' : '' }}
                                                 value="{{ $case->value }}">{{ $case->label() }}</option>
                                             @endforeach
 
@@ -61,9 +63,10 @@
                                         <label for="propertyType" class="form-label fw-bold">Property Type</label>
                                         <select id="propertyType" class="form-select form-select-sm"
                                             aria-label="Select property type" name="property_type">
-                                            <option selected disabled>Select property type</option>
+                                            <option  disabled {{ old("property_type", \App\Enums\PropertyTypeEnum::HOUSE ) }}>Select property type</option>
+
                                             @foreach (\App\Enums\PropertyTypeEnum::cases() as $case)
-                                            <option value="{{ $case->value }}" {{ old('property_type')===$case->value ?
+                                            <option value="{{ $case->value }}" {{ old('property_type', \App\Enums\PropertyTypeEnum::HOUSE )===$case->value ?
                                                 'selected' : '' }}>
                                                 {{ $case->label() }}</option>
                                             @endforeach
@@ -349,7 +352,8 @@
                                     property selling like never before.
                                 </p>
                                 <p id="your" class="text-white">
-                                    <a class="text-decoration-none text-white" href="{{ route('sellRequest.create') }}">Sell Your
+                                    <a class="text-decoration-none text-white"
+                                        href="{{ route('sellRequest.create') }}">Sell Your
                                         Property</a> <span><i class="bi bi-arrow-right"></i></span>
                                 </p>
                             </div>

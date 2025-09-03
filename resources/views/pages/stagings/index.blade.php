@@ -61,7 +61,7 @@
     </section>
 
 
-    <x-stand-out />
+    <x-stand-out title="Staging" />
 
 
 </x-main-layout>

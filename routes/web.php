@@ -40,13 +40,13 @@ Route::get('/podcasts', [PodcastRedirectController::class, 'showPodcasts'])->nam
 Route::get('/contact', [ContactController::class, 'showContactPage'])->name('contact');
 Route::get('/custom-build', [CustomBuildController::class, 'create'])->name('custom-build');
 
-Route::get('/success', function () {
-    return view('pages.success');
-})->name('success');
+// Route::get('/success', function () {
+//     return view('pages.success');
+// })->name('success');
 
-Route::get('/test', function () {})->name('test');
+//Route::get('/test', function () {})->name('test');
 
- Route::post('/contacts', [ContactController::class, 'store'])->name('contactForm.store');
+Route::post('/contacts', [ContactController::class, 'store'])->name('contactForm.store');
 
 
 Route::middleware('auth')->prefix('/admin')->group(function () {

@@ -7,9 +7,9 @@
     Photograph Details :: Page
     </x-slot>
 
-      @php
-        $photograph = $type === \App\Enums\PropertyMediaTypeEnum::PHOTOGRAPHY->value ? $propertyMedia : null;
-      @endphp
+    @php
+    $photograph = $type === \App\Enums\PropertyMediaTypeEnum::PHOTOGRAPHY->value ? $propertyMedia : null;
+    @endphp
     <section class="py-4">
       <div class="container">
         <div class="row align-items-center">
@@ -38,7 +38,18 @@
       </div>
     </section>
 
-    <x-image-gallery :images="$photograph->getImages('other_images', 'other_images')" :thumbnail="$photograph->imageUrl('thumbnail', 'thumbnail')" />
+    <section class="py-4 mx-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto overflow-hidden" id="animate">
+
+            <x-image-gallery :images="$photograph->getImages('other_images', 'other_images')"
+              :thumbnail="$photograph->imageUrl('thumbnail', 'thumbnail')" />
+          </div>
+        </div>
+      </div>
+    </section>
+
 
 
     <section class="container py-4 bg-white">
@@ -52,7 +63,5 @@
     </section>
 
 
-
-
-
+    
 </x-main-layout>

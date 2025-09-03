@@ -11,20 +11,30 @@
     color:#02122B ;
 }
 
+.scroll-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .scroll-animation {
   display: inline-flex;
   animation: scroll-left 25s linear infinite;
-  width: max-content;
 }
 
 @keyframes scroll-left {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%);   /* start fully offscreen to the right */
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);  /* move fully offscreen to the left */
   }
 }
+
+/* Pause animation when hovering */
+.scroll-animation:hover {
+  animation-play-state: paused;
+}
+
 .img-hover-effect {
   transition: transform 0.3s ease;
 }
@@ -32,16 +42,16 @@
   transform: scale(1.1);
 }
 
-
 #property-page {
-  position: relative; /* Needed for absolute positioning of child */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  min-height: 300px;
-  padding: 2rem;
-  margin-bottom: 2rem;
+   background-size: cover;      
+    background-position: center; 
+    background-repeat: no-repeat; 
+    min-height: 300px;          
+    width: 100%;              
+    border-radius: 10px; 
 }
+
+
 
 .property {
   position: absolute;
@@ -69,7 +79,7 @@
   padding: 10px;
   border: 2px solid #F5F6F8;
   border-radius: 20px;
-   margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #icon2{

@@ -24,9 +24,20 @@
           </div>
         </div>
       </div>
+     
     </section>
 
-    <x-image-gallery :images="$property->getImages('other_images', 'other_images')" :thumbnail="$property->imageUrl('thumbnail', 'thumbnail')" />
+    <section class="py-4 mx-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto overflow-hidden" id="animate">
+              <x-image-gallery :images="$property->getImages('other_images', 'other_images')" :thumbnail="$property->imageUrl('thumbnail', 'thumbnail')" /> 
+          </div>    
+        </div>
+      </div>
+    </section>
+
+  
 
     <section class="py-2">
       <div class="container">

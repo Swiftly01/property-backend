@@ -1,4 +1,3 @@
-
 <x-main-layout>
   @section('other_css')
   <link rel="stylesheet" href="{{ asset('assets/css/veiw-property-page.css') }}">
@@ -8,9 +7,9 @@
     staging Details :: Page
     </x-slot>
 
-      @php
-        $staging = $type === \App\Enums\PropertyMediaTypeEnum::STAGING->value ? $propertyMedia : null;
-      @endphp
+    @php
+    $staging = $type === \App\Enums\PropertyMediaTypeEnum::STAGING->value ? $propertyMedia : null;
+    @endphp
     <section class="py-4">
       <div class="container">
         <div class="row align-items-center">
@@ -39,7 +38,18 @@
       </div>
     </section>
 
-    <x-image-gallery :images="$staging->getImages('other_images', 'other_images')" :thumbnail="$staging->imageUrl('thumbnail', 'thumbnail')" />
+    <section class="py-4 mx-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto overflow-hidden" id="animate">
+            <x-image-gallery :images="$staging->getImages('other_images', 'other_images')"
+              :thumbnail="$staging->imageUrl('thumbnail', 'thumbnail')" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
 
 
     <section class="container py-4 bg-white">

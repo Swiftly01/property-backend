@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Input-search extends Component
+class Alertmodal extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class Input-search extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.input-search');
+        return view('components.alert-modal');
     }
 }

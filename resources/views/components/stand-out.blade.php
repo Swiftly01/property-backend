@@ -1,9 +1,13 @@
+@props([
+  "title" => "Staging"
+])
+
 <section class="bg-light py-5 stand3">
   <div class="container">
     <!-- Header Row -->
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5">
       <div class="mb-4 mb-md-0" style="max-width: 700px;">
-        <h1 class="fw-bold stand">Why Monarsh Staging Stands Out</h1>
+        <h1 class="fw-bold stand">Why Monarsh {{ $title }} Stands Out</h1>
         <p class="stand2">
           At Monarsh Photography, we don’t just take pictures — we craft visual stories that showcase your property’s full potential. Our eye for detail, creative angles, and premium quality ensure your listings captivate and convert.
         </p>
