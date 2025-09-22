@@ -71,7 +71,7 @@ $menuItems = [
             @php
             $url = auth()->user()->imageUrl() ?? 'assets/icons/profile.png';
             @endphp
-            <img class="rounded-full w-9 h-9" src="{{ asset($url) }}" alt="">
+            <img class="h-10 w-10 rounded-full" src="{{ asset($url) }}" alt="">
             <div class="">
                 <h3 class="font-medium text-white">{{ Str::ucfirst(auth()->user()->name) }}</h3>
                 <p class="text-sm font-thin break-all text-brown">{{ Str::ucfirst(auth()->user()->email) }}</p>

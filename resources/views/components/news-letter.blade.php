@@ -1,4 +1,4 @@
-<section class="py-4">
+{{-- <section class="py-4">
   <div id="get" class="container">
     <div class="row align-items-center">
       
@@ -23,4 +23,4 @@
       
     </div>
   </div>
-</section>
+</section> --}}

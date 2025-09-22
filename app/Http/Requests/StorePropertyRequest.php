@@ -18,6 +18,15 @@ class StorePropertyRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        if($this->filled('features')){
+            $this->merge([
+             'features' => json_encode(array_filter(array_map("trim", explode("\n", $this->features))))
+            ]);
+        }
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -35,7 +44,7 @@ class StorePropertyRequest extends FormRequest
             'description' => [
                 'required',
                 'string',
-                // 'max:1000'
+                'max:2000'
             ],
             'thumbnail' => [
                 'required',
@@ -50,7 +59,8 @@ class StorePropertyRequest extends FormRequest
                 'mimes:png,jpg,jpeg',
                 'max:1024'
                 //  'dimensions:min_width=400,min_height=400'
-            ]
+            ],
+            'features' => ['nullable', 'string', 'max:3000']
 
 
         ];

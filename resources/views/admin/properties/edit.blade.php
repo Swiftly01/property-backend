@@ -18,7 +18,7 @@
                 </x-button>
                 <x-button type="submit">
                     Save Changes
-                </x-button>
+                </x-button> 
 
             </x-page-header>
 
@@ -76,13 +76,25 @@
 
                                 </div>
                             </div>
-                            <div>
-                                <x-forms.input-label for="description" label="Description" />
-                                <x-forms.input-textarea :value="$property->description" name="description"
-                                    placeholder="Enter Property Description..." />
-                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                           
+                            <div class="flex justify-between gap-3 flex-wrap">
+                            <div class="mb-5 flex-1">
+                                    <x-forms.input-label for="description" label="Description" />
+                                    <x-forms.input-textarea :value="$property->description" name="description"
+                                        placeholder="Enter Property Description..." />
+                                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
 
                             </div>
+                            <div class="mb-5 flex-1">
+                                <x-forms.input-label for="features" label="Key features and amenities" />
+                                <x-forms.input-textarea :value="$property->features ?? null" name="features"
+                                    placeholder="Enter each property features on a new line..." />
+                                <x-input-error :messages="$errors->get('features')" class="mt-2" />
+
+                            </div>
+
+
+                        </div>
 
 
                         </div>

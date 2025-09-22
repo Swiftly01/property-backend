@@ -3,7 +3,7 @@
         Monarsh Property
         </x-slot>
 
-        <section class="products p-0 m-0">
+        <section class="p-0 m-0 products">
             <div class="container">
                 <div class="row">
                     <div id="products2" class="col-12 col-md-8">
@@ -43,7 +43,7 @@
                                         <label for="location" class="form-label fw-bold">
                                             Location <i class="bi bi-geo-alt-fill"></i>
                                         </label>
-                                        
+
                                         <select id="locate" name="location" class="form-select form-select-sm"
                                             aria-label="Select location">
                                             <option disabled {{ old("location", "FCT" )===null ? "selected" : "" }}>
@@ -63,10 +63,12 @@
                                         <label for="propertyType" class="form-label fw-bold">Property Type</label>
                                         <select id="propertyType" class="form-select form-select-sm"
                                             aria-label="Select property type" name="property_type">
-                                            <option  disabled {{ old("property_type", \App\Enums\PropertyTypeEnum::HOUSE ) }}>Select property type</option>
+                                            <option disabled {{ old("property_type", \App\Enums\PropertyTypeEnum::HOUSE
+                                                ) }}>Select property type</option>
 
                                             @foreach (\App\Enums\PropertyTypeEnum::cases() as $case)
-                                            <option value="{{ $case->value }}" {{ old('property_type', \App\Enums\PropertyTypeEnum::HOUSE )===$case->value ?
+                                            <option value="{{ $case->value }}" {{ old('property_type',
+                                                \App\Enums\PropertyTypeEnum::HOUSE )===$case->value ?
                                                 'selected' : '' }}>
                                                 {{ $case->label() }}</option>
                                             @endforeach
@@ -92,8 +94,8 @@
         </section>
 
 
-        <section class="w-100 overflow-hidden zapier2 py-3">
-            <div class="scroll-container text-white">
+        <section class="py-3 overflow-hidden w-100 zapier2">
+            <div class="text-white scroll-container">
                 <div class="scroll-row d-flex align-items-center">
                     <p class="zapier"><i class="bi bi-zap"></i> Zapier</p>
                     <p class="zapier"><i class="bi bi-spotify"></i> Spotify</p>
@@ -117,11 +119,11 @@
 
         <section class="reliable3">
             <div class="container py-4">
-                <div class="row align-items-center mb-6">
+                <div class="mb-6 row align-items-center">
                     <!-- Left Column (Text and Image) -->
-                    <div class="col-12 col-md-5 mb-4" data-aos="fade-right">
+                    <div class="mb-4 col-12 col-md-5" data-aos="fade-right">
                         <div class="card h-100">
-                            <div class="card-body platform p-5">
+                            <div class="p-5 card-body platform">
                                 <h4 class="card-title reliable"><strong>Your reliable platform for the perfect property
                                         solution</strong>
                                 </h4>
@@ -131,10 +133,10 @@
                                     and tailored
                                     solutions—making your property journey seamless, successful, and stress-free.
                                 </p>
-                                <a class="button2 mb-3" href="property-page.html">Browse Properties</a>
+                                <a class="mb-3 button2" href="property-page.html">Browse Properties</a>
                                 <div>
                                     <img src="{{ asset('assets/images/Illustration.png') }}" width="400" height="150"
-                                        alt="" class="img-fluid mt-2">
+                                        alt="" class="mt-2 img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -145,11 +147,11 @@
                         <div class="row g-3">
                             <!-- Card 1 -->
                             <div class="col-12 col-sm-6">
-                                <div class="card text-center p-4 h-100" data-aos="zoom-in" data-aos-delay="100">
-                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="img-fluid mb-2"
+                                <div class="p-4 text-center card h-100" data-aos="zoom-in" data-aos-delay="100">
+                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="mb-2 img-fluid"
                                         style="width: 60px; margin: auto;">
                                     <div class="card-body">
-                                        <h6 class="card-title mb-2">Trusted Expertise</h6>
+                                        <h6 class="mb-2 card-title">Trusted Expertise</h6>
                                         <p class="card-text medium">Benefit from years of experience and local market
                                             knowledge to make
                                             informed decisions.</p>
@@ -159,11 +161,11 @@
 
                             <!-- Card 2 -->
                             <div class="col-12 col-sm-6">
-                                <div class="card text-center p-4 h-100" data-aos="zoom-in" data-aos-delay="200">
-                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="img-fluid mb-2"
+                                <div class="p-4 text-center card h-100" data-aos="zoom-in" data-aos-delay="200">
+                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="mb-2 img-fluid"
                                         style="width: 60px; margin: auto;">
                                     <div class="card-body">
-                                        <h6 class="card-title mb-2">End-to-End Support</h6>
+                                        <h6 class="mb-2 card-title">End-to-End Support</h6>
                                         <p class="card-text medium">From search to settlement, we offer guidance and
                                             peace
                                             of mind at every
@@ -174,11 +176,11 @@
 
                             <!-- Card 3 -->
                             <div class="col-12 col-sm-6">
-                                <div class="card text-center p-4 h-100" data-aos="zoom-in" data-aos-delay="300">
-                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="img-fluid mb-2"
+                                <div class="p-4 text-center card h-100" data-aos="zoom-in" data-aos-delay="300">
+                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="mb-2 img-fluid"
                                         style="width: 60px; margin: auto;">
                                     <div class="card-body">
-                                        <h6 class="card-title mb-2">Tailored Solutions</h6>
+                                        <h6 class="mb-2 card-title">Tailored Solutions</h6>
                                         <p class="card-text medium">Our approach helps match properties to your
                                             lifestyle,
                                             goals, and budget.
@@ -189,11 +191,11 @@
 
                             <!-- Card 4 -->
                             <div class="col-12 col-sm-6">
-                                <div class="card text-center p-4 h-100" data-aos="zoom-in" data-aos-delay="400">
-                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="img-fluid mb-2"
+                                <div class="p-4 text-center card h-100" data-aos="zoom-in" data-aos-delay="400">
+                                    <img src="{{ asset('assets/images/Container.png') }}" alt="" class="mb-2 img-fluid"
                                         style="width: 60px; margin: auto;">
                                     <div class="card-body">
-                                        <h6 class="card-title mb-2">Customer Focus</h6>
+                                        <h6 class="mb-2 card-title">Customer Focus</h6>
                                         <p class="card-text medium">We prioritize your needs and guide you with a
                                             personalized experience.</p>
                                     </div>
@@ -206,12 +208,12 @@
         </section>
 
 
-        <section id="sold" class="py-5 px-3">
+        <section id="sold" class="px-3 py-5">
             <div class="container">
                 <!-- Header -->
                 <div>
-                    <h2 class="mb-3 property text-center">Featured Properties</h2>
-                    <p class="Property2 text-center">
+                    <h2 class="mb-3 text-center property">Featured Properties</h2>
+                    <p class="text-center Property2">
                         Explore our handpicked selection of featured properties. Each listing offers a glimpse into
                         exceptional homes
                         and investments available through Monarsh Properties. Click "View Details" for more information.
@@ -220,9 +222,9 @@
 
                 <!-- Filter Buttons -->
                 <div class="mt-4 text-center">
-                    <div class="prop d-inline-block px-3 py-2">
+                    <div class="px-3 py-2 prop d-inline-block">
                         <div
-                            class="d-flex flex-column filter flex-md-row justify-content-center align-items-center gap-3">
+                            class="gap-3 d-flex flex-column filter flex-md-row justify-content-center align-items-center">
 
                             <a class="{{ request('status') === null ? 'active' : '' }}" href="{{ route('home') }}">All
                                 Feature
@@ -252,7 +254,7 @@
 
                     </div>
                     <div>
-                        <p id="browse"> <a class="text-decoration-none text-white" href="property-page.html">Browse
+                        <p id="browse"> <a class="text-white text-decoration-none" href="property-page.html">Browse
                                 All Properties</a>
                         </p>
                     </div>
@@ -260,42 +262,96 @@
         </section>
 
 
-        <section class="bg-white py-5">
+
+        <section class="py-5 bg-white">
             <div class="container">
-                <h1 class="text-center mb-5">What our client says</h1>
+                <h1 class="mb-5 text-center">What our clients say</h1>
 
                 <div class="row align-items-center">
-                    <!-- Text Content -->
-                    <div id="bought" class="col-12 col-md-6 mb-4 mb-md-0">
-                        <h5>Bought a house in Lugbe, Abuja</h5>
-                        <p>
-                            Monarsh Property made owning a home in Nigeria from abroad a reality. Their transparency and
-                            regular updates
-                            gave me peace of mind. I felt in control, even from thousands of miles away.”
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('assets/images/Profile.png') }}" alt="Profile" class="me-2"
-                                    style="width: 40px; height: 40px; object-fit: cover;">
-                                <div>
-                                    <span><strong>Chinedu A.</strong></span><br>
-                                    <small>London</small>
+
+                    <!-- Carousel Text Content -->
+                    <div style="background-color: #EFEFEF;" class="p-5 mb-4 rounded col-12 col-md-6 mb-md-0">
+                        <div id="testimonialTextCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <!-- Testimonial 1 -->
+                                <div class="carousel-item active">
+                                    <h5>Bought a house in Lugbe, Abuja</h5>
+                                    <p>
+                                        Monarsh Property made owning a home in Nigeria from abroad a reality.
+                                        Their transparency and regular updates gave me peace of mind.
+                                        I felt in control, even from thousands of miles away.
+                                    </p>
+                                    <div class="mt-3 d-flex align-items-center">
+                                        <img src="{{ asset('assets/images/testimonial-image.jpg') }}" alt="Profile"
+                                            class="me-2 rounded-circle"
+                                            style="width: 40px; height: 40px; object-fit: cover;">
+                                        <div>
+                                            <strong>Chinedu A.</strong><br>
+                                            <small>Lagos</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 2 -->
+                                <div class="carousel-item">
+                                    <h5>Bought land in Lekki, Lagos</h5>
+                                    <p>
+                                        Smooth process! Monarsh kept me updated every step.
+                                        I didn’t need to fly down to handle the purchase.
+                                    </p>
+                                    <div class="mt-3 d-flex align-items-center">
+                                        <img src="{{ asset('assets/images/testimonial-image.jpg') }}" alt="Profile"
+                                            class="me-2 rounded-circle"
+                                            style="width: 40px; height: 40px; object-fit: cover;">
+                                        <div>
+                                            <strong>Amaka O.</strong><br>
+                                            <small>Lekki</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 3 -->
+                                <div class="carousel-item">
+                                    <h5>Bought an apartment in Ikoyi, Lagos</h5>
+                                    <p>
+                                        From inquiry to handover, the experience was seamless.
+                                        I always felt secure investing with Monarsh.
+                                    </p>
+                                    <div class="mt-3 d-flex align-items-center">
+                                        <img src="{{ asset('assets/images/testimonial-image.jpg') }}" alt="Profile"
+                                            class="me-2 rounded-circle"
+                                            style="width: 40px; height: 40px; object-fit: cover;">
+                                        <div>
+                                            <strong>David K.</strong><br>
+                                            <small>Bourdillon</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="text-primary mb-0 mt-2 mt-sm-0">Watch Testimony »</p>
+
+                            <!-- Controls -->
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#testimonialTextCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#testimonialTextCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+
                         </div>
                     </div>
 
-                    <!-- Image -->
+                    <!-- Static Image -->
                     <div class="col-12 col-md-6">
-                        <img src="{{ asset('assets/images/house2.jpg') }}" alt="Testimonial House"
-                            class="img-fluid rounded shadow">
+                        <img src="{{ asset('assets/images/client-house.jpg') }}" alt="Testimonial House"
+                            class="rounded shadow img-fluid">
                     </div>
                 </div>
             </div>
-            </div>
-
         </section>
+
 
 
         <section id="click">
@@ -316,7 +372,7 @@
                 <div class="container my-5">
                     <div class="row align-items-stretch">
                         <!-- Buy a Property -->
-                        <div class="col-12 col-md-6 mb-4 h-100">
+                        <div class="mb-4 col-12 col-md-6 h-100">
                             <div class="buying h-100">
                                 <h2>Buy a Property</h2>
                                 <p id="your2">
@@ -330,14 +386,14 @@
                                     stress.
                                 </p>
                                 <p id="your" class="text-white">
-                                    <a class="text-decoration-none text-white" href="{{ route('property') }}"> Explore
+                                    <a class="text-white text-decoration-none" href="{{ route('property') }}"> Explore
                                         Listings</a> <span><i class="bi bi-arrow-right"></i></span>
                                 </p>
                             </div>
                         </div>
 
                         <!-- Sell a Property -->
-                        <div class="col-12 col-md-6 mb-4 h-100">
+                        <div class="mb-4 col-12 col-md-6 h-100">
                             <div class="buying2 h-100">
                                 <h3>Sell a Property</h3>
                                 <p id="your2">
@@ -352,7 +408,7 @@
                                     property selling like never before.
                                 </p>
                                 <p id="your" class="text-white">
-                                    <a class="text-decoration-none text-white"
+                                    <a class="text-white text-decoration-none"
                                         href="{{ route('sellRequest.create') }}">Sell Your
                                         Property</a> <span><i class="bi bi-arrow-right"></i></span>
                                 </p>
@@ -364,37 +420,37 @@
 
                 <!-- Stats Section -->
                 <div class="container my-4">
-                    <div class="row text-center">
+                    <div class="text-center row">
                         <!-- Stat 1 -->
-                        <div class="col-6 col-md-3 mb-4">
+                        <div class="mb-4 col-6 col-md-3">
                             <div class="time">
-                                <p class="fs-4 fw-bold mb-1"><span class="counter" data-target="7.4"
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="7.4"
                                         data-suffix="%">0%</span></p>
                                 <p class="mb-0 daily">Property Return Rate</p>
                             </div>
                         </div>
 
                         <!-- Stat 2 -->
-                        <div class="col-6 col-md-3 mb-4">
+                        <div class="mb-4 col-6 col-md-3">
                             <div class="time">
-                                <p class="fs-4 fw-bold mb-1"><span class="counter" data-target="7.4"
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="7.4"
                                         data-suffix="%">0%</span></p>
                                 <p class="mb-0 daily">Property Return Rate</p>
                             </div>
                         </div>
 
                         <!-- Stat 3 -->
-                        <div class="col-6 col-md-3 mb-4">
+                        <div class="mb-4 col-6 col-md-3">
                             <div class="time">
-                                <p class="fs-4 fw-bold mb-1"><span class="counter" data-target="3856">0</span></p>
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="3856">0</span></p>
                                 <p class="mb-0 daily">Property in Sell & Rent</p>
                             </div>
                         </div>
 
                         <!-- Stat 4 -->
-                        <div class="col-6 col-md-3 mb-4">
+                        <div class="mb-4 col-6 col-md-3">
                             <div class="time2">
-                                <p class="fs-4 fw-bold mb-1"><span class="counter" data-target="2540">0</span></p>
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="2540">0</span></p>
                                 <p class="mb-0 daily">Daily Completed Transactions</p>
                             </div>
                         </div>
@@ -409,26 +465,26 @@
 
         <section id="question">
             <div class="container py-5">
-                <div class="row justify-content-center text-center mb-4">
+                <div class="mb-4 text-center row justify-content-center">
                     <div class="col-12 col-md-10 col-lg-8">
                         <h1>Frequently Asked Questions</h1>
                         <p>
                             Still have any questions? Contact our team via
-                            <a id="support" href="contact.html"
-                                class="text-decoration-none">support@MonarshProperties.com</a>
+                            <a id="support" href="mailto:support@monarshproperty.com"
+                                class="text-decoration-none">support@Monarshproperty.com</a>
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-custom">
                     <!-- FAQ Item -->
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">What services does Monarsh Property offer?</p>
+                            <p class="mb-0 fw-medium">What services does Monarsh Property offer?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             We provide property buying, selling, investment advice, and market valuation service
                             tailored to
                             your needs.
@@ -436,87 +492,87 @@
                     </div>
 
                     <!-- Repeat for each FAQ -->
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">Can Monarsh help me buy property from abroad?</p>
+                            <p class="mb-0 fw-medium">Can Monarsh help me buy property from abroad?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             Yes, Monarsh provides full support for international buyers, from property selection to
                             legal
                             processing.
                         </div>
                     </div>
 
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">How does Monarsh determine the market value of my property?</p>
+                            <p class="mb-0 fw-medium">How does Monarsh determine the market value of my property?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             We use recent market data, property condition, and expert evaluations to provide accurate
                             estimates.
                         </div>
                     </div>
 
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">What areas do you cover?</p>
+                            <p class="mb-0 fw-medium">What areas do you cover?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             We cover major Nigerian cities such as Lagos, Abuja, Port Harcourt, and beyond.
                         </div>
                     </div>
 
 
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">How long does it take to sell a property with Monarsh?</p>
+                            <p class="mb-0 fw-medium">How long does it take to sell a property with Monarsh?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             On average, it takes between 4–12 weeks depending on the location and property condition.
                         </div>
                     </div>
 
 
 
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">Do you offer legal support during property transactions?</p>
+                            <p class="mb-0 fw-medium">Do you offer legal support during property transactions?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             Yes, we provide legal assistance and connect clients with experienced property lawyers.
                         </div>
                     </div>
 
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">How can I start working with Monarsh?</p>
+                            <p class="mb-0 fw-medium">How can I start working with Monarsh?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             Just fill out our contact form, or reach out via phone or email to schedule a consultation.
                         </div>
                     </div>
 
 
 
-                    <div class="faq-item border bg-white rounded-3 p-3 mb-2">
-                        <div class="faq-question d-flex justify-content-between align-items-center cursor-pointer"
+                    <div class="p-3 mb-2 bg-white border faq-item rounded-3">
+                        <div class="cursor-pointer faq-question d-flex justify-content-between align-items-center"
                             onclick="toggleFAQ(this)">
-                            <p class="fw-medium mb-0">Is there a fee for your services?</p>
+                            <p class="mb-0 fw-medium">Is there a fee for your services?</p>
                             <span class="icon">+</span>
                         </div>
-                        <div class="faq-answer mt-2" style="display: none;">
+                        <div class="mt-2 faq-answer" style="display: none;">
                             We offer free consultations. Fees vary depending on services and will be clearly explained
                             upfront.
                         </div>

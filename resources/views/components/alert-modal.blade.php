@@ -1,32 +1,39 @@
 @props([
-    'id' => 'popup-modal',
-    'variant' => 'success',
-    'title' => '',
-    'actionLabel' => $variant === 'delete' ? 'Delete' : ($variant === 'decline' ? 'Decline' : 'Confirm'),
-    'cancelLabel' => 'cancel',
-    'action' => '#',
-    'method' => 'POST',
+'id' => 'popup-modal',
+'variant' => 'success',
+'title' => '',
+//'actionLabel' => $variant === 'delete' ? 'Delete' : ($variant === 'decline' ? 'Decline' : 'Confirm'),
+'actionLabel' => null,
+'cancelLabel' => 'cancel',
+'action' => '#',
+'method' => 'POST',
 ])
 
 @php
 
-    $icon = match ($variant) {
-        'delete', 'decline' => 'delete-icon.png',
-        'success', 'approve' => 'success-icon.png',
-        default => '',
-    };
+$actionLabel = match ($variant) {
+'delete' => 'Delete',
+'decline' => 'Decline',
+default => 'Confirm',
+};
 
-    $actionColor =
-        $variant === 'delete'
-            ? 'bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800'
-            : 'bg-green-600 hover:bg-green-800 focus:ring-green-300 dark:focus:ring-green-800';
+$icon = match ($variant) {
+'delete', 'decline' => 'delete-icon.png',
+'success', 'approve' => 'success-icon.png',
+default => '',
+};
 
-    $message = match ($variant) {
-        'decline' => "Are you sure you want to decline this $title? This action cannot be undone",
-        'delete' => "Are you sure you want to delete this $title? This action cannot be undone.",
-        'success', 'approve' => "Are you sure you want to approve this $title?",
-        default => '',
-    };
+$actionColor =
+$variant === 'delete'
+? 'bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800'
+: 'bg-green-600 hover:bg-green-800 focus:ring-green-300 dark:focus:ring-green-800';
+
+$message = match ($variant) {
+'decline' => "Are you sure you want to decline this $title? This action cannot be undone",
+'delete' => "Are you sure you want to delete this $title? This action cannot be undone.",
+'success', 'approve' => "Are you sure you want to approve this $title?",
+default => '',
+};
 
 @endphp
 
@@ -48,11 +55,11 @@
             <form action="{{ $action }}" method="POST">
                 @csrf
                 @if (in_array(strtoupper($method), ['PUT', 'PATCH', 'DELETE']))
-                    @method($method)
+                @method($method)
                 @endif
 
                 <div class="p-4 md:p-5 text-center">
-                    <img class="block mx-auto my-3" src="{{ asset("assets/icons/$icon") }}"
+                    <img class="block mx-auto my-3" src="{{ asset(" assets/icons/$icon") }}"
                         alt="{{ $variant . '-icon' }}">
                     <h1 class="font-medium text-lg text-darkest">{{ $actionLabel }} {{ $title }}</h1>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">{{ $message }}</h3>

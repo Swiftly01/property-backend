@@ -14,7 +14,8 @@ readonly class PropertyDTO
         public readonly string $type,
         public readonly string $location,
         public readonly string $price,
-        public readonly string $description
+        public readonly string $description,
+        public readonly string $features
 
     ) {
         //
@@ -31,6 +32,7 @@ readonly class PropertyDTO
             location: $validatedData['location'],
             price: $validatedData['price'],
             description: $validatedData['description'],
+            features: $validatedData['features']
 
 
         );
@@ -46,7 +48,8 @@ readonly class PropertyDTO
             'location' => $this->location,
             'price' => $this->price,
             'description' => $this->description,
-            'type' => $this->type
+            'type' => $this->type,
+            'features' => $this->features
 
 
         ];

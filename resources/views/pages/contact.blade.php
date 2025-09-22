@@ -8,7 +8,7 @@
 
     <section id="contact" class="py-4">
         <div class="">
-            <div class="container text-start  content">
+            <div class="container text-start content">
                 <h1 class="text-white">
                     Get in Touch with Monarsh Properties
                 </h1>
@@ -25,38 +25,38 @@
 
     <section class="py-4">
         <div class="container">
-            <div class="row text-center gy-4 justify-content-center align-items-center">
-                <h1 class="text-center mb-4">Other Ways to Connect</h1>
+            <div class="text-center row gy-4 justify-content-center align-items-center">
+                <h1 class="mb-4 text-center">Other Ways to Connect</h1>
 
                 <div class="col-6 col-sm-4 col-md-3">
-                    <div class="connect p-3">
+                    <div class="p-3 connect">
                         <img src="{{ asset('assets/images/Icon Container (5).png') }}" alt="Email Icon"
-                            class="img-fluid mb-2" style="max-width: 50px;">
-                        <p class="mb-0">info@Monarsh Properties.com</p>
+                            class="mb-2 img-fluid" style="max-width: 50px;">
+                        <p class="mb-0">Support@monarshproperty.com</p>
                     </div>
                 </div>
 
                 <div class="col-6 col-sm-4 col-md-3">
-                    <div class="connect p-3">
+                    <div class="p-3 connect">
                         <img src="{{ asset('assets/images/Icon Container (6).png') }}" alt="Phone Icon"
-                            class="img-fluid mb-2" style="max-width: 50px;">
+                            class="mb-2 img-fluid" style="max-width: 50px;">
                         <p class="mb-0">+1 (123) 456-7890</p>
                     </div>
                 </div>
 
                 <div class="col-6 col-sm-4 col-md-3">
-                    <div class="connect p-3">
+                    <div class="p-3 connect">
                         <img src="{{ asset('assets/images/Icon Container (7).png') }}" alt="Address Icon"
-                            class="img-fluid mb-2" style="max-width: 50px;">
+                            class="mb-2 img-fluid" style="max-width: 50px;">
                         <p class="mb-0">ETORIXUSA LLC, USA</p>
                     </div>
                 </div>
 
                 <div class="col-6 col-sm-4 col-md-3">
-                    <div class="connect p-3">
+                    <div class="p-3 connect">
                         <img src="{{ asset('assets/images/Icon Container (8).png') }}" alt="Social Media Icon"
-                            class="img-fluid mb-2" style="max-width: 50px;">
-                        <div class="d-flex justify-content-center gap-3 fs-4">
+                            class="mb-2 img-fluid" style="max-width: 50px;">
+                        <div class="gap-3 d-flex justify-content-center fs-4">
                             <a href="https://www.facebook.com/share/16AVu4rKcM/" class="text-dark me-3"><i
                                     class="bi bi-facebook"></i></a>
                             <a href="https://www.instagram.com/monarshproperty?igsh=cmk2ZTBtMHd6eHhi"
@@ -87,7 +87,7 @@
                     <!-- Form Section -->
                     <form action="{{ route('contactForm.store') }}" method="POST">
                       @csrf
-                        <div class="row mb-3">
+                        <div class="mb-3 row">
                             <div class="col-md-6">
                                 <label for="first-name" class="form-label">First Name</label>
                                 <input type="text" name="firstname" value="{{ old('firstname') }}"
@@ -105,7 +105,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="mb-3 row">
                             <div class="col-md-4">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" name="email" value="{{ old('email') }}" class="form-control" id="email"
@@ -146,7 +146,7 @@
                         </div>
 
                         <div
-                            class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mt-3">
+                            class="mt-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
                             <div class="form-check">
                                 <input class="form-check-input" name="terms" type="checkbox" id="agreeCheck">
                                 <label class="form-check-label" for="agreeCheck">
@@ -158,7 +158,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <button id="submit" type="submit" class="btn btn-primary mt-3 mt-md-0"> Submit</button>
+                            <button id="submit" type="submit" class="mt-3 btn btn-primary mt-md-0"> Submit</button>
                         </div>
                     </form>
                 </div>

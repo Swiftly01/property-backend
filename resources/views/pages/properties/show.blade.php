@@ -24,20 +24,21 @@
           </div>
         </div>
       </div>
-     
+
     </section>
 
     <section class="py-4 mx-2">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto overflow-hidden" id="animate">
-              <x-image-gallery :images="$property->getImages('other_images', 'other_images')" :thumbnail="$property->imageUrl('thumbnail', 'thumbnail')" /> 
-          </div>    
+            <x-image-gallery :images="$property->getImages('other_images', 'other_images')"
+              :thumbnail="$property->imageUrl('thumbnail', 'thumbnail')" />
+          </div>
         </div>
       </div>
     </section>
 
-  
+
 
     <section class="py-2">
       <div class="container">
@@ -57,11 +58,18 @@
           <div class="col-12 col-md-6">
             <div class="description3">
               <h3>Key Features and Amenities</h3>
+              @forelse (json_decode($property->features, true) ?? [] as $feature )
               <div class="Private">
-                <p><i class="bi bi-lightning-fill"></i> Expansive oceanfront terrace for outdoor
-                  entertaining</p>
-              </div>
-              <div class="Private">
+                <p><i class="bi bi-lightning-fill"></i>{{ $feature }}</p>
+              </div>   
+              @empty
+              <p>No features available for this propery: {{$property->title}}</P>
+                
+              @endforelse 
+              
+              
+
+              {{-- <div class="Private">
                 <p><i class="bi bi-lightning-fill"></i> Gourmet kitchen with top-of-the-line appliances</p>
               </div>
               <div class="Private">
@@ -74,7 +82,7 @@
               </div>
               <div class="Private">
                 <p><i class="bi bi-lightning-fill"></i> Private garage and ample storage space</p>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -104,7 +112,8 @@
               <div class="mb-3 row">
                 <div class="col-md-6">
                   <label for="firstname" class="form-label">First Name</label>
-                  <input type="text" class="form-control input-style" id="firstname" placeholder="Enter First Name" name="firstname" value="{{ old('firstname') }}" required>
+                  <input type="text" class="form-control input-style" id="firstname" placeholder="Enter First Name"
+                    name="firstname" value="{{ old('firstname') }}" required>
                   @error('firstname')
                   <span class="text-danger">
                     {{ $message }}
@@ -113,7 +122,8 @@
                 </div>
                 <div class="col-md-6">
                   <label for="lastname" class="form-label">Last Name</label>
-                  <input type="text" class="form-control input-style" id="lastname" placeholder="Enter Last Name" name="lastname" value="{{ old('lastname') }}" required>
+                  <input type="text" class="form-control input-style" id="lastname" placeholder="Enter Last Name"
+                    name="lastname" value="{{ old('lastname') }}" required>
                   @error('lastname')
                   <span class="text-danger">
                     {{ $message }}
@@ -126,7 +136,8 @@
               <div class="mb-3 row">
                 <div class="col-md-6">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control input-style" id="email" placeholder="Enter your Email" name="email" value="{{ old('email') }}" required>
+                  <input type="email" class="form-control input-style" id="email" placeholder="Enter your Email"
+                    name="email" value="{{ old('email') }}" required>
                   @error('email')
                   <span class="text-danger">
                     {{ $message }}
@@ -137,7 +148,8 @@
                 </div>
                 <div class="col-md-6">
                   <label for="phone" class="form-label">Phone</label>
-                  <input type="tel" class="form-control input-style" id="phone" placeholder="Enter Phone Number" name="phone_number" value="{{ old('phone_number') }}" required>
+                  <input type="tel" class="form-control input-style" id="phone" placeholder="Enter Phone Number"
+                    name="phone_number" value="{{ old('phone_number') }}" required>
                   @error('phone_number')
                   <span class="text-danger">
                     {{ $message }}
@@ -148,13 +160,15 @@
 
               <div class="mb-3">
                 <label for="property" class="form-label">Selected Property</label>
-                <input class="form-control input-style" id="property" type="text" value="{{ $property->title }}" readonly>
+                <input class="form-control input-style" id="property" type="text" value="{{ $property->title }}"
+                  readonly>
                 <input name="property_id" type="text" value="{{ $property->id }}" hidden>
               </div>
 
               <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control input-style" id="message" rows="4" placeholder="Enter your message here...">{{ old('message') }}</textarea>
+                <textarea class="form-control input-style" id="message" rows="4"
+                  placeholder="Enter your message here...">{{ old('message') }}</textarea>
                 @error('message')
                 <span class="text-danger">
                   {{ $message }}
@@ -162,9 +176,11 @@
                 </span>
                 @enderror
               </div>
-              <div class="mt-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
+              <div
+                class="mt-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="agreeCheck" name="terms" {{ old('terms') ? 'checked' : '' }} required>
+                  <input class="form-check-input" type="checkbox" id="agreeCheck" name="terms" {{ old('terms')
+                    ? 'checked' : '' }} required>
                   <label class="form-check-label" for="agreeCheck">
                     I agree with <a href="#" class="text-decoration-underline term">Terms of
                       Use</a> and <a href="#" class="text-decoration-underline term">Privacy

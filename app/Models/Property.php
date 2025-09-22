@@ -15,7 +15,23 @@ class Property extends Model implements HasMedia
 
     protected $guarded = [];
 
+    public function getFeaturesAttribute($value)
+{
+    // If it's already an array, implode
+    if (is_array($value)) {
+        return implode("\n", $value);
+    }
 
+    // If it's a JSON string, decode then implode
+    if (is_string($value) && str_starts_with($value, '[')) {
+        $decoded = json_decode($value, true);
+        if (is_array($decoded)) {
+            return implode("\n", $decoded);
+        }
+    }
+
+    return $value; // fallback
+}
     public function buyRequests()
     {
         return $this->hasMany(BuyRequest::class);
