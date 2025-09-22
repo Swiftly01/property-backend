@@ -94,24 +94,21 @@
         </section>
 
 
-        <section class="py-3 overflow-hidden w-100 zapier2">
+        <section class="py-3  overflow-hidden w-100 zapier2">
             <div class="text-white scroll-container">
-                <div class="scroll-row d-flex align-items-center">
-                    <p class="zapier"><i class="bi bi-zap"></i> Zapier</p>
-                    <p class="zapier"><i class="bi bi-spotify"></i> Spotify</p>
-                    <p class="zapier"><i class="bi bi-camera-video"></i> Zoom</p>
-                    <p class="zapier"><i class="bi bi-slack"></i> Slack</p>
-                    <p class="zapier"><i class="bi bi-amazon"></i> Amazon</p>
-                    <p class="zapier"><i class="bi bi-ad"></i> Adobe</p>
-                    <img class="zapier3 img-fluid" src="{{ asset('assets/images/Logo (3).png') }}" alt="Custom Logo"
-                        style="height: 30px; margin-left: 1rem;">
-                    <!-- Repeat to make continuous -->
-                    <p class="zapier"><i class="bi bi-zap"></i> Zapier</p>
-                    <p class="zapier"><i class="bi bi-spotify"></i> Spotify</p>
-                    <p class="zapier"><i class="bi bi-camera-video"></i> Zoom</p>
-                    <p class="zapier"><i class="bi bi-slack"></i> Slack</p>
-                    <p class="zapier"><i class="bi bi-amazon"></i> Amazon</p>
-                    <p class="zapier"><i class="bi bi-ad"></i> Adobe</p>
+                <div class="scroll-row">
+                   
+                    <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
+                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
+                     <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
+                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
+                     <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
+                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
+                   
+                
                 </div>
             </div>
         </section>

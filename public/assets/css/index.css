@@ -691,7 +691,7 @@
   background: #02122B;
   overflow: hidden;
   white-space: nowrap;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   color: #B6B6B7;
 }
 
@@ -701,7 +701,10 @@
 }
 
 .scroll-row {
-  display: inline-flex;
+  /* display: inline-flex; */
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
   gap: 2rem;
   animation: scroll-left 20s linear infinite;
   white-space: nowrap;
