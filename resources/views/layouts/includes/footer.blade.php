@@ -45,7 +45,7 @@
       <div class="row align-items-center">
         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
           <p class="foot mb-0">
-            &copy; <span id="currentYear"></span> Monarsh Properties. All Rights Reserved.
+            &copy; <span id="currentYear"></span> Monarsh Property. All Rights Reserved.
             <a href="#" class="text-white text-decoration-none">Terms & Conditions</a>
           </p>
         </div>
