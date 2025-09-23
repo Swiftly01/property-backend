@@ -100,12 +100,15 @@
                    
                     <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
                     <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
+                    <p> <img style="width: 90px" src="{{ asset('assets/images/techpro_img.png') }}" alt="partners">Techpro</p>
                     <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
                      <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
                     <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
+                    <p> <img style="width: 90px" src="{{ asset('assets/images/techpro_img.png') }}" alt="partners">Techpro</p>
                     <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
                      <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
                     <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
+                    <p> <img style="width: 90px" src="{{ asset('assets/images/techpro_img.png') }}" alt="partners">Techpro</p>
                     <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
                    
                 
