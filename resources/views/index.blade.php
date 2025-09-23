@@ -133,7 +133,7 @@
                                     and tailored
                                     solutions—making your property journey seamless, successful, and stress-free.
                                 </p>
-                                <a class="mb-3 button2" href="property-page.html">Browse Properties</a>
+                                <a class="mb-3 button2" href="{{ route('property') }}">Browse Properties</a>
                                 <div>
                                     <img src="{{ asset('assets/images/Illustration.png') }}" width="400" height="150"
                                         alt="" class="mt-2 img-fluid">
