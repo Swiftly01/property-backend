@@ -24,7 +24,7 @@ class StoreSellRequest extends FormRequest
     public function rules(): array
     {
         return [
-             'name' => ['required', 'string', 'lowercase', 'max:255'],
+             'name' => ['required', 'string', 'max:255'],
              'email' => ['required', 'lowercase', 'email:rfc,dns', 'max:255'],
              'phone_number' => ['required','regex:/^(080|091|090|070|081)[0-9]{8}$/'],
              'location' => ['nullable', 'string'],

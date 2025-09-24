@@ -22,7 +22,7 @@
                             that matches
                             your dreams.
                         </p>
-                        <a class="button2" href="">Browse Properties</a>
+                        <a class="button2" href="{{ route('property') }}">Browse Properties</a>
 
 
                         <div class="py-5">
@@ -254,7 +254,7 @@
 
                     </div>
                     <div>
-                        <p id="browse"> <a class="text-white text-decoration-none" href="property-page.html">Browse
+                        <p id="browse"> <a class="text-white text-decoration-none" href="{{ route('property') }}">Browse
                                 All Properties</a>
                         </p>
                     </div>
@@ -424,7 +424,7 @@
                         <!-- Stat 1 -->
                         <div class="mb-4 col-6 col-md-3">
                             <div class="time">
-                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="7.4"
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="100"
                                         data-suffix="%">0%</span></p>
                                 <p class="mb-0 daily">Property Return Rate</p>
                             </div>
@@ -433,16 +433,16 @@
                         <!-- Stat 2 -->
                         <div class="mb-4 col-6 col-md-3">
                             <div class="time">
-                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="7.4"
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="100"
                                         data-suffix="%">0%</span></p>
-                                <p class="mb-0 daily">Property Return Rate</p>
+                                <p class="mb-0 daily">Customer Satisfaction</p>
                             </div>
                         </div>
 
                         <!-- Stat 3 -->
                         <div class="mb-4 col-6 col-md-3">
                             <div class="time">
-                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="3856">0</span></p>
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="100">0%</span></p>
                                 <p class="mb-0 daily">Property in Sell & Rent</p>
                             </div>
                         </div>
@@ -450,8 +450,8 @@
                         <!-- Stat 4 -->
                         <div class="mb-4 col-6 col-md-3">
                             <div class="time2">
-                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="2540">0</span></p>
-                                <p class="mb-0 daily">Daily Completed Transactions</p>
+                                <p class="mb-1 fs-4 fw-bold"><span class="counter" data-target="5">0</span>+</p>
+                                <p class="mb-0 daily">Years Experience</p>
                             </div>
                         </div>
                     </div>
