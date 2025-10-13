@@ -97,21 +97,32 @@
         <section class="py-3  overflow-hidden w-100 zapier2">
             <div class="text-white scroll-container">
                 <div class="scroll-row">
-                   
-                    <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
-                    <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
-                    <p> <img style="width: 90px" src="{{ asset('assets/images/techpro_img.png') }}" alt="partners">Techpro</p>
-                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
-                     <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
-                    <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
-                    <p> <img style="width: 90px" src="{{ asset('assets/images/techpro_img.png') }}" alt="partners">Techpro</p>
-                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
-                     <p> <img style="width: 80px" src="{{ asset('assets/images/76Blue.jpg') }}" alt="partners"> 76Blue</p>
-                    <p> <img style="width: 80px" src="{{ asset('assets/images/lifemate.webp') }}" alt="partners"> Lifemate</p>
-                    <p> <img style="width: 90px" src="{{ asset('assets/images/techpro_img.png') }}" alt="partners">Techpro</p>
-                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/images/partner-1.png') }}" alt="partners"> Comfort shortlet apartment</p>
-                   
-                
+
+                    <p> <img style="width: 100px" src="{{ asset('assets/partners/76Blue.png') }}" alt="partners"> </p>
+                    <p> <img style="width: 100px" src="{{ asset('assets/partners/LifeMate.png') }}" alt="partners"> </p>
+                    <p> <img style="width: 100px" src="{{ asset('assets/partners/la-roche.png') }}" alt="partners"></p>
+                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/partners/Lg.png') }}"
+                            alt="partners"></p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/Roca.png') }}" alt="partners"></p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/shortlet.png') }}" alt="partners"></p>
+                    <p> <img style="width: 90px" src="{{ asset('assets/partners/TechPro.png') }}" alt="partners"></p>
+                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/partners/Veritasi.png') }}"
+                            alt="partners"></p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/Roca.png') }}" alt="partners"></p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/shortlet.png') }}" alt="partners"></p>
+                    <p> <img style="width: 90px" src="{{ asset('assets/partners/TechPro.png') }}" alt="partners"></p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/76Blue.png') }}" alt="partners"> </p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/LifeMate.png') }}" alt="partners"> </p>
+                    <img style="width: 80px; height: 40px;" src="{{ asset('assets/partners/Lg.png') }}" alt="partners">
+                    </p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/Roca.png') }}" alt="partners"></p>
+                    <p> <img style="width: 80px" src="{{ asset('assets/partners/shortlet.png') }}" alt="partners"></p>
+                    <p> <img style="width: 90px" src="{{ asset('assets/partners/TechPro.png') }}" alt="partners"></p>
+                    <p><img style="width: 80px; height: 40px;" src="{{ asset('assets/partners/Veritasi.png') }}"
+                            alt="partners"></p>
+
+
+
                 </div>
             </div>
         </section>
