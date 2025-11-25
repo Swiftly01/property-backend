@@ -43,6 +43,7 @@ class PropertyService
             $propertyData = DB::transaction(fn() => $this->createPropertyWithMedia(dto: $dto, request: $request));
 
             $this->processEventDispatch(property: $propertyData);
+            
         } catch (MediaProcessingException $e) {
             throw $e;
         } catch (Throwable $e) {
